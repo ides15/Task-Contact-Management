@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package application;
 
 /**
  *
- * @author John Ide | JCI5048 | PSU 2018
+ * @author John Ide - JCI5048
  */
-public class Main {
+public class App {
     public static void main(String[] args) {
         System.out.println("Hello world");
     }
