@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package application;
 
 import java.sql.*;
 
 /**
  * Extendable database class to be used with a SQlite database
+ * 
+ * 
  * 
  * @author John Ide - JCI5048
  */
