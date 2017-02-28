@@ -5,11 +5,56 @@
  */
 package application;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author reesmcdevitt
  */
 public class LoginCntl 
 {
-    //Todo: Add Controller 
+    private LoginModel loginModel;
+    private LoginView loginView;
+    
+    private UserLoginPanel userLoginPanel;
+    private NewUserPanel newUserPanel;
+    
+    
+    LoginCntl(LoginModel loginModel, LoginView loginView)
+    {
+        this.loginModel = loginModel;
+        this.loginView = loginView;
+        
+        userLoginPanel = new UserLoginPanel();
+        newUserPanel = new NewUserPanel();
+        
+        loginView.addUserLoginPanelListener(new UserLoginButtonListener());
+        loginView.addNewUserPanelListener(new NewUserButtonListener());
+        
+        
+    
+    }
+    
+    class UserLoginButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            loginView.switchToUserLogin(userLoginPanel);
+            
+            // HERE: Connects Panels 
+        }
+    
+    }
+    
+    class NewUserButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            loginView.switchToNewUser(newUserPanel);
+            
+            // HERE: Connects Panels 
+        }
+    
+    }
 }
