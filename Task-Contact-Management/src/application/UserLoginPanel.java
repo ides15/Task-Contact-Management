@@ -31,7 +31,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
         PasswordLabel = new javax.swing.JLabel();
         UsernameTextField = new javax.swing.JTextField();
         PasswordTextField = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
 
         setName("UserNameButton"); // NOI18N
 
@@ -49,10 +49,10 @@ public class UserLoginPanel extends javax.swing.JPanel {
         PasswordTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         PasswordTextField.setName("PasswordTextField"); // NOI18N
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LoginButton.setText("Login");
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LoginButtonActionPerformed(evt);
             }
         });
 
@@ -72,7 +72,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
                 .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(LoginButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,22 +86,22 @@ public class UserLoginPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(LoginButton)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        // TODO: Add Authentication here for USER
+    }//GEN-LAST:event_LoginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoginButton;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JPasswordField PasswordTextField;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
