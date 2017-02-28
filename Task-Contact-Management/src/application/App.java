@@ -13,5 +13,7 @@ public class App {
     public static void main(String[] args) {
       LoginModel loginModel = new LoginModel();
       LoginView loginView = new LoginView(loginModel);
+      
+      loginView.setVisible(true);
     }
 }

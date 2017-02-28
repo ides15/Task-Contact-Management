@@ -3,30 +3,22 @@ package application;
 import javax.swing.JFrame;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author reesmcdevitt
  */
 public class LoginView extends JFrame
 {
-    private LoginModel navModel;
+    private LoginModel loginModel;
     private LoginViewPanel loginViewPanel;
     
-    LoginView(LoginModel navModel) 
+    LoginView(LoginModel loginModel) 
     {
         super("Manager");
-        this.navModel = navModel;
+        this.loginModel = loginModel;
         
-        setSize(500,600);
+        setSize(400,400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-        
+ 
         loginViewPanel = new LoginViewPanel();
-        add(loginViewPanel);
+        add(loginViewPanel); 
     }
 }
