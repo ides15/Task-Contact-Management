@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class LoginViewPanel extends JPanel
 {
-    private LoginMenu loginMenu;
+
     private UserLoginPanel userLoginPanel;
     private NewUserPanel newUserPanel;
     
@@ -18,11 +18,18 @@ public class LoginViewPanel extends JPanel
         super();
         setLayout(new BorderLayout());
         
-        loginMenu = new LoginMenu();
+
         userLoginPanel = new UserLoginPanel();
+       
         
-        add(loginMenu, BorderLayout.NORTH);
-        add(userLoginPanel, BorderLayout.CENTER);
+
+
+       add(userLoginPanel, BorderLayout.CENTER);
+      
+
+
+
+
     }
     
     // User Login meathods to adds and remove panel
@@ -59,8 +66,14 @@ public class LoginViewPanel extends JPanel
         }
     }
     
-    public LoginMenu getLoginMenu()
+    public UserLoginPanel getUserLoginPanel()
     {
-        return loginMenu;
+        return userLoginPanel;
     }
+    
+    public NewUserPanel getNewUserPanel()
+    {
+        return newUserPanel;
+    }
+  
 }

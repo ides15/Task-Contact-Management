@@ -31,9 +31,11 @@ public class LoginCntl
 
         newUserPanel = new NewUserPanel();
         
+      
+        
         loginView.addUserLoginPanelListener(new UserLoginButtonListener());
         loginView.addNewUserPanelListener(new NewUserButtonListener());
-        
+      
         
     
     }
@@ -56,6 +58,27 @@ public class LoginCntl
             loginView.switchToNewUser(newUserPanel);
             
             // HERE: Connects Panels 
+        }
+    
+    }
+    class BackButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            loginView.switchToUserLogin(userLoginPanel);
+            
+            // HERE: Connects Panels 
+        }
+    
+    }
+    
+    class SubmitButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            
+            
+            // HERE: Reads the inputs from the user
         }
     
     }
