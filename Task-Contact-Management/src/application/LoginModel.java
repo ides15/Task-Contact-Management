@@ -11,7 +11,8 @@ package application;
  */
 public class LoginModel {
     
-    LoginModel() {
+    public LoginModel() {
         
     }
+    
 }

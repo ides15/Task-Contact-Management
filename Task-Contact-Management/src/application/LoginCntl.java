@@ -26,7 +26,9 @@ public class LoginCntl
         this.loginModel = loginModel;
         this.loginView = loginView;
         
-        userLoginPanel = new UserLoginPanel();
+//        userLoginPanel = new UserLoginPanel();
+// I don't think ^ does anything; userLoginPanel gets initialized in LoginViewPanel already
+
         newUserPanel = new NewUserPanel();
         
       

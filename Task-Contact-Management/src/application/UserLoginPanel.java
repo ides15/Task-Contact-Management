@@ -15,12 +15,16 @@ import javax.swing.JButton;
  */
 public class UserLoginPanel extends javax.swing.JPanel {
 
-    LoginView loginView;
-    UserLoginPanel userLoginPanel;
-    NewUserPanel newUserPanel;
+    private Database db;
     
+    /**
+     * Creates new form UserLoginPanel
+     */
     public UserLoginPanel() {
         initComponents();
+        
+        db = new Database("tcm.db");
+        db.connectToDatabase();
     }
 
     /**
@@ -127,6 +131,8 @@ public class UserLoginPanel extends javax.swing.JPanel {
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
         
     }//GEN-LAST:event_newUserButtonActionPerformed
+        System.out.println(db.testDatabase());
+    }//GEN-LAST:event_LoginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

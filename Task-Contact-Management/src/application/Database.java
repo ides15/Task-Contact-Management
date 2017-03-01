@@ -7,26 +7,82 @@ package application;
 
 import java.sql.*;
 
+/*
+
+        USAGE
+
+        Constructor of database class takes one parameter, which is the database name.
+        If there is no database with that name in the project, a new database will be made.
+
+        In order to do anything with the database, you must first call connectToDatabase().
+
+        The private connect() function works with the selectAll() function to connect to the db.
+
+        selectAll(String table) will eventually print out all of the information in that table.
+
+*/
+
 /**
  * Extendable database class to be used with a SQlite database
- * 
- * 
  * 
  * @author John Ide - JCI5048
  */
 public class Database {
     
-    private String filename;
+    private String dbName;
+    private final String url;
     
-    public Database(String filename) {
+    public Database(String dbName) {
         
-        this.filename = filename;
+        this.dbName = dbName;
+        url = "jdbc:sqlite:" + dbName;
+        
+    }
+    
+    /**
+     * connectToDatabase will either connect to an existing database,
+     * or, if the database does not exist, create a database with the 
+     * name you create in dbName.
+     * 
+     * @return connection to database
+     */
+    public Connection connectToDatabase() {
+        
+        Connection conn = null;
+        
+        try {
+            
+            conn = DriverManager.getConnection(url);
+            System.out.println("Connection to db " + dbName + " is established");
+            
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+            
+        } finally {
+            
+            try {
+                
+                if (conn != null) {
+                    
+                    conn.close();
+                    
+                }
+                
+            } catch (SQLException ex) {
+                
+                System.out.println(ex.getMessage());
+                
+            }
+            
+        }
+        
+        return conn;
         
     }
     
     private Connection connect() {
         
-        String url = "jdbc:sqlite:" + filename;
         Connection conn = null;
         
         try {
@@ -43,79 +99,7 @@ public class Database {
         
     }
     
-    /**
-     * Creates a new database as indicated in the constructor
-     * 
-     */
-    public void createNewDatabase() {
-        
-        String url = "jdbc:sqlite:" + filename;
-        
-        try (Connection conn = DriverManager.getConnection(url)) {
-            
-            if (conn != null) {
-                
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("Driver name: " + meta.getDriverName());
-                System.out.println("A new database has been created");
-                
-            }
-            
-        } catch (SQLException ex) {
-            
-            System.out.println(ex.getMessage());
-            
-        }
-        
-    }
-    
-    /**
-     * Creates a new table in the database indicated in constructor.
-     * 
-     * Table:
-     *      FIRST_NAME VARCHAR(30)
-     *      LAST_NAME VARCHAR(30)
-     *      AGE INTEGER
-     * 
-     * (TODO: change function in order to be more flexible in creating tables)
-     * 
-     * @param tableName name of the table being created
-     */
-    public void createNewTable(String tableName) {
-        
-        String url = "jdbc:sqlite:" + filename;
-        
-        String sql = "CREATE NEW TABLE IF NOT EXISTS " + tableName + " (\n"
-                + " FIRST_NAME VARCHAR(30),\n"
-                + " LAST_NAME VARCHAR(30), \n"
-                + " AGE INTEGER\n"
-                + ");";
-        
-        try (Connection conn = DriverManager.getConnection(url);
-                Statement stmt = conn.createStatement()) {
-            
-            stmt.execute(sql);
-            System.out.println("Table " + tableName + " created");
-            
-        } catch (SQLException ex) {
-            
-            System.out.println(ex.getMessage());
-            
-        }
-        
-    }
-    
-    /**
-     * Selects all data from 'table'
-     * 
-     * Currently only returns:
-     *      FIRST_NAME
-     *      LAST_NAME
-     *      AGE
-     * 
-     * @param table table that information is being retrieved from
-     */
-    public void selectALL(String table) {
+    public void selectAll(String table) {
         
         String sql = "SELECT * FROM " + table;
         
@@ -125,9 +109,7 @@ public class Database {
             
             while (rs.next()) {
                 
-                System.out.println(rs.getShort("FIRST_NAME") + "\t" + 
-                        rs.getString("LAST_NAME") + "\t" + 
-                        rs.getInt("AGE"));
+                System.out.println("selected information");
                 
             }
             
@@ -136,6 +118,12 @@ public class Database {
             System.out.println(ex.getMessage());
             
         }
+        
+    }
+    
+    public String testDatabase() {
+        
+        return "Database is alive!";
         
     }
     

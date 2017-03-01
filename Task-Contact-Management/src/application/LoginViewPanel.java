@@ -23,8 +23,13 @@ public class LoginViewPanel extends JPanel
        
         
 
+
        add(userLoginPanel, BorderLayout.CENTER);
       
+
+
+
+
     }
     
     // User Login meathods to adds and remove panel

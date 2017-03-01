@@ -22,6 +22,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Component id="usernameLabel" min="-2" pref="99" max="-2" attributes="0"/>
                   <Component id="passwordLabel" min="-2" pref="99" max="-2" attributes="0"/>
               </Group>
@@ -38,6 +39,22 @@
               <EmptySpace pref="102" max="32767" attributes="0"/>
               <Component id="loginButton" min="-2" pref="96" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+=======
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="UsernameLabel" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="PasswordLabel" min="-2" pref="99" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="UsernameTextField" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="PasswordTextField" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="LoginButton" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+>>>>>>> origin/master
           </Group>
       </Group>
     </DimensionLayout>
