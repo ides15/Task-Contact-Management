@@ -114,7 +114,6 @@ public class UserLoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO: Add Authentication here for USER
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         
