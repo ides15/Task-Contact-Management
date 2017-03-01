@@ -11,10 +11,10 @@ package application;
  */
 public class App {
     public static void main(String[] args) {
-      LoginModel loginModel = new LoginModel();
-      LoginView loginView = new LoginView(loginModel);
-      LoginCntl loginCntl = new LoginCntl(loginModel, loginView);
-      
-      loginView.setVisible(true);
+        LoginModel loginModel = new LoginModel();
+        LoginView loginView = new LoginView(loginModel);
+        LoginCntl loginCntl = new LoginCntl(loginModel, loginView);
+        
+        loginView.setVisible(true);
     }
 }
