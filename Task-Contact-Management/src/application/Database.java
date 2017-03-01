@@ -7,6 +7,21 @@ package application;
 
 import java.sql.*;
 
+/*
+
+        USAGE
+
+        Constructor of database class takes one parameter, which is the database name.
+        If there is no database with that name in the project, a new database will be made.
+
+        In order to do anything with the database, you must first call connectToDatabase().
+
+        The private connect() function works with the selectAll() function to connect to the db.
+
+        selectAll(String table) will eventually print out all of the information in that table.
+
+*/
+
 /**
  * Extendable database class to be used with a SQlite database
  * 
@@ -14,16 +29,31 @@ import java.sql.*;
  */
 public class Database {
     
-    public void connect() {
+    private String dbName;
+    private final String url;
+    
+    public Database(String dbName) {
+        
+        this.dbName = dbName;
+        url = "jdbc:sqlite:" + dbName;
+        
+    }
+    
+    /**
+     * connectToDatabase will either connect to an existing database,
+     * or, if the database does not exist, create a database with the 
+     * name you create in dbName.
+     * 
+     * @return connection to database
+     */
+    public Connection connectToDatabase() {
         
         Connection conn = null;
         
         try {
             
-            String url = "jdbc:sqlite:tcm.db";
-            
             conn = DriverManager.getConnection(url);
-            System.out.println("Connection to db established");
+            System.out.println("Connection to db " + dbName + " is established");
             
         } catch (SQLException ex) {
             
@@ -44,6 +74,48 @@ public class Database {
                 System.out.println(ex.getMessage());
                 
             }
+            
+        }
+        
+        return conn;
+        
+    }
+    
+    private Connection connect() {
+        
+        Connection conn = null;
+        
+        try {
+            
+            conn = DriverManager.getConnection(url);
+            
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+            
+        }
+        
+        return conn;
+        
+    }
+    
+    public void selectAll(String table) {
+        
+        String sql = "SELECT * FROM " + table;
+        
+        try (Connection conn = this.connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                
+                System.out.println("selected information");
+                
+            }
+            
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
             
         }
         
