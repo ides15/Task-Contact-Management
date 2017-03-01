@@ -10,6 +10,8 @@ public class LoginView extends JFrame
 {
     private LoginModel loginModel;
     private LoginViewPanel loginViewPanel;
+    UserLoginPanel userLoginPanel;
+    NewUserPanel newUserPanel;
     
     LoginView(LoginModel loginModel) 
     {
@@ -39,10 +41,12 @@ public class LoginView extends JFrame
     //ActionListener Meathods
     public void addUserLoginPanelListener(ActionListener al)
     {
-        loginViewPanel.getLoginMenu().getUserLoginButton().addActionListener(al);
+        loginViewPanel.getUserLoginPanel().getLoginButton().addActionListener(al);
     }
     public void addNewUserPanelListener(ActionListener al)
     {
-        loginViewPanel.getLoginMenu().getNewUserButton().addActionListener(al);
+        loginViewPanel.getUserLoginPanel().getnewUserButton().addActionListener(al);
     }
+  
+    
 }
