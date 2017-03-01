@@ -99,7 +99,10 @@ public class UserLoginPanel extends javax.swing.JPanel {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO: Add Authentication here for USER
-        System.out.println(db.testDatabase());
+        String username = UsernameTextField.getText();
+        String password = PasswordTextField.getText();
+        
+        db.authenticate("User", username, password);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
 

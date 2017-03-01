@@ -20,6 +20,8 @@ import java.sql.*;
 
         selectAll(String table) will eventually print out all of the information in that table.
 
+        testDatabase() will return a string just to test if the implementation of the db is right.
+
 */
 
 /**
@@ -118,6 +120,39 @@ public class Database {
             System.out.println(ex.getMessage());
             
         }
+        
+    }
+    
+    public boolean authenticate(String table, String username, String password) {
+        
+        boolean authenticated = false;
+        String sql = "SELECT PASSWORD FROM " + table + " WHERE USERNAME = \"" + username + "\"";
+        
+        try (Connection conn = this.connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                
+                if (rs.getString("PASSWORD").equals(password)) {
+                    
+                    authenticated = true;
+                    System.out.println("User authenticated.");
+                    
+                }
+                
+                else
+                    System.out.println("User NOT authenticated.");
+                
+            }
+            
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+            
+        }
+        
+        return authenticated;
         
     }
     
