@@ -113,18 +113,13 @@ public class UserLoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO: Add Authentication here for USER
-<<<<<<< HEAD
-        String username = UsernameTextField.getText();
-        String password = PasswordTextField.getText();
+        String username = usernameTextField.getText();
+        String password = passwordTextField.getText();
         
         db.authenticate("User", username, password);
-    }//GEN-LAST:event_LoginButtonActionPerformed
-=======
-        
-        // HERE: Connects Panels 
-    }//GEN-LAST:event_loginButtonActionPerformed
+    }                                           
 
     public JButton getLoginButton()
     {
@@ -138,11 +133,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
         System.out.println(db.testDatabase());
     }//GEN-LAST:event_newUserButtonActionPerformed
-       
-                                              
->>>>>>> 462284b8e1d9e5fb3986081093c1db2b2b65f7ee
-
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton loginButton;
     private javax.swing.JButton newUserButton;
