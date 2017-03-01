@@ -121,4 +121,10 @@ public class Database {
         
     }
     
+    public String testDatabase() {
+        
+        return "Database is alive!";
+        
+    }
+    
 }

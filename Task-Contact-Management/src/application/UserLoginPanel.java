@@ -11,11 +11,16 @@ package application;
  */
 public class UserLoginPanel extends javax.swing.JPanel {
 
+    private Database db;
+    
     /**
      * Creates new form UserLoginPanel
      */
     public UserLoginPanel() {
         initComponents();
+        
+        db = new Database("tcm.db");
+        db.connectToDatabase();
     }
 
     /**
@@ -94,7 +99,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO: Add Authentication here for USER
-        
+        System.out.println(db.testDatabase());
     }//GEN-LAST:event_LoginButtonActionPerformed
 
 
