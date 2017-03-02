@@ -29,20 +29,14 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
 
         newUserNameLabel = new javax.swing.JLabel();
         newPasswordLabel = new javax.swing.JLabel();
-        newPasswordField = new javax.swing.JTextField();
         newUserNameField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         newUserSubmitButton = new javax.swing.JButton();
+        newUserPasswordField = new javax.swing.JPasswordField();
 
         newUserNameLabel.setText("New Username: ");
 
         newPasswordLabel.setText("New Password: ");
-
-        newPasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newPasswordFieldActionPerformed(evt);
-            }
-        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,21 +58,19 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(100, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newUserNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(newUserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(backButton)
-                            .addGap(18, 18, 18)
-                            .addComponent(newUserSubmitButton)
-                            .addGap(26, 26, 26))
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newPasswordLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(backButton))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(newUserPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newUserSubmitButton))))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,7 +83,7 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newPasswordLabel)
-                    .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newUserPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
@@ -113,10 +105,6 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
     }
     
     
-    private void newPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newPasswordFieldActionPerformed
-
     private void newUserSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserSubmitButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newUserSubmitButtonActionPerformed
@@ -128,10 +116,10 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField newPasswordField;
     private javax.swing.JLabel newPasswordLabel;
     private javax.swing.JTextField newUserNameField;
     private javax.swing.JLabel newUserNameLabel;
+    private javax.swing.JPasswordField newUserPasswordField;
     private javax.swing.JButton newUserSubmitButton;
     // End of variables declaration//GEN-END:variables
 }
