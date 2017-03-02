@@ -156,6 +156,28 @@ public class Database {
         
     }
     
+    public void insertNewUser(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
+        
+        String sql = "INSERT INTO User (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES (?,?,?,?)";
+        
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, FIRST_NAME);
+            pstmt.setString(2, LAST_NAME);
+            pstmt.setString(3, USERNAME);
+            pstmt.setString(4, PASSWORD);
+            
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+            
+        }
+        
+        System.out.println("Inserted avlues into table User");
+        
+    }
+    
     public String testDatabase() {
         
         return "Database is alive!";

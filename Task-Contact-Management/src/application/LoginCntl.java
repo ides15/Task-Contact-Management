@@ -71,8 +71,7 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-            System.out.println("New User Submit button pressed");
+            newUserLoginPanel.getNewUserSubmitButton().addActionListener(new NewUserSubmitButtonListener());
         }
-    
     }
 }
