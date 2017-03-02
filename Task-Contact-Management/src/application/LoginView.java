@@ -42,14 +42,15 @@ public class LoginView extends JFrame
     }
     
     //ActionListener Meathods
-//    public void addUserLoginPanelListener(ActionListener al)
-//    {
-//        loginViewPanel.getUserLoginPanel().getUserSubmitButton().addActionListener(al);
-//    }
-//    public void addNewUserPanelListener(ActionListener al)
-//    {
-//        loginViewPanel.getNewUserLoginPanel().getBackButton().addActionListener(al);
-//    }
+    public void addUserSubmitButtonListener(ActionListener al)
+    {
+        loginViewPanel.getUserLoginPanel().getUserSubmitButton().addActionListener(al);
+    }
+    
+    public void addNewUserButtonListener(ActionListener al)
+    {
+        loginViewPanel.getUserLoginPanel().getNewUserButton().addActionListener(al);
+    }
   
     
 }

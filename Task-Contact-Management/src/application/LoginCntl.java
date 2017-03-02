@@ -14,32 +14,41 @@ import java.awt.event.ActionListener;
  */
 public class LoginCntl 
 {
+    private Database db;
+    
     private LoginModel loginModel;
     private LoginView loginView;
     
     private UserLoginPanel userLoginPanel;
     private NewUserLoginPanel newUserLoginPanel;
     
-    
     LoginCntl(LoginModel loginModel, LoginView loginView)
     {
+        db = new Database("tcm.db");
+        db.connectToDatabase();
+        
         this.loginModel = loginModel;
         this.loginView = loginView;
         
-        newUserLoginPanel = new NewUserLoginPanel();
+        userLoginPanel = new UserLoginPanel();
+//        newUserLoginPanel = new NewUserLoginPanel();
         
-//        loginView.addUserLoginPanelListener(new UserLoginButtonListener());
-//        loginView.addNewUserPanelListener(new NewUserButtonListener());
-                
+        loginView.addUserSubmitButtonListener(new UserSubmitButtonListener());
+        loginView.addNewUserButtonListener(new NewUserButtonListener());
     }
     
-    class UserLoginButtonListener implements ActionListener
+    class UserSubmitButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-            loginView.switchToUserLogin(userLoginPanel);
+//            loginView.switchToUserLogin(userLoginPanel);
             
-            // HERE: Connects Panels 
+            System.out.println("Submit button pressed");
+            
+            String username = userLoginPanel.getUsernameTextField().getText();
+            String password = userLoginPanel.getPasswordTextField().getText();
+            
+            db.authenticate("User", username, password);
         }
     
     }
@@ -48,9 +57,9 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
+//            loginView.switchToNewUser(newUserLoginPanel);
             
-            loginView.switchToNewUser(newUserLoginPanel);
-            
+            System.out.println("New User button pressed");
         }
     
     }
@@ -59,20 +68,18 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-            loginView.switchToUserLogin(userLoginPanel);
+//            loginView.switchToUserLogin(userLoginPanel);
             
-            // HERE: Connects Panels 
+            System.out.println("Back button pressed");
         }
     
     }
     
-    class SubmitButtonListener implements ActionListener
+    class NewUserSubmitButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-            
-            
-            // HERE: Reads the inputs from the user
+            System.out.println("New User Submit button pressed");
         }
     
     }

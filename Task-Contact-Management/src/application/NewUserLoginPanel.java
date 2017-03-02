@@ -38,18 +38,8 @@ public class NewUserLoginPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
 
         newUserSubmitButton.setText("Submit");
-        newUserSubmitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newUserSubmitButtonActionPerformed(evt);
-            }
-        });
 
         usernameLabel.setText("New username:");
 
@@ -117,14 +107,6 @@ public class NewUserLoginPanel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backButtonActionPerformed
-
-    private void newUserSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserSubmitButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newUserSubmitButtonActionPerformed
 
     public javax.swing.JButton getBackButton() {
         
