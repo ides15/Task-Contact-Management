@@ -45,6 +45,11 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
         });
 
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         newUserSubmitButton.setText("Submit");
         newUserSubmitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +112,7 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
         
     }
     
+    
     private void newPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newPasswordFieldActionPerformed
@@ -114,6 +120,10 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
     private void newUserSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserSubmitButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newUserSubmitButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    
+    }//GEN-LAST:event_backButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
