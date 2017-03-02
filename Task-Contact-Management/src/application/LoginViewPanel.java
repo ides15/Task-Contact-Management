@@ -11,7 +11,7 @@ public class LoginViewPanel extends JPanel
 {
 
     private UserLoginPanel userLoginPanel;
-    private NewUserPanel newUserPanel;
+    private NewUserLoginPanel newUserLoginPanel;
     
     LoginViewPanel()
     {
@@ -24,13 +24,13 @@ public class LoginViewPanel extends JPanel
     }
     
     // User Login meathods to adds and remove panel
-//    public void addUserLoginPanel(UserLoginPanel userLogin)
-//    {
-//        this.userLoginPanel = userLogin;
-//        add(userLogin, BorderLayout.CENTER);
-//        revalidate();
-//        repaint();
-//    }
+    public void addUserLoginPanel(UserLoginPanel userLoginPanel)
+    {
+        this.userLoginPanel = userLoginPanel;
+        add(userLoginPanel, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
     
     public void removeUserLoginPanel()
     {
@@ -41,19 +41,19 @@ public class LoginViewPanel extends JPanel
     }
     
     // New User meathods to adds and remove panel
-    public void addNewUserPanel(NewUserPanel newUser)
+    public void addNewUserPanel(NewUserLoginPanel newUserLoginPanel)
     {
-        this.newUserPanel = newUser;
-        add(newUser, BorderLayout.CENTER);
+        this.newUserLoginPanel = newUserLoginPanel;
+        add(newUserLoginPanel, BorderLayout.CENTER);
         revalidate();
         repaint();
     }
     
-    public void removeNewUserPanel()
+    public void removeNewUserLoginPanel()
     {
-        if(this.newUserPanel != null)
+        if(this.newUserLoginPanel != null)
         {
-            remove(this.newUserPanel);
+            remove(this.newUserLoginPanel);
         }
     }
     
@@ -62,9 +62,9 @@ public class LoginViewPanel extends JPanel
         return userLoginPanel;
     }
     
-    public NewUserPanel getNewUserPanel()
+    public NewUserLoginPanel getNewUserLoginPanel()
     {
-        return newUserPanel;
+        return newUserLoginPanel;
     }
   
 }

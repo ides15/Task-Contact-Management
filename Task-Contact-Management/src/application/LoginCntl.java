@@ -18,7 +18,7 @@ public class LoginCntl
     private LoginView loginView;
     
     private UserLoginPanel userLoginPanel;
-    private NewUserPanel newUserPanel;
+    private NewUserLoginPanel newUserLoginPanel;
     
     
     LoginCntl(LoginModel loginModel, LoginView loginView)
@@ -26,45 +26,45 @@ public class LoginCntl
         this.loginModel = loginModel;
         this.loginView = loginView;
         
-        newUserPanel = new NewUserPanel();
+        newUserLoginPanel = new NewUserLoginPanel();
         
 //        loginView.addUserLoginPanelListener(new UserLoginButtonListener());
-        loginView.addNewUserPanelListener(new NewUserButtonListener());
-        
+//        loginView.addNewUserPanelListener(new NewUserButtonListener());
+                
     }
     
-//    class UserLoginButtonListener implements ActionListener
-//    {
-//        public void actionPerformed(ActionEvent e) 
-//        {
-//            loginView.switchToUserLogin(userLoginPanel);
-//            
-//            // HERE: Connects Panels 
-//        }
-//    
-//    }
-    
-    class NewUserButtonListener implements ActionListener
+    class UserLoginButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-            loginView.switchToNewUser(newUserPanel);
+            loginView.switchToUserLogin(userLoginPanel);
             
             // HERE: Connects Panels 
         }
     
     }
     
-//    class BackButtonListener implements ActionListener
-//    {
-//        public void actionPerformed(ActionEvent e) 
-//        {
-//            loginView.switchToUserLogin(userLoginPanel);
-//            
-//            // HERE: Connects Panels 
-//        }
-//    
-//    }
+    class NewUserButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            
+            loginView.switchToNewUser(newUserLoginPanel);
+            
+        }
+    
+    }
+    
+    class BackButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            loginView.switchToUserLogin(userLoginPanel);
+            
+            // HERE: Connects Panels 
+        }
+    
+    }
     
     class SubmitButtonListener implements ActionListener
     {
