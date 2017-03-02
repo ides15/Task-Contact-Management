@@ -19,6 +19,8 @@ public class LoginCntl
     private LoginModel loginModel;
     private LoginView loginView;
     
+    private LoginViewPanel loginViewPanel;
+    
     private UserLoginPanel userLoginPanel;
     private NewUserLoginPanel newUserLoginPanel;
     
@@ -31,7 +33,7 @@ public class LoginCntl
         this.loginView = loginView;
         
         userLoginPanel = new UserLoginPanel();
-//        newUserLoginPanel = new NewUserLoginPanel();
+        newUserLoginPanel = new NewUserLoginPanel();
         
         loginView.addUserSubmitButtonListener(new UserSubmitButtonListener());
         loginView.addNewUserButtonListener(new NewUserButtonListener());
@@ -40,15 +42,12 @@ public class LoginCntl
     class UserSubmitButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
-        {
-//            loginView.switchToUserLogin(userLoginPanel);
-            
-            System.out.println("Submit button pressed");
-            
+        {                        
             String username = userLoginPanel.getUsernameTextField().getText();
-            String password = userLoginPanel.getPasswordTextField().getText();
             
-            db.authenticate("User", username, password);
+            System.out.println("submit button pressed");
+            
+//            db.authenticate("User", username, password);
         }
     
     }
@@ -59,7 +58,7 @@ public class LoginCntl
         {
 //            loginView.switchToNewUser(newUserLoginPanel);
             
-            System.out.println("New User button pressed");
+            System.out.println("new user button pressed");
         }
     
     }

@@ -4,13 +4,15 @@
 package application;
 
 import java.awt.BorderLayout;
+import java.awt.PopupMenu;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
 public class LoginViewPanel extends JPanel
 {
 
-    private UserLoginPanel userLoginPanel;
+    public UserLoginPanel userLoginPanel;
     private NewUserLoginPanel newUserLoginPanel;
     
     LoginViewPanel()
@@ -20,7 +22,7 @@ public class LoginViewPanel extends JPanel
 
         userLoginPanel = new UserLoginPanel();
         newUserLoginPanel = new NewUserLoginPanel();
-
+        
         add(userLoginPanel, BorderLayout.CENTER);
     }
     

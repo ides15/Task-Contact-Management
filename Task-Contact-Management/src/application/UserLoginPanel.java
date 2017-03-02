@@ -5,6 +5,8 @@
  */
 package application;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author John Ide - JCI5048
@@ -102,7 +104,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
     
     public javax.swing.JTextField getPasswordTextField() {
         
-        return passwordTextField;
+        return (JTextField) passwordTextField;
         
     }
     
