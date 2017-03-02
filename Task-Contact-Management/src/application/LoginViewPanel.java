@@ -24,13 +24,13 @@ public class LoginViewPanel extends JPanel
     }
     
     // User Login meathods to adds and remove panel
-    public void addUserLoginPanel(UserLoginPanel userLogin)
-    {
-        this.userLoginPanel = userLogin;
-        add(userLogin, BorderLayout.CENTER);
-        revalidate();
-        repaint();
-    }
+//    public void addUserLoginPanel(UserLoginPanel userLogin)
+//    {
+//        this.userLoginPanel = userLogin;
+//        add(userLogin, BorderLayout.CENTER);
+//        revalidate();
+//        repaint();
+//    }
     
     public void removeUserLoginPanel()
     {

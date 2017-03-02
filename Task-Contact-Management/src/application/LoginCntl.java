@@ -26,26 +26,23 @@ public class LoginCntl
         this.loginModel = loginModel;
         this.loginView = loginView;
         
-        userLoginPanel = new UserLoginPanel();
-// I don't think ^ does anything; userLoginPanel gets initialized in LoginViewPanel already
-
         newUserPanel = new NewUserPanel();
         
-        loginView.addUserLoginPanelListener(new UserLoginButtonListener());
+//        loginView.addUserLoginPanelListener(new UserLoginButtonListener());
         loginView.addNewUserPanelListener(new NewUserButtonListener());
         
     }
     
-    class UserLoginButtonListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e) 
-        {
-            loginView.switchToUserLogin(userLoginPanel);
-            
-            // HERE: Connects Panels 
-        }
-    
-    }
+//    class UserLoginButtonListener implements ActionListener
+//    {
+//        public void actionPerformed(ActionEvent e) 
+//        {
+//            loginView.switchToUserLogin(userLoginPanel);
+//            
+//            // HERE: Connects Panels 
+//        }
+//    
+//    }
     
     class NewUserButtonListener implements ActionListener
     {
@@ -57,16 +54,17 @@ public class LoginCntl
         }
     
     }
-    class BackButtonListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e) 
-        {
-            loginView.switchToUserLogin(userLoginPanel);
-            
-            // HERE: Connects Panels 
-        }
     
-    }
+//    class BackButtonListener implements ActionListener
+//    {
+//        public void actionPerformed(ActionEvent e) 
+//        {
+//            loginView.switchToUserLogin(userLoginPanel);
+//            
+//            // HERE: Connects Panels 
+//        }
+//    
+//    }
     
     class SubmitButtonListener implements ActionListener
     {

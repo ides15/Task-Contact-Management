@@ -10,8 +10,8 @@ public class LoginView extends JFrame
 {
     private LoginModel loginModel;
     private LoginViewPanel loginViewPanel;
-    UserLoginPanel userLoginPanel;
-    NewUserPanel newUserPanel;
+    private UserLoginPanel userLoginPanel;
+    private NewUserPanel newUserPanel;
     
     LoginView(LoginModel loginModel) 
     {
@@ -23,14 +23,17 @@ public class LoginView extends JFrame
  
         loginViewPanel = new LoginViewPanel();
         add(loginViewPanel); 
+
+//        UserLoginPanel userLoginPanel = new UserLoginPanel();
+//        add(userLoginPanel);
     }
     
     //Meathods to switch panels
-    public void switchToUserLogin(UserLoginPanel userLoginPanel)
-    {
-        loginViewPanel.removeNewUserPanel();
-        loginViewPanel.addUserLoginPanel(userLoginPanel);
-    }
+//    public void switchToUserLogin(UserLoginPanel userLoginPanel)
+//    {
+//        loginViewPanel.removeNewUserPanel();
+//        loginViewPanel.addUserLoginPanel(userLoginPanel);
+//    }
     
     public void switchToNewUser(NewUserPanel newUserPanel)
     {
