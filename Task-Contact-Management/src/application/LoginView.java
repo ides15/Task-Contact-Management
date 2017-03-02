@@ -24,9 +24,6 @@ public class LoginView extends JFrame
  
         loginViewPanel = new LoginViewPanel();
         add(loginViewPanel); 
-
-//        UserLoginPanel userLoginPanel = new UserLoginPanel();
-//        add(userLoginPanel);
     }
     
     //Meathods to switch panels
@@ -52,6 +49,9 @@ public class LoginView extends JFrame
     {
         loginViewPanel.getUserLoginPanel().getNewUserButton().addActionListener(al);
     }
-  
+    public void addBackButtonListener(ActionListener al)
+    {
+        loginViewPanel.getNewUserLoginPanel().getBackButton().addActionListener(al);
+    }
     
 }

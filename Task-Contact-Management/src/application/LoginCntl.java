@@ -32,6 +32,7 @@ public class LoginCntl
         
         loginView.addUserSubmitButtonListener(new UserSubmitButtonListener());
         loginView.addNewUserButtonListener(new NewUserButtonListener());
+        loginView.addBackButtonListener(new BackButtonListener());
     }
     
     class UserSubmitButtonListener implements ActionListener
@@ -48,8 +49,7 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-            System.out.println("new user button pressed");
-//            loginView.switchToNewUser(newUserLoginPanel);
+            loginView.switchToNewUser(newUserLoginPanel);
         }
     
     }
@@ -58,7 +58,7 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-//            loginView.switchToUserLogin(userLoginPanel);
+            //loginView.switchToUserLogin(userLoginPanel);
             
             System.out.println("Back button pressed");
         }

@@ -3,7 +3,6 @@
  */
 package application;
 
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 public class LoginViewPanel extends JPanel
@@ -14,19 +13,18 @@ public class LoginViewPanel extends JPanel
     LoginViewPanel()
     {
         super();
-        setLayout(new BorderLayout());
 
         userLoginPanel = new UserLoginPanel();
-//        newUserLoginPanel = new NewUserLoginPanel();
+        newUserLoginPanel = new NewUserLoginPanel();
         
-        add(userLoginPanel, BorderLayout.CENTER);
+        add(userLoginPanel);
     }
     
     // User Login meathods to adds and remove panel
     public void addUserLoginPanel(UserLoginPanel userLoginPanel)
     {
         this.userLoginPanel = userLoginPanel;
-        add(userLoginPanel, BorderLayout.CENTER);
+        add(userLoginPanel);
         revalidate();
         repaint();
     }
@@ -43,7 +41,7 @@ public class LoginViewPanel extends JPanel
     public void addNewUserPanel(NewUserLoginPanel newUserLoginPanel)
     {
         this.newUserLoginPanel = newUserLoginPanel;
-        add(newUserLoginPanel, BorderLayout.CENTER);
+        add(newUserLoginPanel);
         revalidate();
         repaint();
     }
