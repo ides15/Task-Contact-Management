@@ -14,8 +14,6 @@ import java.awt.event.ActionListener;
  */
 public class LoginCntl 
 {
-    private Database db;
-    
     private LoginModel loginModel;
     private LoginView loginView;
     
@@ -25,10 +23,7 @@ public class LoginCntl
     private NewUserLoginPanel newUserLoginPanel;
     
     LoginCntl(LoginModel loginModel, LoginView loginView)
-    {
-        db = new Database("tcm.db");
-        db.connectToDatabase();
-        
+    {        
         this.loginModel = loginModel;
         this.loginView = loginView;
         
@@ -43,11 +38,8 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {                        
-            String username = userLoginPanel.getUsernameTextField().getText();
-            
-            System.out.println("submit button pressed");
-            
-//            db.authenticate("User", username, password);
+            userLoginPanel.getUserSubmitButton().addActionListener(new UserSubmitButtonListener());
+            // no idea how this works tbh
         }
     
     }
@@ -56,9 +48,8 @@ public class LoginCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-//            loginView.switchToNewUser(newUserLoginPanel);
-            
             System.out.println("new user button pressed");
+//            loginView.switchToNewUser(newUserLoginPanel);
         }
     
     }

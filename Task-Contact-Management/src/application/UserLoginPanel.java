@@ -13,11 +13,15 @@ import javax.swing.JTextField;
  */
 public class UserLoginPanel extends javax.swing.JPanel {
     
+    private Database db;
+    
     /**
      * Creates new form UserLoginPanel_revised
      */
     public UserLoginPanel() {
         initComponents();
+        
+        db = new Database("tcm.db");
     }
 
     /**
@@ -37,8 +41,18 @@ public class UserLoginPanel extends javax.swing.JPanel {
         passwordTextField = new javax.swing.JPasswordField();
 
         newUserButton.setText("New User");
+        newUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserButtonActionPerformed(evt);
+            }
+        });
 
         userSubmitButton.setText("Submit");
+        userSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userSubmitButtonActionPerformed(evt);
+            }
+        });
 
         usernameLabel.setText("Username:");
 
@@ -84,6 +98,22 @@ public class UserLoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void userSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSubmitButtonActionPerformed
+
+        String username = this.getUsernameTextField().getText();
+        String password = this.getPasswordTextField().getText();
+        
+        db.connectToDatabase();
+        db.authenticate("User", username, password);
+
+    }//GEN-LAST:event_userSubmitButtonActionPerformed
+
+    private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
+
+        
+
+    }//GEN-LAST:event_newUserButtonActionPerformed
+
     public javax.swing.JButton getNewUserButton() {
         
         return newUserButton;
@@ -109,10 +139,10 @@ public class UserLoginPanel extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton newUserButton;
+    public javax.swing.JButton newUserButton;
     private javax.swing.JLabel passwordLabel;
     public javax.swing.JPasswordField passwordTextField;
-    private javax.swing.JButton userSubmitButton;
+    public javax.swing.JButton userSubmitButton;
     private javax.swing.JLabel usernameLabel;
     public javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables

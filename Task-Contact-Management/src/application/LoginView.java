@@ -10,6 +10,7 @@ public class LoginView extends JFrame
 {
     private LoginModel loginModel;
     private LoginViewPanel loginViewPanel;
+    
     private UserLoginPanel userLoginPanel;
     private NewUserLoginPanel newUserLoginPanel;
     
