@@ -17,6 +17,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+<<<<<<< HEAD
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -52,6 +53,24 @@
                               <Component id="newPasswordField" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+=======
+              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="newUserNameLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="newUserNameField" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="newPasswordLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="backButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="newUserPasswordField" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="newUserSubmitButton" min="-2" max="-2" attributes="0"/>
+>>>>>>> 960631d7c4d69be71df62ce4793685d08d1f564d
                       </Group>
                   </Group>
               </Group>
@@ -80,7 +99,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="newPasswordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="newPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newUserPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -103,9 +122,13 @@
         <Property name="text" type="java.lang.String" value="New Password: "/>
       </Properties>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JTextField" name="newPasswordField">
     </Component>
     <Component class="javax.swing.JTextField" name="newUsernameField">
+=======
+    <Component class="javax.swing.JTextField" name="newUserNameField">
+>>>>>>> 960631d7c4d69be71df62ce4793685d08d1f564d
     </Component>
     <Component class="javax.swing.JButton" name="backButton">
       <Properties>
@@ -123,6 +146,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newUserSubmitButtonActionPerformed"/>
       </Events>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Last name: "/>
@@ -136,6 +160,9 @@
     <Component class="javax.swing.JTextField" name="firstNameTextField">
     </Component>
     <Component class="javax.swing.JTextField" name="lastNameTextField">
+=======
+    <Component class="javax.swing.JPasswordField" name="newUserPasswordField">
+>>>>>>> 960631d7c4d69be71df62ce4793685d08d1f564d
     </Component>
   </SubComponents>
 </Form>

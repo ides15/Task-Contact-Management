@@ -166,6 +166,7 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField newPasswordField;
     private javax.swing.JLabel newPasswordLabel;
     private javax.swing.JLabel newUserNameLabel;
+    private javax.swing.JPasswordField newUserPasswordField;
     private javax.swing.JButton newUserSubmitButton;
     private javax.swing.JTextField newUsernameField;
     // End of variables declaration//GEN-END:variables
