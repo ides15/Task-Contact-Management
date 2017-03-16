@@ -26,14 +26,14 @@ public class LoginView extends JFrame
     //Meathods to switch panels
     public void switchToUserLogin(UserLoginPanel userLoginPanel)
     {
-        loginViewPanel.removeNewUserLoginPanel();
-        loginViewPanel.addUserLoginPanel(userLoginPanel);
+        loginViewPanel.removePanel(loginViewPanel.newUserLoginPanel);
+        loginViewPanel.addPanel(loginViewPanel.userLoginPanel);
     }
     
     public void switchToNewUser(NewUserLoginPanel newUserLoginPanel)
     {
-        loginViewPanel.removeUserLoginPanel();
-        loginViewPanel.addNewUserPanel(newUserLoginPanel);
+        loginViewPanel.removePanel(loginViewPanel.userLoginPanel);
+        loginViewPanel.addPanel(loginViewPanel.newUserLoginPanel);
     }
     
     //ActionListener Meathods
