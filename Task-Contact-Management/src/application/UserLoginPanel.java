@@ -21,7 +21,6 @@ public class UserLoginPanel extends javax.swing.JPanel {
     public UserLoginPanel() {
         initComponents();
         db = new Database("tcm.db");
-        
     }
 
     /**
@@ -102,9 +101,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
         String username = this.getUsernameTextField().getText();
         String password = this.getPasswordTextField().getText();
         
-        System.out.println(db.authenticate("User", username, password));
-        db.selectAll("User");
-        
+        System.out.println(db.authenticate("User", username, password));        
         
         /*
         if(LoginModel.getTrue() == true)
