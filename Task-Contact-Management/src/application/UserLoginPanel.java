@@ -103,6 +103,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
         String password = this.getPasswordTextField().getText();
         
         System.out.println(db.authenticate("User", username, password));
+        db.selectAll("User");
     }//GEN-LAST:event_userSubmitButtonActionPerformed
 
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed

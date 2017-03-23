@@ -133,21 +133,18 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
     }
     
     public javax.swing.JButton getNewUserSubmitButton() {
-        
         return newUserSubmitButton;
-        
     }
     
     private void newUserSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserSubmitButtonActionPerformed
-
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
         String username = newUsernameField.getText();
         String password = newPasswordField.getText();
         
         db.connectToDatabase();
-//        db.insertNewUser(firstName, lastName, username, password);
-
+        db.insert(firstName, lastName, username, password);
+        db.selectAll("User");
     }//GEN-LAST:event_newUserSubmitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

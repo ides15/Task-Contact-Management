@@ -121,35 +121,40 @@ public class Database {
     
     
     public void selectAll(String table) {
-        
         String sql = "SELECT * FROM " + table;
         
         try (Connection conn = this.connect();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
-            
             while (rs.next()) {
-                
-                System.out.println("selected information");
-                
+                System.out.println(rs.getString("FIRST_NAME") +  "\t\t" + 
+                                   rs.getString("LAST_NAME") + "\t\t" +
+                                   rs.getString("USERNAME") + "\t" + 
+                                   rs.getString("PASSWORD"));
             }
-            
         } catch (SQLException ex) {
-            
             System.out.println(ex.getMessage());
-            
         }
-        
     }
     
-    public void insert(String FIRST_NAME, String LAST_NAME, int ACCOUNT_ID, String USERNAME, String PASSWORD, int PRIVILEGE_LEVEL) {
-        String sql;
+    public void insert(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
+        String sql = "INSERT INTO User (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) "
+                + "VALUES (?,?,?,?)";
+        
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, FIRST_NAME);
+            pstmt.setString(2, LAST_NAME);
+            pstmt.setString(3, USERNAME);
+            pstmt.setString(4, PASSWORD);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
         
     public String testDatabase() {
-        
         return "Database is alive!";
-        
     }
-    
 }
