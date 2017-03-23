@@ -21,7 +21,9 @@ public class LoginCntl
     private String username;
     private String password;
     
-    private MainView mView;
+    private NavView navView;
+    private NavModel navModel;
+    private NavCntl navCntl;
     
     LoginCntl(Database loginModel, LoginView loginView)
     {   
@@ -33,7 +35,10 @@ public class LoginCntl
         
         userLoginPanel = new UserLoginPanel();
         newUserLoginPanel = new NewUserLoginPanel();
-        mView = new MainView();
+        
+        navModel = new NavModel();
+        navView = new NavView(navModel);
+        navCntl = new NavCntl(navModel, navView);
         
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
         
@@ -54,20 +59,19 @@ public class LoginCntl
         {
             username = loginView.getLoginViewPanel().getUserLoginPanel().getUsernameTextField().getText();
             password = loginView.getLoginViewPanel().getUserLoginPanel().getPasswordTextField().getText();
-            
-            System.out.println(loginModel.authenticate("User", username, password));
 
             boolean authenticated = loginModel.authenticate("User", username, password);
             
             //Logic for new Windows or Error
             if(authenticated == true)
             {
-                System.out.print("Successful Login");
-                mView.setVisible(true);
+                System.out.println("Successful Login");
+                navView.setVisible(true);
                 loginView.setVisible(false);
             }
             else
             {
+                System.out.println("Successful Failed");
                 loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(true);
             }
         }

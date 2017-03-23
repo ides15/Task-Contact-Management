@@ -14,6 +14,5 @@ public class App {
         Database loginModel = new Database("tcm.db");
         LoginView loginView = new LoginView(loginModel);
         LoginCntl loginCntl = new LoginCntl(loginModel, loginView);
-        
     }
 }

@@ -14,64 +14,61 @@ import javax.swing.JPanel;
  *
  * @author glennlin
  */
-public class MainViewPanel extends JPanel{
+public class NavViewPanel extends JPanel
+{
+    private JButton MainButton;
     private JButton ContactButton;
     private JButton TaskButton;
-    private JButton SettingButton;
+    private JButton SettingsButton;
     
-    MainViewPanel()
+    NavViewPanel()
     {
         super();
         
+        MainButton = new JButton("Main");
         ContactButton = new JButton("Contacts");
         TaskButton = new JButton("Tasks");
-        SettingButton = new JButton("Settings");
+        SettingsButton = new JButton("Settings");
         
+        add(MainButton);
         add(ContactButton);
         add(TaskButton);
-        add(SettingButton);
+        add(SettingsButton);
     }
+    
+    
 
-    /**
-     * @return the ContactButton
-     */
+
     public JButton getContactButton() {
         return ContactButton;
     }
 
-    /**
-     * @param ContactButton the ContactButton to set
-     */
     public void setContactButton(JButton ContactButton) {
         this.ContactButton = ContactButton;
     }
 
-    /**
-     * @return the TaskButton
-     */
     public JButton getTaskButton() {
         return TaskButton;
     }
 
-    /**
-     * @param TaskButton the TaskButton to set
-     */
     public void setTaskButton(JButton TaskButton) {
         this.TaskButton = TaskButton;
     }
 
-    /**
-     * @return the SettingButton
-     */
-    public JButton getSettingButton() {
-        return SettingButton;
+    public JButton getSettingsButton() {
+        return SettingsButton;
     }
 
-    /**
-     * @param SettingButton the SettingButton to set
-     */
-    public void setSettingButton(JButton SettingButton) {
-        this.SettingButton = SettingButton;
+    public void setSettingsButton(JButton SettingButton) {
+        this.SettingsButton = SettingButton;
+    }
+
+    public JButton getMainButton() {
+        return MainButton;
+    }
+
+    public void setMainButton(JButton MainButton) {
+        this.MainButton = MainButton;
     }
     
     
