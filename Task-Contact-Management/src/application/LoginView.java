@@ -26,29 +26,37 @@ public class LoginView extends JFrame
     //Meathods to switch panels
     public void switchToUserLogin(UserLoginPanel userLoginPanel)
     {
-        loginViewPanel.removePanel(loginViewPanel.newUserLoginPanel);
-        loginViewPanel.addPanel(loginViewPanel.userLoginPanel);
+        getLoginViewPanel().removePanel(getLoginViewPanel().newUserLoginPanel);
+        getLoginViewPanel().addPanel(getLoginViewPanel().getUserLoginPanel());
     }
     
     public void switchToNewUser(NewUserLoginPanel newUserLoginPanel)
     {
-        loginViewPanel.removePanel(loginViewPanel.userLoginPanel);
-        loginViewPanel.addPanel(loginViewPanel.newUserLoginPanel);
+        getLoginViewPanel().removePanel(getLoginViewPanel().getUserLoginPanel());
+        getLoginViewPanel().addPanel(getLoginViewPanel().newUserLoginPanel);
     }
     
     //ActionListener Meathods
     public void addUserSubmitButtonListener(ActionListener al)
     {
-        loginViewPanel.getUserLoginPanel().getUserSubmitButton().addActionListener(al);
+        getLoginViewPanel().getUserLoginPanel().getUserSubmitButton().addActionListener(al);
     }
     
     public void addNewUserButtonListener(ActionListener al)
     {
-        loginViewPanel.getUserLoginPanel().getNewUserButton().addActionListener(al);
+        getLoginViewPanel().getUserLoginPanel().getNewUserButton().addActionListener(al);
     }
     public void addBackButtonListener(ActionListener al)
     {
-        loginViewPanel.getNewUserLoginPanel().getBackButton().addActionListener(al);
+        getLoginViewPanel().getNewUserLoginPanel().getBackButton().addActionListener(al);
     }
+
+    /**
+     * @return the loginViewPanel
+     */
+    public LoginViewPanel getLoginViewPanel() {
+        return loginViewPanel;
+    }
+    
     
 }

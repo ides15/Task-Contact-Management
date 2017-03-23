@@ -14,14 +14,16 @@ import javax.swing.JTextField;
 public class UserLoginPanel extends javax.swing.JPanel {
     private Database db;
     private MainView mView;
+    private String username;
+    private String password;
     
     /**
      * Creates new form UserLoginPanel_revised
      */
-    public UserLoginPanel() {
+    public UserLoginPanel() 
+    {
         initComponents();
-        db = new Database("tcm.db");
-        mView = new MainView();
+        
     }
 
     /**
@@ -39,6 +41,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
         usernameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JPasswordField();
+        failedLoginLabel = new javax.swing.JLabel();
 
         newUserButton.setText("New User");
         newUserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +60,10 @@ public class UserLoginPanel extends javax.swing.JPanel {
         usernameLabel.setText("Username:");
 
         passwordLabel.setText("Password:");
+
+        failedLoginLabel.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        failedLoginLabel.setForeground(java.awt.Color.red);
+        failedLoginLabel.setText("Username or Password incorrect");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,6 +85,10 @@ public class UserLoginPanel extends javax.swing.JPanel {
                             .addComponent(usernameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(65, 65, 65))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(failedLoginLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,36 +105,17 @@ public class UserLoginPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newUserButton)
                     .addComponent(userSubmitButton))
-                .addGap(69, 69, 69))
+                .addGap(18, 18, 18)
+                .addComponent(failedLoginLabel)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void userSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSubmitButtonActionPerformed
-        String username = this.getUsernameTextField().getText();
-        String password = this.getPasswordTextField().getText();
-        
-        System.out.println(db.authenticate("User", username, password));
-        db.selectAll("User");
-        
-        boolean authenticated = db.authenticate("User", username, password);
-        
-        if(authenticated == true)
-        {
-            mView.setVisible(true);
-            
-        }
-        else
-        {
-           System.out.println("Login Failed");
-        }
-        
-        
-        
+
     }//GEN-LAST:event_userSubmitButtonActionPerformed
 
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
-
-        
 
     }//GEN-LAST:event_newUserButtonActionPerformed
 
@@ -150,8 +142,13 @@ public class UserLoginPanel extends javax.swing.JPanel {
         return (JTextField) passwordTextField;
         
     }
+    public javax.swing.JLabel getFailedLoginLabel()
+    {
+        return failedLoginLabel;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel failedLoginLabel;
     public javax.swing.JButton newUserButton;
     private javax.swing.JLabel passwordLabel;
     public javax.swing.JPasswordField passwordTextField;
@@ -159,4 +156,5 @@ public class UserLoginPanel extends javax.swing.JPanel {
     private javax.swing.JLabel usernameLabel;
     public javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
+
 }

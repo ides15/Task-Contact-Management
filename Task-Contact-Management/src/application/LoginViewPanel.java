@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class LoginViewPanel extends JPanel
 {
-    public UserLoginPanel userLoginPanel;
+    private UserLoginPanel userLoginPanel;
     public NewUserLoginPanel newUserLoginPanel;
     
     LoginViewPanel()
@@ -25,31 +25,13 @@ public class LoginViewPanel extends JPanel
     }
     
     public void addPanel(JPanel panel) {
-        if (panel == this.userLoginPanel) panel = this.userLoginPanel;
+        if (panel == this.getUserLoginPanel()) panel = this.getUserLoginPanel();
         if (panel == this.newUserLoginPanel) panel = this.newUserLoginPanel;
         
         add(panel);
         revalidate();
         repaint();
     }
-    
-    // User Login meathods to adds and remove panel
-//    public void addUserLoginPanel(UserLoginPanel userLoginPanel)
-//    {
-//        this.userLoginPanel = userLoginPanel;
-//        add(userLoginPanel);
-//        revalidate();
-//        repaint();
-//    }
-    
-    // New User meathods to adds and remove panel
-//    public void addNewUserPanel(NewUserLoginPanel newUserLoginPanel)
-//    {
-//        this.newUserLoginPanel = newUserLoginPanel;
-//        add(newUserLoginPanel);
-//        revalidate();
-//        repaint();
-//    }
     
     public UserLoginPanel getUserLoginPanel()
     {

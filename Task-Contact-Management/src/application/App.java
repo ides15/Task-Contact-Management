@@ -15,6 +15,5 @@ public class App {
         LoginView loginView = new LoginView(loginModel);
         LoginCntl loginCntl = new LoginCntl(loginModel, loginView);
         
-        loginView.setVisible(true);
     }
 }
