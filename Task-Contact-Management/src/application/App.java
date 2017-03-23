@@ -11,7 +11,7 @@ package application;
  */
 public class App {
     public static void main(String[] args) {
-        LoginModel loginModel = new LoginModel();
+        Database loginModel = new Database("tcm.db");
         LoginView loginView = new LoginView(loginModel);
         LoginCntl loginCntl = new LoginCntl(loginModel, loginView);
         

@@ -8,10 +8,10 @@ import javax.swing.JFrame;
  */
 public class LoginView extends JFrame
 {
-    private LoginModel loginModel;
+    private Database loginModel;
     private LoginViewPanel loginViewPanel;
     
-    LoginView(LoginModel loginModel) 
+    LoginView(Database loginModel) 
     {
         super("Manager");
         this.loginModel = loginModel;

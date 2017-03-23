@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  */
 public class LoginCntl 
 {
-    private LoginModel loginModel;
+    private Database loginModel;
     private LoginView loginView;
     
     private LoginViewPanel loginViewPanel;
@@ -22,7 +22,7 @@ public class LoginCntl
     private UserLoginPanel userLoginPanel;
     private NewUserLoginPanel newUserLoginPanel;
     
-    LoginCntl(LoginModel loginModel, LoginView loginView)
+    LoginCntl(Database loginModel, LoginView loginView)
     {        
         this.loginModel = loginModel;
         this.loginView = loginView;
