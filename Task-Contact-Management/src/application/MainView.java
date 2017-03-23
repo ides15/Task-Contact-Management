@@ -14,16 +14,17 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  */
 public class MainView extends JFrame
 {
-    //private MainViewPanel mVPanel;
+    private MainViewPanel mVPanel;
     
     
     MainView() 
     {
-        //mVPanel = new MainViewPanel();
         super("Manager");
+        mVPanel = new MainViewPanel();
         
-        setSize(800,800);
+        
+        setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //add(mvPanel);
+        add(mVPanel);
     }
 }

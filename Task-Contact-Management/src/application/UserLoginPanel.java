@@ -13,7 +13,7 @@ import javax.swing.JTextField;
  */
 public class UserLoginPanel extends javax.swing.JPanel {
     private Database db;
-    //MainView mView = new MainView();
+    private MainView mView;
     
     /**
      * Creates new form UserLoginPanel_revised
@@ -21,6 +21,7 @@ public class UserLoginPanel extends javax.swing.JPanel {
     public UserLoginPanel() {
         initComponents();
         db = new Database("tcm.db");
+        mView = new MainView();
     }
 
     /**
@@ -101,19 +102,21 @@ public class UserLoginPanel extends javax.swing.JPanel {
         String username = this.getUsernameTextField().getText();
         String password = this.getPasswordTextField().getText();
         
-        System.out.println(db.authenticate("User", username, password));        
+        System.out.println(db.authenticate("User", username, password));
+        db.selectAll("User");
         
-        /*
-        if(LoginModel.getTrue() == true)
+        boolean authenticated = db.authenticate("User", username, password);
+        
+        if(authenticated == true)
         {
-            MainView.setVisible(true);
-            LoginView.close();
+            mView.setVisible(true);
+            
         }
         else
         {
-            //throw error
+           System.out.println("Login Failed");
         }
-        */
+        
         
         
     }//GEN-LAST:event_userSubmitButtonActionPerformed
