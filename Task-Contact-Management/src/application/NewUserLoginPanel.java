@@ -148,9 +148,7 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_newUserSubmitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-    
         System.out.println("Back Button pressed");
-        
     }//GEN-LAST:event_backButtonActionPerformed
 
 

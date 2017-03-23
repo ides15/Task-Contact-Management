@@ -10,9 +10,17 @@ package application;
  * @author reesmcdevitt
  */
 public class LoginModel {
+    private Boolean authenticated;
     
     public LoginModel() {
-        
+        this.authenticated = false;
     }
     
+    public void setAuthenticatedTrue() {
+        this.authenticated = true;
+    }
+    
+    public Boolean isAuthenticated() {
+        return authenticated;
+    }
 }

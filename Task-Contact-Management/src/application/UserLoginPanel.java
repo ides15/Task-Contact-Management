@@ -12,7 +12,6 @@ import javax.swing.JTextField;
  * @author John Ide - JCI5048
  */
 public class UserLoginPanel extends javax.swing.JPanel {
-    
     private Database db;
     
     /**
@@ -20,7 +19,6 @@ public class UserLoginPanel extends javax.swing.JPanel {
      */
     public UserLoginPanel() {
         initComponents();
-        
         db = new Database("tcm.db");
     }
 

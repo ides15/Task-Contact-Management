@@ -25,7 +25,7 @@ import java.sql.*;
 */
 
 /**
- * Extendable database class to be used with a SQlite database
+ * Extendable database class to be used with a SQlite database, runs as model.
  * 
  * @author John Ide - JCI5048
  */
