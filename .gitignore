@@ -83,3 +83,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/netbeans,windows,osx,java
+/Task-Contact-Management/nbproject/private/

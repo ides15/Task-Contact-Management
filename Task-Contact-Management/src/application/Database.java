@@ -49,57 +49,76 @@ public class Database {
      * @return connection to database
      */
     public Connection connectToDatabase() {
-        
         Connection conn = null;
         
         try {
-            
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to db " + dbName + " is established");
             
         } catch (SQLException ex) {
-            
             System.out.println(ex.getMessage());
-            
         } finally {
-            
             try {
-                
                 if (conn != null) {
-                    
                     conn.close();
-                    
                 }
-                
             } catch (SQLException ex) {
-                
                 System.out.println(ex.getMessage());
-                
             }
-            
         }
         
         return conn;
-        
     }
     
     private Connection connect() {
-        
         Connection conn = null;
         
         try {
-            
             conn = DriverManager.getConnection(url);
-            
         } catch (SQLException ex) {
-            
             System.out.println(ex.getMessage());
-            
         }
         
         return conn;
-        
     }
+    
+    /**
+     * Authenticates a person to the system.
+     * @param table whatever table you want to query
+     * @param username whatever username person is trying to log in with
+     * @param password whatever password person is trying to log in with
+     * @return boolean of whether the person is authenticated or not
+     */
+    public boolean authenticate(String table, String username, String password) {
+        boolean authenticated = false;
+        String sql = "SELECT PASSWORD FROM " + table + " WHERE USERNAME = \"" + username + "\"";
+        
+        try (Connection conn = this.connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                if (rs.getString("PASSWORD").equals(password)) {
+                    authenticated = true;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return authenticated;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public void selectAll(String table) {
         
@@ -123,61 +142,10 @@ public class Database {
         
     }
     
-    public boolean authenticate(String table, String username, String password) {
-        
-        boolean authenticated = false;
-        String sql = "SELECT PASSWORD FROM " + table + " WHERE USERNAME = \"" + username + "\"";
-        
-        try (Connection conn = this.connect();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
-            
-            while (rs.next()) {
-                
-                if (rs.getString("PASSWORD").equals(password)) {
-                    
-                    authenticated = true;
-                    System.out.println("User authenticated.");
-                    
-                }
-                
-                else
-                    System.out.println("User NOT authenticated.");
-                
-            }
-            
-        } catch (SQLException ex) {
-            
-            System.out.println(ex.getMessage());
-            
-        }
-        
-        return authenticated;
-        
+    public void insert(String FIRST_NAME, String LAST_NAME, int ACCOUNT_ID, String USERNAME, String PASSWORD, int PRIVILEGE_LEVEL) {
+        String sql;
     }
-    
-    public void insertNewUser(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
         
-        String sql = "INSERT INTO User (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES (?,?,?,?)";
-        
-        try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setString(1, FIRST_NAME);
-            pstmt.setString(2, LAST_NAME);
-            pstmt.setString(3, USERNAME);
-            pstmt.setString(4, PASSWORD);
-            
-        } catch (SQLException ex) {
-            
-            System.out.println(ex.getMessage());
-            
-        }
-        
-        System.out.println("Inserted avlues into table User");
-        
-    }
-    
     public String testDatabase() {
         
         return "Database is alive!";

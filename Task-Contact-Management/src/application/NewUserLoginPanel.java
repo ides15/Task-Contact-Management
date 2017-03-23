@@ -146,7 +146,7 @@ public class NewUserLoginPanel extends javax.swing.JPanel {
         String password = newPasswordField.getText();
         
         db.connectToDatabase();
-        db.insertNewUser(firstName, lastName, username, password);
+//        db.insertNewUser(firstName, lastName, username, password);
 
     }//GEN-LAST:event_newUserSubmitButtonActionPerformed
 
