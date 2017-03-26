@@ -1,4 +1,4 @@
-#Task/contact management system
+##Task/contact management system##
 
 Basic system for user to input, prioritize, search and display task and contact info
 
