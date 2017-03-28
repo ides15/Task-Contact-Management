@@ -137,6 +137,23 @@ public class Database {
         }
     }
     
+    public void addContact(String FIRST_NAME, String LAST_NAME, String EMAIL, String ADDRESS) {
+        String sql = "INSERT INTO Contact (FIRST_NAME, LAST_NAME, EMAIL, ADDRESS) "
+                + "VALUES (?,?,?,?)";
+        
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, FIRST_NAME);
+            pstmt.setString(2, LAST_NAME);
+            pstmt.setString(3, EMAIL);
+            pstmt.setString(4, ADDRESS);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public void insert(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
         String sql = "INSERT INTO User (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) "
                 + "VALUES (?,?,?,?)";
