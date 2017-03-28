@@ -30,15 +30,12 @@ import java.sql.*;
  * @author John Ide - JCI5048
  */
 public class Database {
-    
     private String dbName;
     private final String url;
     
     public Database(String dbName) {
-        
         this.dbName = dbName;
         url = "jdbc:sqlite:" + dbName;
-        
     }
     
     /**
@@ -109,17 +106,10 @@ public class Database {
         return authenticated;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Selects all data from table.
+     * @param table table you are selecting all data from
+     */
     public void selectAll(String table) {
         String sql = "SELECT * FROM " + table;
         
@@ -137,6 +127,20 @@ public class Database {
         }
     }
     
+    // In progress
+//    public int setCurrentId() {
+//        int id = 1;
+//        String sql = "SELECT ACCOUNT_ID FROM User WHERE ";
+//        return id;
+//    }
+    
+    /**
+     * Adds a new task in Task table.
+     * @param NAME name of the new task
+     * @param DESCRIPTION description of the new task
+     * @param DUE_DATE due date of the new task
+     * @param TYPE type of new task (Personal, School, Business)
+     */
     public void addTask(String NAME, String DESCRIPTION, String DUE_DATE, String TYPE) {
         String sql = "INSERT INTO Task (NAME, DESCRIPTION, DUE_DATE, TYPE) "
                 + "VALUES (?,?,?,?)";
@@ -154,6 +158,13 @@ public class Database {
         }
     }
     
+    /**
+     * Adds a new contact to the Contact table.
+     * @param FIRST_NAME first name for the new contact
+     * @param LAST_NAME last name for the new contact
+     * @param EMAIL email for the new contact
+     * @param ADDRESS address for the new contact
+     */
     public void addContact(String FIRST_NAME, String LAST_NAME, String EMAIL, String ADDRESS) {
         String sql = "INSERT INTO Contact (FIRST_NAME, LAST_NAME, EMAIL, ADDRESS) "
                 + "VALUES (?,?,?,?)";
@@ -171,7 +182,16 @@ public class Database {
         }
     }
     
-    public void insert(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
+    /**
+     * Adds a new user to the User table. If a new user tries to add an account with a
+     * username already in use, the function will throw an error and prevent that 
+     * username from being used.
+     * @param FIRST_NAME first name of new account
+     * @param LAST_NAME last name of new account
+     * @param USERNAME username of new account
+     * @param PASSWORD password of new account
+     */
+    public void addNewUser(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
         String conflictingUser = "test";
         String sql = "INSERT INTO User (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) "
                 + "VALUES (?,?,?,?)";
@@ -201,7 +221,7 @@ public class Database {
             System.out.println(ex.getMessage());
         }
     }
-        
+    
     public String testDatabase() {
         return "Database is alive!";
     }
