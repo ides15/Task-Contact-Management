@@ -137,6 +137,23 @@ public class Database {
         }
     }
     
+    public void addTask(String NAME, String DESCRIPTION, String DUE_DATE, String TYPE) {
+        String sql = "INSERT INTO Task (NAME, DESCRIPTION, DUE_DATE, TYPE) "
+                + "VALUES (?,?,?,?)";
+        
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, NAME);
+            pstmt.setString(2, DESCRIPTION);
+            pstmt.setString(3, DUE_DATE);
+            pstmt.setString(4, TYPE);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public void addContact(String FIRST_NAME, String LAST_NAME, String EMAIL, String ADDRESS) {
         String sql = "INSERT INTO Contact (FIRST_NAME, LAST_NAME, EMAIL, ADDRESS) "
                 + "VALUES (?,?,?,?)";
