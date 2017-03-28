@@ -172,17 +172,31 @@ public class Database {
     }
     
     public void insert(String FIRST_NAME, String LAST_NAME, String USERNAME, String PASSWORD) {
+        String conflictingUser = "test";
         String sql = "INSERT INTO User (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) "
                 + "VALUES (?,?,?,?)";
+        String check = "SELECT USERNAME FROM User WHERE USERNAME = \"" + USERNAME + "\"";
         
         try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(check)) {
+            
+            while (rs.next()) {
+                conflictingUser = rs.getString("USERNAME");
+            }
+
             pstmt.setString(1, FIRST_NAME);
             pstmt.setString(2, LAST_NAME);
             pstmt.setString(3, USERNAME);
             pstmt.setString(4, PASSWORD);
             
-            pstmt.executeUpdate();
+            if (conflictingUser.equals(USERNAME)) {
+                System.out.println("Username " + USERNAME + " is already in use.");
+            } else {
+                pstmt.executeUpdate();
+                System.out.println("User " + USERNAME + " created.");
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
