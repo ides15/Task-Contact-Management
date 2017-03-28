@@ -25,6 +25,8 @@ public class LoginCntl
     private NavModel navModel;
     private NavCntl navCntl;
     
+   
+    
     LoginCntl(Database loginModel, LoginView loginView)
     {   
 
@@ -39,6 +41,10 @@ public class LoginCntl
         navModel = new NavModel();
         navView = new NavView(navModel);
         navCntl = new NavCntl(navModel, navView);
+        
+       
+        
+        
         
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
         

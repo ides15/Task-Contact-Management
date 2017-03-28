@@ -19,8 +19,11 @@ public class NavCntl {
     
     private MainView mainView;
     private ContactView conView;
-    private TaskView taskView;
     private SettingsView setView;
+    
+    private Database taskModel;
+    private TaskView taskView;
+    private TaskCntl taskCntl;
     
     
     NavCntl(NavModel navModel, NavView navView)
@@ -30,8 +33,13 @@ public class NavCntl {
         
         mainView = new MainView();
         conView = new ContactView();
-        taskView = new TaskView();
         setView = new SettingsView();
+        
+        taskModel = new Database("tcm.db");
+        taskView = new TaskView(taskModel);
+        taskCntl = new TaskCntl(taskModel, taskView);
+        
+        
         
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
