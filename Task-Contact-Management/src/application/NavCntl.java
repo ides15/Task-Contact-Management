@@ -17,14 +17,17 @@ public class NavCntl {
     private NavModel navModel;
     private NavView navView;
     
+    
     private MainView mainView;
-    private ContactView conView;
     private SettingsView setView;
     
     private Database taskModel;
     private TaskView taskView;
     private TaskCntl taskCntl;
     
+    ContactView ContactView;
+    ContactCntl ContactCntl;
+    Database ContactModel;
     
     NavCntl(NavModel navModel, NavView navView)
     {
@@ -32,12 +35,15 @@ public class NavCntl {
         this.navView = navView;
         
         mainView = new MainView();
-        conView = new ContactView();
         setView = new SettingsView();
         
         taskModel = new Database("tcm.db");
         taskView = new TaskView(taskModel);
         taskCntl = new TaskCntl(taskModel, taskView);
+        
+        ContactModel = new Database("tcm.db");
+        ContactView = new ContactView(ContactModel);
+        ContactCntl = new ContactCntl(ContactModel, ContactView);
         
         
         
@@ -59,7 +65,7 @@ public class NavCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            navView.switchToContactPanel(conView);
+            navView.switchToContactPanel(ContactView);
         }
     }
      
