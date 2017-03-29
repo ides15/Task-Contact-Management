@@ -146,8 +146,8 @@ public class Database {
      * @param TYPE type of new task (Personal, School, Business)
      */
     public void addTask(String NAME, String DESCRIPTION, String DUE_DATE, String TYPE) {
-        String sql = "INSERT INTO Task (NAME, DESCRIPTION, DUE_DATE, TYPE) "
-                + "VALUES (?,?,?,?)";
+        String sql = "INSERT INTO Task (TASK_USER_ID, NAME, DESCRIPTION, DUE_DATE, TYPE) "
+                + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?)";
         
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -170,8 +170,8 @@ public class Database {
      * @param ADDRESS address for the new contact
      */
     public void addContact(String FIRST_NAME, String LAST_NAME, String EMAIL, String ADDRESS) {
-        String sql = "INSERT INTO Contact (FIRST_NAME, LAST_NAME, EMAIL, ADDRESS) "
-                + "VALUES (?,?,?,?)";
+        String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS) "
+                + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?)";
         
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
