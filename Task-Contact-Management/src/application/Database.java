@@ -30,6 +30,7 @@ import java.sql.*;
  * @author John Ide - JCI5048
  */
 public class Database {
+    private int CURRENT_USER_ID;
     private String dbName;
     private final String url;
     
@@ -88,7 +89,7 @@ public class Database {
      */
     public boolean authenticate(String table, String username, String password) {
         boolean authenticated = false;
-        String sql = "SELECT PASSWORD FROM " + table + " WHERE USERNAME = \"" + username + "\"";
+        String sql = "SELECT PASSWORD, ACCOUNT_ID FROM " + table + " WHERE USERNAME = \"" + username + "\"";
         
         try (Connection conn = this.connect();
                 Statement stmt = conn.createStatement();
@@ -97,6 +98,8 @@ public class Database {
             while (rs.next()) {
                 if (rs.getString("PASSWORD").equals(password)) {
                     authenticated = true;
+                    CURRENT_USER_ID = rs.getInt("ACCOUNT_ID");
+                    System.out.println("Current user: " + CURRENT_USER_ID);
                 }
             }
         } catch (SQLException ex) {
@@ -127,12 +130,13 @@ public class Database {
         }
     }
     
-    // In progress
-//    public int setCurrentId() {
-//        int id = 1;
-//        String sql = "SELECT ACCOUNT_ID FROM User WHERE ";
-//        return id;
-//    }
+    /**
+     * Gets the ACCOUNT_ID of the user currently logged into the system
+     * @return ACCOUNT_ID of current user
+     */
+    public int getCurrentUserId() {
+        return CURRENT_USER_ID;
+    }
     
     /**
      * Adds a new task in Task table.
