@@ -77,11 +77,16 @@ public class LoginCntl
             //Logic for new Windows or Error
             if(authenticated[0] == 1)
             {
-                System.out.println("Successful Login");
                 navView.setVisible(true);
                 loginView.setVisible(false);
                 navCntl.setUserID(authenticated[1]);
-                System.out.println("LoginCntl: " + navCntl.getUserID());
+                System.out.println("LoginCntl: " + authenticated[1]);
+                System.out.println("NavCntl: " + navCntl.getUserID());
+                navCntl.getTaskCntl().setUserID(authenticated[1]);
+                navCntl.getTaskCntl().getTaskView().getModel().setDataVector(navCntl.getTaskCntl().getTaskModel().getTaskInfo(authenticated[1]), navCntl.getTaskCntl().getTaskView().getColNames());
+                navCntl.getTaskCntl().getTaskView().getTaskTable().setModel(navCntl.getTaskCntl().getTaskView().getModel());
+                
+                System.out.println("TaskCntl: " + navCntl.getTaskCntl().getUserID());
             }
             else
             {

@@ -69,6 +69,13 @@ public class NavCntl {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
+    /**
+     * @return the taskCntl
+     */
+    public TaskCntl getTaskCntl() {
+        return taskCntl;
+    }
     
      class MainButtonListener implements ActionListener
     {

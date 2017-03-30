@@ -57,13 +57,27 @@ public class TaskCntl
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
+    /**
+     * @return the taskModel
+     */
+    public Database getTaskModel() {
+        return taskModel;
+    }
+
+    /**
+     * @return the taskView
+     */
+    public TaskView getTaskView() {
+        return taskView;
+    }
     
     //Listener Add Button on Task View
     class AddButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-           taskView.getAddTask().setVisible(true);
+            getTaskView().getAddTask().setVisible(true);
         }
     }
     
@@ -72,10 +86,10 @@ public class TaskCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-          taskName = taskView.getAddTask().getTaskName().getText();
-          dueDate = taskView.getAddTask().getDueDate().getText();
-          taskType = taskView.getAddTask().getTypeComboBox().getSelectedItem().toString();
-          description = taskView.getAddTask().getDescription().getText();
+          taskName = getTaskView().getAddTask().getTaskName().getText();
+          dueDate = getTaskView().getAddTask().getDueDate().getText();
+          taskType = getTaskView().getAddTask().getTypeComboBox().getSelectedItem().toString();
+          description = getTaskView().getAddTask().getDescription().getText();
           
           if(taskName.equals("") || dueDate.equals(""))
           {
@@ -83,10 +97,10 @@ public class TaskCntl
           }
           else
           {
-              taskModel.addTask(taskName, description, dueDate, taskType);
-              taskView.getAddTask().setVisible(false);
-              taskView.getModel().setDataVector(taskModel.getTaskInfo(userID), taskView.getColNames()); 
-              taskView.getTaskTable().setModel(taskView.getModel());
+                getTaskModel().addTask(taskName, description, dueDate, taskType);
+                getTaskView().getAddTask().setVisible(false);
+                getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
+                getTaskView().getTaskTable().setModel(getTaskView().getModel());
           }          
         }
     }
