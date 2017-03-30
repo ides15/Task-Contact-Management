@@ -3,9 +3,6 @@ package application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  *
@@ -47,8 +44,6 @@ public class LoginCntl
         
         
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
-        
-        loginView.addKeyUIListener(new KeyUI());
         loginView.addUserSubmitButtonListener(new UserLoginButtonListener());
         loginView.addNewUserButtonListener(new NewUserButtonListener());
         loginView.addBackButtonListener(new BackButtonListener());
@@ -113,16 +108,4 @@ public class LoginCntl
             newUserLoginPanel.getNewUserSubmitButton().addActionListener(new NewUserSubmitButtonListener());
         }
     } 
-    
-    class KeyUI extends KeyAdapter
-    {
-        public void keyPressed(KeyEvent e) 
-        {
-            int key = e.getKeyCode();
-            if(key == KeyEvent.VK_ENTER)
-            {
-                System.out.print("Enter Pressed");
-            }
-        }
-    }
 }
