@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /*
@@ -40,6 +41,11 @@ public class LoginView extends JFrame
     public void addUserSubmitButtonListener(ActionListener al)
     {
         getLoginViewPanel().getUserLoginPanel().getUserSubmitButton().addActionListener(al);
+    }
+    
+    public void addKeyUIListener(KeyListener kl)
+    {
+        getLoginViewPanel().getUserLoginPanel().addKeyListener(kl);
     }
     
     public void addNewUserButtonListener(ActionListener al)

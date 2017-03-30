@@ -11,28 +11,28 @@ import java.awt.event.ActionListener;
  * @author glennlin
  */
 public class ContactCntl {
-    ContactView ContactView;
-    Database ContactModel;
-    addContact addContact;
+    ContactView contactView;
+    Database contactModel;
+    AddContact addContact;
     private MainView mainView;
     private ContactView conView;
     private TaskView taskView;
     private SettingsView setView;
      
-     ContactCntl(Database ContactModel, ContactView ContactView)
+     ContactCntl(Database contactModel, ContactView contactView)
     {
-        this.ContactModel = ContactModel;
-        this.ContactView = ContactView;
+        this.contactModel = contactModel;
+        this.contactView = contactView;
         
         
-        addContact = new addContact();
+        addContact = new AddContact();
         addContact.setVisible(false);
         
         
         
-        ContactView.addAddButtonListener(new addButtonListener());
-        ContactView.addDeleteButtonListener(new deleteButtonListener());
-        ContactView.addUpdateButtonListener(new updateButtonListener());
+        contactView.addAddButtonListener(new addButtonListener());
+        contactView.addDeleteButtonListener(new deleteButtonListener());
+        contactView.addUpdateButtonListener(new updateButtonListener());
       
         
     }
@@ -41,7 +41,6 @@ public class ContactCntl {
         public void actionPerformed(ActionEvent e) 
         {
             addContact.setVisible(true);
-            System.out.println("test");
         }
     }
      

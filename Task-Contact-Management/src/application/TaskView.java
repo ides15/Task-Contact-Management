@@ -6,6 +6,11 @@
 package application;
 
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -17,11 +22,35 @@ public class TaskView extends javax.swing.JPanel {
      * Creates new form TaskView
      */
     private Database taskModel;
+    private AddTask addTask;
+    private JScrollPane scrollPane;
+    private JLabel test;
+    private String[] colNames;
     
     public TaskView(Database taskModel) 
     {
+        super();
+        
         this.taskModel = taskModel;
+        
+        
+        addTask = new AddTask();
+        
+        //Attempt to Populate JTable
+        colNames = new String[4];
+        colNames[0] = "Task";
+        colNames[1] = "Due Date";
+        colNames[2] = "Type";
+        colNames[3] = "Description";
+
+        System.out.println(Arrays.deepToString(taskModel.getTaskInfo()));
+
         initComponents();
+        
+        //Attempt to Populate JTable
+        testTable = new JTable(taskModel.getTaskInfo(), colNames);
+        add(testTable);
+      
     }
     
     /**
@@ -34,12 +63,12 @@ public class TaskView extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TaskTabel = new javax.swing.JTable();
+        testTable = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
 
-        TaskTabel.setModel(new javax.swing.table.DefaultTableModel(
+        testTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,16 +94,20 @@ public class TaskView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TaskTabel);
-        if (TaskTabel.getColumnModel().getColumnCount() > 0) {
-            TaskTabel.getColumnModel().getColumn(0).setMinWidth(1);
-            TaskTabel.getColumnModel().getColumn(0).setPreferredWidth(1);
-            TaskTabel.getColumnModel().getColumn(1).setMinWidth(1);
-            TaskTabel.getColumnModel().getColumn(1).setPreferredWidth(2);
-            TaskTabel.getColumnModel().getColumn(2).setMinWidth(1);
-            TaskTabel.getColumnModel().getColumn(2).setPreferredWidth(2);
-            TaskTabel.getColumnModel().getColumn(3).setMinWidth(1);
-            TaskTabel.getColumnModel().getColumn(3).setPreferredWidth(3);
+        jScrollPane1.setViewportView(testTable);
+        if (testTable.getColumnModel().getColumnCount() > 0) {
+            testTable.getColumnModel().getColumn(0).setMinWidth(1);
+            testTable.getColumnModel().getColumn(0).setPreferredWidth(1);
+            testTable.getColumnModel().getColumn(0).setHeaderValue("Task");
+            testTable.getColumnModel().getColumn(1).setMinWidth(1);
+            testTable.getColumnModel().getColumn(1).setPreferredWidth(2);
+            testTable.getColumnModel().getColumn(1).setHeaderValue("Due Date");
+            testTable.getColumnModel().getColumn(2).setMinWidth(1);
+            testTable.getColumnModel().getColumn(2).setPreferredWidth(2);
+            testTable.getColumnModel().getColumn(2).setHeaderValue("Type");
+            testTable.getColumnModel().getColumn(3).setMinWidth(1);
+            testTable.getColumnModel().getColumn(3).setPreferredWidth(3);
+            testTable.getColumnModel().getColumn(3).setHeaderValue("Description");
         }
 
         addButton.setText("Add");
@@ -92,18 +125,20 @@ public class TaskView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addButton)
-                .addGap(18, 18, 18)
-                .addComponent(updateButton)
-                .addGap(18, 18, 18)
-                .addComponent(deleteButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addButton)
+                        .addGap(50, 50, 50)
+                        .addComponent(updateButton)
+                        .addGap(50, 50, 50)
+                        .addComponent(deleteButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,10 +174,31 @@ public class TaskView extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TaskTabel;
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable testTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the addTask
+     */
+    public AddTask getAddTask() {
+        return addTask;
+    }
+
+    /**
+     * @return the TaskTabel
+     */
+    public javax.swing.JTable getTaskTabel() {
+        return testTable;
+    }
+
+    /**
+     * @param TaskTabel the TaskTabel to set
+     */
+    public void setTaskTabel(javax.swing.JTable TaskTabel) {
+        this.testTable = TaskTabel;
+    }
 }
