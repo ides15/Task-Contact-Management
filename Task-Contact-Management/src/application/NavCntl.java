@@ -25,9 +25,9 @@ public class NavCntl {
     private TaskView taskView;
     private TaskCntl taskCntl;
     
-    ContactView ContactView;
-    ContactCntl ContactCntl;
-    Database ContactModel;
+    ContactView contactView;
+    ContactCntl contactCntl;
+    Database contactModel;
     
     NavCntl(NavModel navModel, NavView navView)
     {
@@ -41,9 +41,9 @@ public class NavCntl {
         taskView = new TaskView(taskModel);
         taskCntl = new TaskCntl(taskModel, taskView);
         
-        ContactModel = new Database("tcm.db");
-        ContactView = new ContactView(ContactModel);
-        ContactCntl = new ContactCntl(ContactModel, ContactView);
+        contactModel = new Database("tcm.db");
+        contactView = new ContactView(contactModel);
+        contactCntl = new ContactCntl(contactModel, contactView);
         
         
         
@@ -65,7 +65,7 @@ public class NavCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            navView.switchToContactPanel(ContactView);
+            navView.switchToContactPanel(contactView);
         }
     }
      
@@ -74,6 +74,7 @@ public class NavCntl {
         public void actionPerformed(ActionEvent e) 
         {
             navView.switchToTaskPanel(taskView);
+            System.out.print(taskModel.getCurrentUserId()); //Testing Current User On Task Click
         }
     }
      

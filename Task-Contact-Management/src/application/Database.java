@@ -6,6 +6,7 @@
 package application;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /*
         USAGE
@@ -128,6 +129,62 @@ public class Database {
         return CURRENT_USER_ID;
     }
     
+        
+    //Gets the information of a all tasks of a user
+    public Object[][] getTaskInfo()
+    { 
+        Object[][] info;
+        ArrayList<ArrayList> allTaskInfo = new ArrayList<ArrayList>();
+        ArrayList<String> taskInfo;
+        String taskName = "";
+        String taskType = "";
+        String taskDate = "";
+        String taskDescript = "";
+        NavModel navModel = new NavModel();
+        NavView navView = new NavView(navModel);
+        
+            String sql = "SELECT * FROM Task \n WHERE TASK_USER_ID = " + CURRENT_USER_ID;
+
+            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+            try (Connection conn = this.connect();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql)) {
+
+                  while(rs.next())
+                  {
+                      taskInfo = new ArrayList<String>();
+
+                      taskName = rs.getString("NAME"); 
+                      taskType = rs.getString("TYPE");
+                      taskDate = rs.getString("DUE_DATE");
+                      taskDescript = rs.getString("DESCRIPTION");
+
+                      taskInfo.add(taskName);
+                      taskInfo.add(taskType);
+                      taskInfo.add(taskDate);
+                      taskInfo.add(taskDescript);
+
+                      allTaskInfo.add(taskInfo);
+                  }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+            //Conversion to Object
+            info = new Object[allTaskInfo.size()][4];
+
+            for(int i = 0; i < allTaskInfo.size(); i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    info[i][j] = allTaskInfo.get(i).get(j);
+                }
+            }
+            
+        return info;
+    }
+
     /**
      * Adds a new task in Task table.
      * @param NAME name of the new task
@@ -136,6 +193,7 @@ public class Database {
      * @param TYPE type of new task (Personal, School, Business)
      */
     public void addTask(String NAME, String DESCRIPTION, String DUE_DATE, String TYPE) {
+        
         String sql = "INSERT INTO Task (TASK_USER_ID, NAME, DESCRIPTION, DUE_DATE, TYPE) "
                 + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?)";
         

@@ -42,15 +42,13 @@ public class LoginCntl
         navView = new NavView(navModel);
         navCntl = new NavCntl(navModel, navView);
         
-       
-        
-        
         
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
-        
         loginView.addUserSubmitButtonListener(new UserLoginButtonListener());
         loginView.addNewUserButtonListener(new NewUserButtonListener());
         loginView.addBackButtonListener(new BackButtonListener());
+        
+        
         //Need Everything here for multiple switches not sure why
         newUserLoginPanel.getBackButton().addActionListener(new BackButtonListener());
         userLoginPanel.getNewUserButton().addActionListener(new NewUserButtonListener());
@@ -77,11 +75,12 @@ public class LoginCntl
             }
             else
             {
-                System.out.println("Successful Failed");
+                System.out.println("Failed Login");
                 loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(true);
             }
+ 
         }
-    
+
     }
     
     class NewUserButtonListener implements ActionListener
@@ -108,5 +107,5 @@ public class LoginCntl
         {
             newUserLoginPanel.getNewUserSubmitButton().addActionListener(new NewUserSubmitButtonListener());
         }
-    }
+    } 
 }
