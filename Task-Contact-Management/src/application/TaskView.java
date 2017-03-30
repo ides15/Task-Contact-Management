@@ -9,11 +9,7 @@ import application.AddTask;
 import application.Database;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -26,14 +22,11 @@ public class TaskView extends javax.swing.JPanel {
      */
     private Database taskModel;
     private AddTask addTask;
-    private JScrollPane scrollPane;
-    private JLabel test;
     private Object[] colNames;
+    private DefaultTableModel model;
     
     public TaskView(Database taskModel) 
     {
-      
-        
         this.taskModel = taskModel;
         
         addTask = new AddTask();
@@ -50,9 +43,9 @@ public class TaskView extends javax.swing.JPanel {
         System.out.println(Arrays.deepToString(taskModel.getTaskInfo()));
 
         //Resets table data and colNames to it the ones we want - hard code to avoid XML problems
-        DefaultTableModel model = new DefaultTableModel(taskModel.getTaskInfo(),colNames); //Make Not Editable Model
+        model = new DefaultTableModel(taskModel.getTaskInfo(), getColNames()); //Make Not Editable Model
         testTable.setModel(model);
-
+        
     }
     
     /**
@@ -193,7 +186,7 @@ public class TaskView extends javax.swing.JPanel {
     /**
      * @return the TaskTabel
      */
-    public javax.swing.JTable getTaskTabel() {
+    public javax.swing.JTable getTaskTable() {
         return testTable;
     }
 
@@ -202,5 +195,19 @@ public class TaskView extends javax.swing.JPanel {
      */
     public void setTaskTabel(javax.swing.JTable TaskTabel) {
         this.testTable = TaskTabel;
+    }
+
+    /**
+     * @return the colNames
+     */
+    public Object[] getColNames() {
+        return colNames;
+    }
+
+    /**
+     * @return the model
+     */
+    public DefaultTableModel getModel() {
+        return model;
     }
 }

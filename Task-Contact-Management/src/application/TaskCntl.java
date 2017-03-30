@@ -29,15 +29,10 @@ public class TaskCntl
         this.taskModel = taskModel;
         this.taskView = taskView;
         
-        
         taskView.addAddButtonListener(new AddButtonListener());
         taskView.addUpdateButtonListener(new UpdateButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());
-        
-        taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());
-        
-        
-        
+        taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());  
     }
     
     //Listener Add Button on Task View
@@ -67,8 +62,9 @@ public class TaskCntl
           {
               taskModel.addTask(taskName, description, dueDate, taskType);
               taskView.getAddTask().setVisible(false);
-          }
-          
+              taskView.getModel().setDataVector(taskModel.getTaskInfo(), taskView.getColNames()); 
+              taskView.getTaskTable().setModel(taskView.getModel());
+          }          
         }
     }
     
