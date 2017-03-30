@@ -5,8 +5,6 @@
  */
 package application;
 
-import application.AddTask;
-import application.Database;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;

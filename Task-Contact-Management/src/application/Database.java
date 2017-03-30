@@ -132,7 +132,7 @@ public class Database {
         
     //Gets the information of a all tasks of a user
     public Object[][] getTaskInfo()
-    { 
+    {
         Object[][] info;
         ArrayList<ArrayList> allTaskInfo = new ArrayList<ArrayList>();
         ArrayList<String> taskInfo;
