@@ -5,11 +5,14 @@
  */
 package application;
 
+import application.AddTask;
+import application.Database;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -25,19 +28,20 @@ public class TaskView extends javax.swing.JPanel {
     private AddTask addTask;
     private JScrollPane scrollPane;
     private JLabel test;
-    private String[] colNames;
+    private Object[] colNames;
     
     public TaskView(Database taskModel) 
     {
-        super();
+      
         
         this.taskModel = taskModel;
         
-        
         addTask = new AddTask();
         
+        initComponents();
+        
         //Attempt to Populate JTable
-        colNames = new String[4];
+        colNames = new Object[4];
         colNames[0] = "Task";
         colNames[1] = "Due Date";
         colNames[2] = "Type";
@@ -45,12 +49,10 @@ public class TaskView extends javax.swing.JPanel {
 
         System.out.println(Arrays.deepToString(taskModel.getTaskInfo()));
 
-        initComponents();
-        
-        //Attempt to Populate JTable
-        testTable = new JTable(taskModel.getTaskInfo(), colNames);
-        add(testTable);
-      
+        //Resets table data and colNames to it the ones we want - hard code to avoid XML problems
+        DefaultTableModel model = new DefaultTableModel(taskModel.getTaskInfo(),colNames); //Make Not Editable Model
+        testTable.setModel(model);
+
     }
     
     /**

@@ -74,7 +74,7 @@ public class NavCntl {
         public void actionPerformed(ActionEvent e) 
         {
             navView.switchToTaskPanel(taskView);
-            System.out.print(taskModel.getCurrentUserId());
+            System.out.print(taskModel.getCurrentUserId()); //Testing Current User On Task Click
         }
     }
      
