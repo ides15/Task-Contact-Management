@@ -217,6 +217,63 @@ public class Database {
         }
     }
     
+    public Object[][] getContactInfo()
+    { 
+        Object[][] info;
+        ArrayList<ArrayList> allContactInfo = new ArrayList<ArrayList>();
+        ArrayList<String> contactInfo;
+        String firstName = "";
+        String lastName = "";
+        String phoneNumber = "";
+        String email = "";
+        String address = "";
+        NavModel navModel = new NavModel();
+        NavView navView = new NavView(navModel);
+        
+            String sql = "SELECT * FROM Contact \n WHERE CONTACT_USER_ID = " + CURRENT_USER_ID;
+
+            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+            try (Connection conn = this.connect();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql)) {
+
+                  while(rs.next())
+                  {
+                      contactInfo = new ArrayList<String>();
+
+                      firstName = rs.getString("FIRST_NAME"); 
+                      lastName = rs.getString("LAST_NAME");
+                      phoneNumber = rs.getString("PHONE");
+                      email = rs.getString("EMAIL");
+                      address = rs.getString("ADDRESS");
+
+                      contactInfo.add(firstName);
+                      contactInfo.add(lastName);
+                      contactInfo.add(phoneNumber);
+                      contactInfo.add(email);
+                      contactInfo.add(address);
+
+                      allContactInfo.add(contactInfo);
+                  }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+            //Conversion to Object
+            info = new Object[allContactInfo.size()][5];
+
+            for(int i = 0; i < allContactInfo.size(); i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    info[i][j] = allContactInfo.get(i).get(j);
+                }
+            }
+            
+        return info;
+    }
+    
     /**
      * Adds a new contact to the Contact table.
      * @param FIRST_NAME first name for the new contact
@@ -224,16 +281,17 @@ public class Database {
      * @param EMAIL email for the new contact
      * @param ADDRESS address for the new contact
      */
-    public void addContact(String FIRST_NAME, String LAST_NAME, String EMAIL, String ADDRESS) {
-        String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS) "
+    public void addContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS) {
+        String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
                 + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?)";
         
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, FIRST_NAME);
             pstmt.setString(2, LAST_NAME);
-            pstmt.setString(3, EMAIL);
-            pstmt.setString(4, ADDRESS);
+            pstmt.setString(3, PHONE);
+            pstmt.setString(4, EMAIL);
+            pstmt.setString(5, ADDRESS);
             
             pstmt.executeUpdate();
         } catch (SQLException ex) {

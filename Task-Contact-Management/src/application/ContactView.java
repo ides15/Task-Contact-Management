@@ -6,6 +6,8 @@
 package application;
 
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +15,31 @@ import java.awt.event.ActionListener;
  */
 public class ContactView extends javax.swing.JPanel {
     Database ContactModel;
+    private addContact addContact;
+    private Object[] colNames;
+    private DefaultTableModel model;
     /**
      * Creates new form ContactView
      */
     public ContactView(Database ContactModel) {
         this.ContactModel = ContactModel;
+        
+        addContact = new addContact();
+        
         initComponents();
         
+        colNames = new Object[5];
+        colNames[0] = "Firstname";
+        colNames[1] = "Lastname";
+        colNames[2] = "Phone Number";
+        colNames[3] = "Email";
+        colNames[4] = "Address";
+        
+
+        System.out.println(Arrays.deepToString(ContactModel.getContactInfo()));
+        
+        model = new DefaultTableModel(ContactModel.getContactInfo(), getColNames()); 
+        contactTable.setModel(model);
     }
 
     /**
@@ -111,7 +131,7 @@ public class ContactView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     public void addAddButtonListener(ActionListener al)
     {
-        addButton.addActionListener(al);
+        getAddButton().addActionListener(al);
     }
     
     public void addDeleteButtonListener(ActionListener al)
@@ -134,4 +154,39 @@ public class ContactView extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the addContact
+     */
+    public addContact getAddContact() {
+        return addContact;
+    }
+
+    /**
+     * @return the colNames
+     */
+    public Object[] getColNames() {
+        return colNames;
+    }
+
+    /**
+     * @return the model
+     */
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
+    /**
+     * @return the addButton
+     */
+    public javax.swing.JButton getAddButton() {
+        return addButton;
+    }
+
+    /**
+     * @return the contactTable
+     */
+    public javax.swing.JTable getContactTable() {
+        return contactTable;
+    }
 }
