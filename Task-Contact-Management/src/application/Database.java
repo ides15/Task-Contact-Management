@@ -88,8 +88,10 @@ public class Database {
      * @param password whatever password person is trying to log in with
      * @return boolean of whether the person is authenticated or not
      */
-    public boolean authenticate(String table, String username, String password) {
-        boolean authenticated = false;
+    public int[] authenticate(String table, String username, String password) {
+        int[] authenticated = new int[2];
+        authenticated[0] = 0;
+        
         String sql = "SELECT PASSWORD, ACCOUNT_ID FROM " + table + " WHERE USERNAME = \"" + username + "\"";
         
         try (Connection conn = this.connect();
@@ -98,11 +100,16 @@ public class Database {
             
             while (rs.next()) {
                 if (rs.getString("PASSWORD").equals(password)) {
-                    authenticated = true;
+                    authenticated[0] = 1;
                     CURRENT_USER_ID = rs.getInt("ACCOUNT_ID");
+                    authenticated[1] = CURRENT_USER_ID;
                     System.out.println("Current user: " + CURRENT_USER_ID);
                 }
+                 
             }
+            
+            
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -141,7 +148,7 @@ public class Database {
     
         
     //Gets the information of a all tasks of a user
-    public Object[][] getTaskInfo()
+    public Object[][] getTaskInfo(int userID)
     { 
         Object[][] info;
         ArrayList<ArrayList> allTaskInfo = new ArrayList<ArrayList>();
@@ -153,7 +160,7 @@ public class Database {
         NavModel navModel = new NavModel();
         NavView navView = new NavView(navModel);
         
-            String sql = "SELECT * FROM Task \n WHERE TASK_USER_ID = " + CURRENT_USER_ID;
+            String sql = "SELECT * FROM Task \n WHERE TASK_USER_ID = " + userID;
 
             //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
             try (Connection conn = this.connect();

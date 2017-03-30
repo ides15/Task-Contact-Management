@@ -25,6 +25,8 @@ public class LoginCntl
     private NavModel navModel;
     private NavCntl navCntl;
     
+//    private int userID;
+    
    
     
     LoginCntl(Database loginModel, LoginView loginView)
@@ -42,6 +44,7 @@ public class LoginCntl
         navView = new NavView(navModel);
         navCntl = new NavCntl(navModel, navView);
         
+       
         
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
         loginView.addUserSubmitButtonListener(new UserLoginButtonListener());
@@ -56,6 +59,11 @@ public class LoginCntl
         
         userLoginPanel.getUserSubmitButton().addActionListener(new UserLoginButtonListener());
     }
+
+    /**
+     * @return the userID
+     */
+  
     
     class UserLoginButtonListener implements ActionListener
     {
@@ -64,14 +72,16 @@ public class LoginCntl
             username = loginView.getLoginViewPanel().getUserLoginPanel().getUsernameTextField().getText();
             password = loginView.getLoginViewPanel().getUserLoginPanel().getPasswordTextField().getText();
 
-            boolean authenticated = loginModel.authenticate("User", username, password);
+            int[] authenticated = loginModel.authenticate("User", username, password);
             
             //Logic for new Windows or Error
-            if(authenticated == true)
+            if(authenticated[0] == 1)
             {
                 System.out.println("Successful Login");
                 navView.setVisible(true);
                 loginView.setVisible(false);
+                navCntl.setUserID(authenticated[1]);
+                System.out.println("LoginCntl: " + navCntl.getUserID());
             }
             else
             {

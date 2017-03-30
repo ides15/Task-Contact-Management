@@ -29,6 +29,8 @@ public class NavCntl {
     ContactCntl contactCntl;
     Database contactModel;
     
+    private int userID;
+    
     NavCntl(NavModel navModel, NavView navView)
     {
         this.navModel = navModel;
@@ -45,12 +47,27 @@ public class NavCntl {
         contactView = new ContactView(contactModel);
         contactCntl = new ContactCntl(contactModel, contactView);
         
-        
+        taskCntl.setUserID(userID); // = 0
+        System.out.println("Nav: " + userID);
         
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
         navView.addTaskButtonListener(new TaskButtonListener());
         navView.addSettingsButtonListener(new SettingsButtonListener());
+    }
+
+    /**
+     * @return the userID
+     */
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     
      class MainButtonListener implements ActionListener

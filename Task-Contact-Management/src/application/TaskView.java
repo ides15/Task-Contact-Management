@@ -25,6 +25,7 @@ public class TaskView extends javax.swing.JPanel {
     private Object[] colNames;
     private DefaultTableModel model;
     
+    
     public TaskView(Database taskModel) 
     {
         this.taskModel = taskModel;
@@ -40,10 +41,9 @@ public class TaskView extends javax.swing.JPanel {
         colNames[2] = "Type";
         colNames[3] = "Description";
 
-        System.out.println(Arrays.deepToString(taskModel.getTaskInfo()));
-
+       // System.out.println(Arrays.deepToString(taskModel.getTaskInfo()));
         //Resets table data and colNames to it the ones we want - hard code to avoid XML problems
-        model = new DefaultTableModel(taskModel.getTaskInfo(), getColNames()); //Make Not Editable Model
+        model = new DefaultTableModel(taskModel.getTaskInfo(taskModel.getCurrentUserId()), getColNames()); //Make Not Editable Model
         testTable.setModel(model);
         
     }
