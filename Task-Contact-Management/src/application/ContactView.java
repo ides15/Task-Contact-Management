@@ -6,7 +6,6 @@
 package application;
 
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,17 +13,19 @@ import javax.swing.table.DefaultTableModel;
  * @author glennlin
  */
 public class ContactView extends javax.swing.JPanel {
-    Database ContactModel;
-    private addContact addContact;
+    private Database ContactModel;
+    private AddContact addContact;
     private Object[] colNames;
     private DefaultTableModel model;
     /**
      * Creates new form ContactView
+     * @param ContactModel
      */
     public ContactView(Database ContactModel) {
+        
         this.ContactModel = ContactModel;
         
-        addContact = new addContact();
+        addContact = new AddContact();
         
         initComponents();
         
@@ -34,11 +35,9 @@ public class ContactView extends javax.swing.JPanel {
         colNames[2] = "Phone Number";
         colNames[3] = "Email";
         colNames[4] = "Address";
-        
 
-        System.out.println(Arrays.deepToString(ContactModel.getContactInfo()));
-        
-        model = new DefaultTableModel(ContactModel.getContactInfo(), getColNames()); 
+        //Initilizes 
+        model = new DefaultTableModel(ContactModel.getTaskInfo(ContactModel.getCurrentUserId()), getColNames()); 
         contactTable.setModel(model);
     }
 
@@ -129,6 +128,7 @@ public class ContactView extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
     public void addAddButtonListener(ActionListener al)
     {
         getAddButton().addActionListener(al);
@@ -158,7 +158,7 @@ public class ContactView extends javax.swing.JPanel {
     /**
      * @return the addContact
      */
-    public addContact getAddContact() {
+    public AddContact getAddContact() {
         return addContact;
     }
 

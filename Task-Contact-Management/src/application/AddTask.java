@@ -6,6 +6,7 @@
 package application;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -173,6 +174,10 @@ public class AddTask extends javax.swing.JFrame {
     public void addAddTaskButtonListener(ActionListener al)
     {
         addTaskButton.addActionListener(al);
+    }
+    public JButton getAddTaskButton()
+    {
+        return addTaskButton;
     }
     
     public JTextField getTaskName()

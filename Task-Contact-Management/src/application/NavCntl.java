@@ -25,11 +25,9 @@ public class NavCntl {
     private TaskView taskView;
     private TaskCntl taskCntl;
     
-    ContactView contactView;
-    ContactCntl contactCntl;
-    Database contactModel;
-    
-    private int userID;
+    private ContactView contactView;
+    private ContactCntl contactCntl;
+    private Database contactModel;
     
     NavCntl(NavModel navModel, NavView navView)
     {
@@ -47,8 +45,6 @@ public class NavCntl {
         contactView = new ContactView(contactModel);
         contactCntl = new ContactCntl(contactModel, contactView);
         
-        taskCntl.setUserID(userID); // = 0
-        System.out.println("Nav: " + userID);
         
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
@@ -57,24 +53,17 @@ public class NavCntl {
     }
 
     /**
-     * @return the userID
-     */
-    public int getUserID() {
-        return userID;
-    }
-
-    /**
-     * @param userID the userID to set
-     */
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    /**
      * @return the taskCntl
      */
     public TaskCntl getTaskCntl() {
         return taskCntl;
+    }
+
+    /**
+     * @return the contactCntl
+     */
+    public ContactCntl getContactCntl() {
+        return contactCntl;
     }
     
      class MainButtonListener implements ActionListener
@@ -98,7 +87,6 @@ public class NavCntl {
         public void actionPerformed(ActionEvent e) 
         {
             navView.switchToTaskPanel(taskView);
-            System.out.print(taskModel.getCurrentUserId()); //Testing Current User On Task Click
         }
     }
      

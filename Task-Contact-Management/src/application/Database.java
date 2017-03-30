@@ -217,7 +217,7 @@ public class Database {
         }
     }
     
-    public Object[][] getContactInfo()
+    public Object[][] getContactInfo(int userID)
     { 
         Object[][] info;
         ArrayList<ArrayList> allContactInfo = new ArrayList<ArrayList>();
@@ -230,7 +230,7 @@ public class Database {
         NavModel navModel = new NavModel();
         NavView navView = new NavView(navModel);
         
-            String sql = "SELECT * FROM Contact \n WHERE CONTACT_USER_ID = " + CURRENT_USER_ID;
+            String sql = "SELECT * FROM Contact \n WHERE CONTACT_USER_ID = " + userID; //<-- change to userID
 
             //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
             try (Connection conn = this.connect();
@@ -283,7 +283,7 @@ public class Database {
      */
     public void addContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS) {
         String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
-                + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?)";
+                + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?,?)";
         
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

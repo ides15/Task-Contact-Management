@@ -3,6 +3,8 @@ package application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -60,9 +62,17 @@ public class LoginCntl
         userLoginPanel.getUserSubmitButton().addActionListener(new UserLoginButtonListener());
     }
 
-    /**
-     * @return the userID
-     */
+    public void setTaskTable(int userID)
+    {
+        navCntl.getTaskCntl().getTaskView().getModel().setDataVector(navCntl.getTaskCntl().getTaskModel().getTaskInfo(userID), navCntl.getTaskCntl().getTaskView().getColNames());
+        navCntl.getTaskCntl().getTaskView().getTaskTable().setModel(navCntl.getTaskCntl().getTaskView().getModel());
+    }
+    
+    public void setContactTable(int userID)
+    {
+        navCntl.getContactCntl().getContactView().getModel().setDataVector(navCntl.getContactCntl().getContactModel().getContactInfo(userID), navCntl.getContactCntl().getContactView().getColNames());
+        navCntl.getContactCntl().getContactView().getContactTable().setModel(navCntl.getContactCntl().getContactView().getModel());
+    }
   
     
     class UserLoginButtonListener implements ActionListener
@@ -77,16 +87,13 @@ public class LoginCntl
             //Logic for new Windows or Error
             if(authenticated[0] == 1)
             {
+                //I Feel Like A Lot Of Shit Is Gonna Be Here
+                
                 navView.setVisible(true);
                 loginView.setVisible(false);
-                navCntl.setUserID(authenticated[1]);
-                System.out.println("LoginCntl: " + authenticated[1]);
-                System.out.println("NavCntl: " + navCntl.getUserID());
-                navCntl.getTaskCntl().setUserID(authenticated[1]);
-                navCntl.getTaskCntl().getTaskView().getModel().setDataVector(navCntl.getTaskCntl().getTaskModel().getTaskInfo(authenticated[1]), navCntl.getTaskCntl().getTaskView().getColNames());
-                navCntl.getTaskCntl().getTaskView().getTaskTable().setModel(navCntl.getTaskCntl().getTaskView().getModel());
                 
-                System.out.println("TaskCntl: " + navCntl.getTaskCntl().getUserID());
+                setTaskTable(authenticated[1]);
+                setContactTable(authenticated[1]);
             }
             else
             {

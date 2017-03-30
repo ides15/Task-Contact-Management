@@ -22,7 +22,6 @@ public class TaskCntl
     private String taskType;
     private String description;
     
-    private int userID; // = 0
     
     private Object[][] table;
     
@@ -31,43 +30,20 @@ public class TaskCntl
         this.taskModel = taskModel;
         this.taskView = taskView;
         
-        taskView.getModel().setDataVector(taskModel.getTaskInfo(userID), taskView.getColNames()); 
-        taskView.getTaskTable().setModel(taskView.getModel());
-        
-        System.out.println("Task: " + userID);
-        
-        
-        
+       // taskView.getModel().setDataVector(taskModel.getTaskInfo(userID), taskView.getColNames()); 
+       // taskView.getTaskTable().setModel(taskView.getModel());
+ 
         taskView.addAddButtonListener(new AddButtonListener());
         taskView.addUpdateButtonListener(new UpdateButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());
         taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());  
     }
 
-    /**
-     * @return the userID
-     */
-    public int getUserID() {
-        return userID;
-    }
 
-    /**
-     * @param userID the userID to set
-     */
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    /**
-     * @return the taskModel
-     */
     public Database getTaskModel() {
         return taskModel;
     }
 
-    /**
-     * @return the taskView
-     */
     public TaskView getTaskView() {
         return taskView;
     }
@@ -99,8 +75,8 @@ public class TaskCntl
           {
                 getTaskModel().addTask(taskName, description, dueDate, taskType);
                 getTaskView().getAddTask().setVisible(false);
-                getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
-                getTaskView().getTaskTable().setModel(getTaskView().getModel());
+//               getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
+//               getTaskView().getTaskTable().setModel(getTaskView().getModel());
           }          
         }
     }

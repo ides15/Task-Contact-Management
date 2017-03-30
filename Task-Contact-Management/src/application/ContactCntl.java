@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
  * @author glennlin
  */
 public class ContactCntl {
-    ContactView contactView;
-    Database contactModel;
-    addContact addContact;
+    private ContactView contactView;
+    private Database contactModel;
+    //addContact addContact;
     
     private String firstName;
     private String lastName;
@@ -29,8 +29,8 @@ public class ContactCntl {
         this.contactView = contactView;
         
         
-        addContact = new addContact();
-        addContact.setVisible(false);
+//        addContact = new addContact();
+//        addContact.setVisible(false);
         
         
         
@@ -41,15 +41,43 @@ public class ContactCntl {
       
         
     }
+
+    /**
+     * @return the contactView
+     */
+    public ContactView getContactView() {
+        return contactView;
+    }
+
+    /**
+     * @param contactView the contactView to set
+     */
+    public void setContactView(ContactView contactView) {
+        this.contactView = contactView;
+    }
+
+    /**
+     * @return the contactModel
+     */
+    public Database getContactModel() {
+        return contactModel;
+    }
+
+    /**
+     * @param contactModel the contactModel to set
+     */
+    public void setContactModel(Database contactModel) {
+        this.contactModel = contactModel;
+    }
      class AddContactButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-          firstName = contactView.getAddContact().getFirstNameField().getText();
-          lastName = contactView.getAddContact().getLastNameField().getText();
-          phoneNumber = contactView.getAddContact().getPhoneField().getText();
-          email = contactView.getAddContact().getEmailField().getText();
-          address = contactView.getAddContact().getAddressField().getText() + " ," + contactView.getAddContact().getCityField().getText() + " ," + contactView.getAddContact().getStateField().getText() + " ," + contactView.getAddContact().getZipField().getText();
+          firstName = getContactView().getAddContact().getFirstNameField().getText();
+          lastName = getContactView().getAddContact().getLastNameField().getText();
+          phoneNumber = getContactView().getAddContact().getPhoneField().getText();
+          email = getContactView().getAddContact().getEmailField().getText();
+          address = getContactView().getAddContact().getAddressField().getText() + " ," + getContactView().getAddContact().getCityField().getText() + " ," + getContactView().getAddContact().getStateField().getText() + " ," + getContactView().getAddContact().getZipField().getText();
           
           if(firstName.equals("") || lastName.equals(""))
           {
@@ -57,10 +85,10 @@ public class ContactCntl {
           }
           else
           {
-              contactModel.addContact(firstName, lastName, phoneNumber, email, address);
-              contactView.getAddContact().setVisible(false);
-              contactView.getModel().setDataVector(contactModel.getContactInfo(), contactView.getColNames()); 
-              contactView.getContactTable().setModel(contactView.getModel());
+                getContactModel().addContact(firstName, lastName, phoneNumber, email, address);
+                getContactView().getAddContact().setVisible(false);
+//              contactView.getModel().setDataVector(contactModel.getContactInfo(), contactView.getColNames()); 
+//              contactView.getContactTable().setModel(contactView.getModel());
           }          
         }
     }
@@ -69,7 +97,7 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            addContact.setVisible(true);
+            getContactView().getAddContact().setVisible(true);
         }
     }
      
