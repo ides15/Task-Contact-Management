@@ -22,6 +22,8 @@ public class TaskCntl
     private String taskType;
     private String description;
     
+    private int userID; // = 0
+    
     private Object[][] table;
     
     TaskCntl(Database taskModel, TaskView taskView)
@@ -29,10 +31,31 @@ public class TaskCntl
         this.taskModel = taskModel;
         this.taskView = taskView;
         
+        taskView.getModel().setDataVector(taskModel.getTaskInfo(userID), taskView.getColNames()); 
+        taskView.getTaskTable().setModel(taskView.getModel());
+        
+        System.out.println("Task: " + userID);
+        
+        
+        
         taskView.addAddButtonListener(new AddButtonListener());
         taskView.addUpdateButtonListener(new UpdateButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());
         taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());  
+    }
+
+    /**
+     * @return the userID
+     */
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     
     //Listener Add Button on Task View
@@ -62,7 +85,7 @@ public class TaskCntl
           {
               taskModel.addTask(taskName, description, dueDate, taskType);
               taskView.getAddTask().setVisible(false);
-              taskView.getModel().setDataVector(taskModel.getTaskInfo(), taskView.getColNames()); 
+              taskView.getModel().setDataVector(taskModel.getTaskInfo(userID), taskView.getColNames()); 
               taskView.getTaskTable().setModel(taskView.getModel());
           }          
         }

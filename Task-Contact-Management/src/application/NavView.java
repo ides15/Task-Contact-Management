@@ -36,7 +36,6 @@ public class NavView extends JFrame
         navPanel = new NavViewPanel();
         mainView = new MainView();
         
-        
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(navPanel, BorderLayout.NORTH);
