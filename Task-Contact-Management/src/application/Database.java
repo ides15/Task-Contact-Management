@@ -9,24 +9,14 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /*
-
         USAGE
 
         Constructor of database class takes one parameter, which is the database name.
         If there is no database with that name in the project, a new database will be made.
-
-        In order to do anything with the database, you must first call connectToDatabase().
-
-        The private connect() function works with the selectAll() function to connect to the db.
-
-        selectAll(String table) will eventually print out all of the information in that table.
-
-        testDatabase() will return a string just to test if the implementation of the db is right.
-
 */
 
 /**
- * Extendable database class to be used with a SQlite database, runs as model.
+ * Database class to be used with a SQlite database, runs as model.
  * 
  * @author John Ide - JCI5048
  */
