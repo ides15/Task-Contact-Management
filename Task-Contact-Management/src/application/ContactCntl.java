@@ -36,7 +36,6 @@ public class ContactCntl {
         
         contactView.addAddButtonListener(new addButtonListener());
         contactView.addDeleteButtonListener(new deleteButtonListener());
-        contactView.addUpdateButtonListener(new updateButtonListener());
         contactView.getAddContact().addAddContactButtonListener(new AddContactButtonListener()); 
       
         
@@ -77,21 +76,22 @@ public class ContactCntl {
             lastName = getContactView().getAddContact().getLastNameField().getText();
             phoneNumber = getContactView().getAddContact().getPhoneField().getText();
             email = getContactView().getAddContact().getEmailField().getText();
-            address = getContactView().getAddContact().getAddressField().getText() + " ," + getContactView().getAddContact().getCityField().getText() + " ," + getContactView().getAddContact().getStateField().getText() + " ," + getContactView().getAddContact().getZipField().getText();
+            address = getContactView().getAddContact().getAddressField().getText()
+                    + " ," + getContactView().getAddContact().getCityField().getText()
+                    + " ," + getContactView().getAddContact().getStateField().getText()
+                    + " ," + getContactView().getAddContact().getZipField().getText();
           
-          if(firstName.equals("") || lastName.equals(""))
-          {
-              System.out.println("Error Adding Contact");
-          }
-          else
-          {
+            if(firstName.equals("") || lastName.equals(""))
+            {
+                System.out.println("Error Adding Contact");
+            }
+            else
+            {
                 getContactModel().addContact(firstName, lastName, phoneNumber, email, address);
                 getContactView().getAddContact().setVisible(false);
                 getContactView().getModel().setDataVector(getContactModel().getContactInfo(getContactModel().getCurrentUserId()), getContactView().getColNames());
                 getContactView().getContactTable().setModel(getContactView().getModel());
-//              contactView.getModel().setDataVector(contactModel.getContactInfo(), contactView.getColNames()); 
-//              contactView.getContactTable().setModel(contactView.getModel());
-          }          
+            }          
         }
     }
      

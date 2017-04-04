@@ -34,7 +34,6 @@ public class TaskCntl
        // taskView.getTaskTable().setModel(taskView.getModel());
  
         taskView.addAddButtonListener(new AddButtonListener());
-        taskView.addUpdateButtonListener(new UpdateButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());
         taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());  
     }
@@ -62,24 +61,24 @@ public class TaskCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-          taskName = getTaskView().getAddTask().getTaskName().getText();
-          dueDate = getTaskView().getAddTask().getDueDate().getText();
-          taskType = getTaskView().getAddTask().getTypeComboBox().getSelectedItem().toString();
-          description = getTaskView().getAddTask().getDescription().getText();
-          
-          if(taskName.equals("") || dueDate.equals(""))
-          {
-              System.out.println("Error Adding Task");
-          }
-          else
-          {
-                getTaskModel().addTask(taskName, description, dueDate, taskType);
-                getTaskView().getAddTask().setVisible(false);
-                getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
-                getTaskView().getTaskTable().setModel(getTaskView().getModel());
-//               getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
-//               getTaskView().getTaskTable().setModel(getTaskView().getModel());
-          }          
+            taskName = getTaskView().getAddTask().getTaskName().getText();
+            dueDate = getTaskView().getAddTask().getDueDate().getText();
+            taskType = getTaskView().getAddTask().getTypeComboBox().getSelectedItem().toString();
+            description = getTaskView().getAddTask().getDescription().getText();
+
+            if(taskName.equals("") || dueDate.equals(""))
+            {
+                System.out.println("Error Adding Task");
+            }
+            else
+            {
+                  getTaskModel().addTask(taskName, description, dueDate, taskType);
+                  getTaskView().getAddTask().setVisible(false);
+                  getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
+                  getTaskView().getTaskTable().setModel(getTaskView().getModel());
+  //               getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
+  //               getTaskView().getTaskTable().setModel(getTaskView().getModel());
+            }          
         }
     }
     

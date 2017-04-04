@@ -56,7 +56,6 @@ public class TaskView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         testTable = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
 
         testTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -108,8 +107,6 @@ public class TaskView extends javax.swing.JPanel {
             }
         });
 
-        updateButton.setText("Update");
-
         deleteButton.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -125,9 +122,7 @@ public class TaskView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(addButton)
-                        .addGap(50, 50, 50)
-                        .addComponent(updateButton)
-                        .addGap(50, 50, 50)
+                        .addGap(182, 182, 182)
                         .addComponent(deleteButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -137,7 +132,6 @@ public class TaskView extends javax.swing.JPanel {
                 .addContainerGap(305, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(updateButton)
                     .addComponent(deleteButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,11 +148,6 @@ public class TaskView extends javax.swing.JPanel {
         addButton.addActionListener(al);
     }
     
-    public void addUpdateButtonListener(ActionListener al)
-    {
-        updateButton.addActionListener(al);
-    }
-    
     public void addDeleteButtonListener(ActionListener al)
     {
         deleteButton.addActionListener(al);
@@ -169,7 +158,6 @@ public class TaskView extends javax.swing.JPanel {
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable testTable;
-    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
     /**

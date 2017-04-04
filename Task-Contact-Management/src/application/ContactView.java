@@ -56,11 +56,9 @@ public class ContactView extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         contactTable = new javax.swing.JTable();
         deleteButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setSize(new java.awt.Dimension(500, 500));
 
         contactTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,8 +94,6 @@ public class ContactView extends javax.swing.JPanel {
 
         deleteButton.setText("Delete");
 
-        updateButton.setText("Update");
-
         addButton.setText("Add");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -106,23 +102,20 @@ public class ContactView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(145, 145, 145)
                 .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 178, Short.MAX_VALUE)
+                .addGap(0, 209, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -138,11 +131,6 @@ public class ContactView extends javax.swing.JPanel {
     {
         deleteButton.addActionListener(al);
     }
-    
-    public void addUpdateButtonListener(ActionListener al)
-    {
-        updateButton.addActionListener(al);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -152,7 +140,6 @@ public class ContactView extends javax.swing.JPanel {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
     /**
