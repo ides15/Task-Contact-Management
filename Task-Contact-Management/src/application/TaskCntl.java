@@ -75,6 +75,8 @@ public class TaskCntl
           {
                 getTaskModel().addTask(taskName, description, dueDate, taskType);
                 getTaskView().getAddTask().setVisible(false);
+                getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
+                getTaskView().getTaskTable().setModel(getTaskView().getModel());
 //               getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
 //               getTaskView().getTaskTable().setModel(getTaskView().getModel());
           }          

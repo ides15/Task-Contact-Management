@@ -87,6 +87,8 @@ public class ContactCntl {
           {
                 getContactModel().addContact(firstName, lastName, phoneNumber, email, address);
                 getContactView().getAddContact().setVisible(false);
+                getContactView().getModel().setDataVector(getContactModel().getContactInfo(getContactModel().getCurrentUserId()), getContactView().getColNames());
+                getContactView().getContactTable().setModel(getContactView().getModel());
 //              contactView.getModel().setDataVector(contactModel.getContactInfo(), contactView.getColNames()); 
 //              contactView.getContactTable().setModel(contactView.getModel());
           }          
