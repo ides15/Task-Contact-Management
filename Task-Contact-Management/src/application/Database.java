@@ -80,7 +80,7 @@ public class Database {
      */
     public int[] authenticate(String table, String username, String password) {
         int[] authenticated = new int[2];
-        authenticated[0] = 0;
+        authenticated[0] = 0;   // sets authenticated to false by default
         
         String sql = "SELECT PASSWORD, ACCOUNT_ID FROM " + table + " WHERE USERNAME = \"" + username + "\"";
         
@@ -90,16 +90,12 @@ public class Database {
             
             while (rs.next()) {
                 if (rs.getString("PASSWORD").equals(password)) {
-                    authenticated[0] = 1;
-                    CURRENT_USER_ID = rs.getInt("ACCOUNT_ID");
+                    authenticated[0] = 1;   // sets authenticated to true
+                    setCurrentUserId(rs.getInt("ACCOUNT_ID"));
                     authenticated[1] = CURRENT_USER_ID;
-                    System.out.println("Current user: " + CURRENT_USER_ID);
+                    System.out.println("User id in database: " + getCurrentUserId());
                 }
-                 
             }
-            
-            
-            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -136,7 +132,10 @@ public class Database {
         return CURRENT_USER_ID;
     }
     
-        
+    public void setCurrentUserId(int userId) {
+        this.CURRENT_USER_ID = userId;
+    }
+    
     //Gets the information of a all tasks of a user
     public Object[][] getTaskInfo(int userID)
     { 
@@ -200,16 +199,19 @@ public class Database {
      * @param TYPE type of new task (Personal, School, Business)
      */
     public void addTask(String NAME, String DESCRIPTION, String DUE_DATE, String TYPE) {
-        
         String sql = "INSERT INTO Task (TASK_USER_ID, NAME, DESCRIPTION, DUE_DATE, TYPE) "
-                + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?)";
+                + "VALUES (?,?,?,?,?)";
         
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, NAME);
-            pstmt.setString(2, DESCRIPTION);
-            pstmt.setString(3, DUE_DATE);
-            pstmt.setString(4, TYPE);
+            
+            System.out.println("User id in addTask in database: " + getCurrentUserId());
+            pstmt.setInt(1, getCurrentUserId());
+            
+            pstmt.setString(2, NAME);
+            pstmt.setString(3, DESCRIPTION);
+            pstmt.setString(4, DUE_DATE);
+            pstmt.setString(5, TYPE);
             
             pstmt.executeUpdate();
         } catch (SQLException ex) {

@@ -92,8 +92,14 @@ public class LoginCntl
                 navView.setVisible(true);
                 loginView.setVisible(false);
                 
-                setTaskTable(authenticated[1]);
-                setContactTable(authenticated[1]);
+                loginModel.setCurrentUserId(authenticated[1]);
+                navCntl.getTaskCntl().getTaskModel().setCurrentUserId(loginModel.getCurrentUserId());
+                // ^^^ this passes the user id in login model to the user id in the task model
+                // they are referencing two different instances of database so the user id
+                // isn't transferring between the two automatically
+                
+                setTaskTable(loginModel.getCurrentUserId());
+                setContactTable(loginModel.getCurrentUserId());
             }
             else
             {
