@@ -73,11 +73,11 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-          firstName = getContactView().getAddContact().getFirstNameField().getText();
-          lastName = getContactView().getAddContact().getLastNameField().getText();
-          phoneNumber = getContactView().getAddContact().getPhoneField().getText();
-          email = getContactView().getAddContact().getEmailField().getText();
-          address = getContactView().getAddContact().getAddressField().getText() + " ," + getContactView().getAddContact().getCityField().getText() + " ," + getContactView().getAddContact().getStateField().getText() + " ," + getContactView().getAddContact().getZipField().getText();
+            firstName = getContactView().getAddContact().getFirstNameField().getText();
+            lastName = getContactView().getAddContact().getLastNameField().getText();
+            phoneNumber = getContactView().getAddContact().getPhoneField().getText();
+            email = getContactView().getAddContact().getEmailField().getText();
+            address = getContactView().getAddContact().getAddressField().getText() + " ," + getContactView().getAddContact().getCityField().getText() + " ," + getContactView().getAddContact().getStateField().getText() + " ," + getContactView().getAddContact().getZipField().getText();
           
           if(firstName.equals("") || lastName.equals(""))
           {

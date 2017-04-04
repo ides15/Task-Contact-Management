@@ -93,7 +93,7 @@ public class Database {
                     authenticated[0] = 1;   // sets authenticated to true
                     setCurrentUserId(rs.getInt("ACCOUNT_ID"));
                     authenticated[1] = CURRENT_USER_ID;
-                    System.out.println("User id in database: " + getCurrentUserId());
+//                    System.out.println("User id in database: " + getCurrentUserId());
                 }
             }
         } catch (SQLException ex) {
@@ -204,14 +204,37 @@ public class Database {
         
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            System.out.println("User id in addTask in database: " + getCurrentUserId());
-            pstmt.setInt(1, getCurrentUserId());
-            
+            pstmt.setInt(1, CURRENT_USER_ID);
             pstmt.setString(2, NAME);
             pstmt.setString(3, DESCRIPTION);
             pstmt.setString(4, DUE_DATE);
             pstmt.setString(5, TYPE);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    /**
+     * Adds a new contact to the Contact table.
+     * @param FIRST_NAME first name for the new contact
+     * @param LAST_NAME last name for the new contact
+     * @param EMAIL email for the new contact
+     * @param ADDRESS address for the new contact
+     */
+    public void addContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS) {
+        String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
+                + "VALUES (?,?,?,?,?,?)";
+        
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, CURRENT_USER_ID);
+            pstmt.setString(2, FIRST_NAME);
+            pstmt.setString(3, LAST_NAME);
+            pstmt.setString(4, PHONE);
+            pstmt.setString(5, EMAIL);
+            pstmt.setString(6, ADDRESS);
             
             pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -274,31 +297,6 @@ public class Database {
             }
             
         return info;
-    }
-    
-    /**
-     * Adds a new contact to the Contact table.
-     * @param FIRST_NAME first name for the new contact
-     * @param LAST_NAME last name for the new contact
-     * @param EMAIL email for the new contact
-     * @param ADDRESS address for the new contact
-     */
-    public void addContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS) {
-        String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
-                + "VALUES (" + CURRENT_USER_ID + ",?,?,?,?,?)";
-        
-        try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, FIRST_NAME);
-            pstmt.setString(2, LAST_NAME);
-            pstmt.setString(3, PHONE);
-            pstmt.setString(4, EMAIL);
-            pstmt.setString(5, ADDRESS);
-            
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
     
     /**
