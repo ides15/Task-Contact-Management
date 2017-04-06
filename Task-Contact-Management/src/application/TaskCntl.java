@@ -76,8 +76,7 @@ public class TaskCntl
                   getTaskView().getAddTask().setVisible(false);
                   getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
                   getTaskView().getTaskTable().setModel(getTaskView().getModel());
-  //               getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(userID), getTaskView().getColNames()); 
-  //               getTaskView().getTaskTable().setModel(getTaskView().getModel());
+
             }          
         }
     }
@@ -94,7 +93,8 @@ public class TaskCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-            
+            taskModel.deleteTask((String) getTaskView().getTaskTable().getModel().getValueAt(getTaskView().getTaskTable().getSelectedRow(), 0));
+            System.out.println("Delete Pressed");
         }
     }
     

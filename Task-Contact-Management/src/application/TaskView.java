@@ -151,6 +151,7 @@ public class TaskView extends javax.swing.JPanel {
     public void addDeleteButtonListener(ActionListener al)
     {
         deleteButton.addActionListener(al);
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

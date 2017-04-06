@@ -101,6 +101,8 @@ public class LoginCntl
                 
                 setTaskTable(loginModel.getCurrentUserId());
                 setContactTable(loginModel.getCurrentUserId());
+                //loginModel.deleteTask("Test 2");
+                
             }
             else
             {

@@ -216,6 +216,25 @@ public class Database {
         }
     }
     
+    public void deleteTask(String NAME)
+    {
+    
+                String sql = "DELETE FROM Task \n WHERE NAME = ?";
+ 
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setString(1, NAME);
+            // execute the delete statement
+            pstmt.executeUpdate();
+ 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
     /**
      * Adds a new contact to the Contact table.
      * @param FIRST_NAME first name for the new contact
@@ -298,6 +317,26 @@ public class Database {
             
         return info;
     }
+    
+    public void deleteContact(String NAME) //Has to be modified so it takes first and last name 
+   {
+    
+                String sql = "DELETE FROM Contact \n WHERE FIRST_NAME = ?";
+ 
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setString(1, NAME);
+            // execute the delete statement
+            pstmt.executeUpdate();
+ 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
     
     /**
      * Adds a new user to the User table. If a new user tries to add an account with a
