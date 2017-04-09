@@ -56,6 +56,12 @@ public class TaskCntl
         }
     }
     
+    public void updateTable() {
+        getTaskView().getModel().setDataVector(getTaskModel()
+                .getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
+        getTaskView().getTaskTable().setModel(getTaskView().getModel());
+    }
+    
     //Listener on Add Task PopUp
     class AddTaskButtonListener implements ActionListener
     {
@@ -74,8 +80,7 @@ public class TaskCntl
             {
                   getTaskModel().addTask(taskName, description, dueDate, taskType);
                   getTaskView().getAddTask().setVisible(false);
-                  getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
-                  getTaskView().getTaskTable().setModel(getTaskView().getModel());
+                  updateTable();
 
             }          
         }
@@ -93,9 +98,9 @@ public class TaskCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-            taskModel.deleteTask((String) getTaskView().getTaskTable().getModel().getValueAt(getTaskView().getTaskTable().getSelectedRow(), 0));
-            getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
-            getTaskView().getTaskTable().setModel(getTaskView().getModel());
+            taskModel.deleteTask((String) getTaskView().getTaskTable()
+                    .getModel().getValueAt(getTaskView().getTaskTable().getSelectedRow(), 0));
+            updateTable();
         }
     }
     
