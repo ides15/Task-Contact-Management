@@ -94,7 +94,8 @@ public class TaskCntl
         public void actionPerformed(ActionEvent e) 
         {
             taskModel.deleteTask((String) getTaskView().getTaskTable().getModel().getValueAt(getTaskView().getTaskTable().getSelectedRow(), 0));
-            System.out.println("Delete Pressed");
+            getTaskView().getModel().setDataVector(getTaskModel().getTaskInfo(getTaskModel().getCurrentUserId()), getTaskView().getColNames());
+            getTaskView().getTaskTable().setModel(getTaskView().getModel());
         }
     }
     

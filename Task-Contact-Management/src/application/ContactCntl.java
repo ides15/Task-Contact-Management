@@ -107,8 +107,9 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            System.out.println("Delete Contact");
             getContactModel().deleteContact((String) getContactView().getContactTable().getModel().getValueAt(getContactView().getContactTable().getSelectedRow(), 0));
+            getContactView().getModel().setDataVector(getContactModel().getContactInfo(getContactModel().getCurrentUserId()), getContactView().getColNames());
+            getContactView().getContactTable().setModel(getContactView().getModel());
         }
     }
      
