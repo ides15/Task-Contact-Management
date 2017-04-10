@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class ContactView extends javax.swing.JPanel {
     private Database ContactModel;
     private AddContact addContact;
+    private UpdateContact updateContact;
     private Object[] colNames;
     private DefaultTableModel model;
     /**
@@ -26,6 +27,7 @@ public class ContactView extends javax.swing.JPanel {
         this.ContactModel = ContactModel;
         
         addContact = new AddContact();
+        updateContact = new UpdateContact();
         
         initComponents();
         
@@ -57,6 +59,7 @@ public class ContactView extends javax.swing.JPanel {
         contactTable = new javax.swing.JTable();
         deleteButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -86,6 +89,11 @@ public class ContactView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        contactTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(contactTable);
         if (contactTable.getColumnModel().getColumnCount() > 0) {
             contactTable.getColumnModel().getColumn(0).setPreferredWidth(3);
@@ -95,6 +103,8 @@ public class ContactView extends javax.swing.JPanel {
         deleteButton.setText("Delete");
 
         addButton.setText("Add");
+
+        updateButton.setText("Update");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,7 +116,9 @@ public class ContactView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145)
+                .addGap(17, 17, 17)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
         );
@@ -116,11 +128,23 @@ public class ContactView extends javax.swing.JPanel {
                 .addGap(0, 209, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void contactTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactTableMouseClicked
+        int row = contactTable.getSelectedRow();
+        int col = 0;
+        
+    updateContact.firstNameField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),0).toString());
+    updateContact.lastNameField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),1).toString());
+    updateContact.phoneField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),2).toString());
+    updateContact.emailField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),3).toString());
+
+    }//GEN-LAST:event_contactTableMouseClicked
     
     public void addAddButtonListener(ActionListener al)
     {
@@ -131,6 +155,12 @@ public class ContactView extends javax.swing.JPanel {
     {
         deleteButton.addActionListener(al);
     }
+    
+    public void addUpdateButtonListener(ActionListener al)
+    {
+        updateButton.addActionListener(al);
+    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -140,6 +170,7 @@ public class ContactView extends javax.swing.JPanel {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -147,6 +178,11 @@ public class ContactView extends javax.swing.JPanel {
      */
     public AddContact getAddContact() {
         return addContact;
+    }
+    
+    
+    public UpdateContact getUpdateContact() {
+        return updateContact;
     }
 
     /**

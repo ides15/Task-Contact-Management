@@ -11,13 +11,21 @@ import java.awt.event.ActionListener;
  *
  * @author glennlin
  */
-public class AddContact extends javax.swing.JFrame {
+public class UpdateContact extends javax.swing.JFrame {
 
+    private ContactView contactView;
+    private Database contactModel;
     /**
      * Creates new form addContact
      */
-    public AddContact() {
-        super("Add Contact");
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+    private String address;
+    
+    public UpdateContact() {
+        super("Update Contact");
         initComponents();
     }
 
@@ -49,7 +57,7 @@ public class AddContact extends javax.swing.JFrame {
         cityField = new javax.swing.JTextField();
         stateLabel = new javax.swing.JLabel();
         stateField = new javax.swing.JTextField();
-        addContactButton = new javax.swing.JButton();
+        updateContactButton = new javax.swing.JButton();
         zipField1 = new javax.swing.JTextField();
         zipLabel1 = new javax.swing.JLabel();
 
@@ -99,7 +107,7 @@ public class AddContact extends javax.swing.JFrame {
 
         stateField.setMinimumSize(new java.awt.Dimension(4, 20));
 
-        addContactButton.setText("Add Contact");
+        updateContactButton.setText("Update");
 
         zipField1.setMinimumSize(new java.awt.Dimension(4, 20));
 
@@ -111,7 +119,7 @@ public class AddContact extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addContactButton)
+                .addComponent(updateContactButton)
                 .addGap(40, 40, 40))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
@@ -181,7 +189,7 @@ public class AddContact extends javax.swing.JFrame {
                     .addComponent(zipLabel1)
                     .addComponent(zipField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(addContactButton)
+                .addComponent(updateContactButton)
                 .addGap(38, 38, 38))
         );
 
@@ -224,14 +232,18 @@ public class AddContact extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -240,13 +252,12 @@ public class AddContact extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddContact().setVisible(true);
+                new UpdateContact().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addContactButton;
     public javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
     public javax.swing.JTextField cityField;
@@ -266,20 +277,21 @@ public class AddContact extends javax.swing.JFrame {
     private javax.swing.JTextField taskNameField5;
     private javax.swing.JLabel taskNameLabel2;
     private javax.swing.JLabel taskNameLabel5;
+    private javax.swing.JButton updateContactButton;
     public javax.swing.JTextField zipField1;
     private javax.swing.JLabel zipLabel1;
     // End of variables declaration//GEN-END:variables
 
     
-    public void addAddContactButtonListener(ActionListener al)
+    public void addUpdateContactButtonListener(ActionListener al)
     {
-        addContactButton.addActionListener(al);
+        updateContactButton.addActionListener(al);
     }
     /**
      * @return the addContactButton
      */
     public javax.swing.JButton getAddContactButton() {
-        return addContactButton;
+        return updateContactButton;
     }
 
     /**
@@ -336,5 +348,17 @@ public class AddContact extends javax.swing.JFrame {
      */
     public javax.swing.JTextField getStateField() {
         return stateField;
+    }
+    public Database getContactModel() {
+        return contactModel;
+    }
+    public ContactView getContactView() {
+        return contactView;
+    }
+    
+    public void updateTable() {
+        getContactView().getModel().setDataVector(getContactModel()
+                .getContactInfo(getContactModel().getCurrentUserId()), getContactView().getColNames());
+        getContactView().getContactTable().setModel(getContactView().getModel());
     }
 }

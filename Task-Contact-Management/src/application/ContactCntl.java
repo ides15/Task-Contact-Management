@@ -36,7 +36,9 @@ public class ContactCntl {
         
         contactView.addAddButtonListener(new addButtonListener());
         contactView.addDeleteButtonListener(new deleteButtonListener());
+        contactView.addUpdateButtonListener(new updateButtonListener());
         contactView.getAddContact().addAddContactButtonListener(new AddContactButtonListener()); 
+        contactView.getUpdateContact().addUpdateContactButtonListener(new updateContactButtonListener()); 
       
         
     }
@@ -123,7 +125,26 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-           
+           getContactView().getUpdateContact().setVisible(true);
         }
     }
+     
+     class updateContactButtonListener implements ActionListener
+     {
+         public void actionPerformed(ActionEvent e)
+         {
+             firstName = getContactView().getUpdateContact().getFirstNameField().getText();
+            lastName = getContactView().getUpdateContact().getLastNameField().getText();
+            phoneNumber = getContactView().getUpdateContact().getPhoneField().getText();
+            email = getContactView().getUpdateContact().getEmailField().getText();
+            address = getContactView().getUpdateContact().getAddressField().getText()
+                    + " ," + getContactView().getUpdateContact().getCityField().getText()
+                    + " ," + getContactView().getUpdateContact().getStateField().getText()
+                    + " ," + getContactView().getUpdateContact().getZipField().getText();
+            
+            getContactModel().updateContact(firstName, lastName, phoneNumber, email, address);
+            getContactView().getUpdateContact().setVisible(false);
+            updateTable();
+         }
+     }
 }
