@@ -21,6 +21,7 @@ public class NavView extends JFrame
     
     
     private MainView mainView;
+    private Database mainModel;
     private ContactView conView;
     private TaskView taskView;
     private SettingsView setView;
@@ -34,7 +35,9 @@ public class NavView extends JFrame
         BorderLayout border = new BorderLayout();
         setLayout(border);
         navPanel = new NavViewPanel();
-        mainView = new MainView();
+        
+        mainModel = new Database("tcm.db");
+        mainView = new MainView(mainModel);
         
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

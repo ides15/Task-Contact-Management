@@ -17,7 +17,7 @@ public class NavCntl {
     private NavModel navModel;
     private NavView navView;
     
-    
+    private Database mainModel;
     private MainView mainView;
     private SettingsView setView;
     
@@ -34,7 +34,10 @@ public class NavCntl {
         this.navModel = navModel;
         this.navView = navView;
         
-        mainView = new MainView();
+        mainModel = new Database("tcm.db");
+        mainView = new MainView(mainModel);
+        
+        
         setView = new SettingsView();
         
         taskModel = new Database("tcm.db");

@@ -29,9 +29,6 @@ public class TaskCntl
     {
         this.taskModel = taskModel;
         this.taskView = taskView;
-        
-       // taskView.getModel().setDataVector(taskModel.getTaskInfo(userID), taskView.getColNames()); 
-       // taskView.getTaskTable().setModel(taskView.getModel());
  
         taskView.addAddButtonListener(new AddButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());

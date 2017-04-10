@@ -39,7 +39,7 @@ public class ContactView extends javax.swing.JPanel {
         colNames[4] = "Address";
 
         //Initilizes 
-        model = new DefaultTableModel(ContactModel.getTaskInfo(ContactModel.getCurrentUserId()), getColNames()); 
+        model = new DefaultTableModel(ContactModel.getContactInfo(ContactModel.getCurrentUserId()), getColNames()); 
         contactTable.setModel(model);
     }
 

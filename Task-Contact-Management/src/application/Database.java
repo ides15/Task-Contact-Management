@@ -338,7 +338,7 @@ public class Database {
     }
     public void updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS)
     {
-                String sql = "UPDATE Contact SET(CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
+                String sql = "UPDATE Contact SET (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
                 + "VALUES (?,?,?,?,?,?) WHERE FIRST_NAME = ?";
         
         try (Connection conn = this.connect();
