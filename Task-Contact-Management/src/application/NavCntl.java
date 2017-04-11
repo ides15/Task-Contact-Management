@@ -37,7 +37,6 @@ public class NavCntl {
         mainModel = new Database("tcm.db");
         mainView = new MainView(mainModel);
         
-        
         setView = new SettingsView();
         
         taskModel = new Database("tcm.db");
@@ -48,11 +47,11 @@ public class NavCntl {
         contactView = new ContactView(contactModel);
         contactCntl = new ContactCntl(contactModel, contactView);
         
-        
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
         navView.addTaskButtonListener(new TaskButtonListener());
         navView.addSettingsButtonListener(new SettingsButtonListener());
+        navView.addLogoffButtonListener(new LogoffButtonListener());
     }
 
     /**
@@ -69,7 +68,7 @@ public class NavCntl {
         return contactCntl;
     }
     
-     class MainButtonListener implements ActionListener
+    class MainButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -77,7 +76,7 @@ public class NavCntl {
         }
     }
      
-     class ContactButtonListener implements ActionListener
+    class ContactButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -85,7 +84,7 @@ public class NavCntl {
         }
     }
      
-     class TaskButtonListener implements ActionListener
+    class TaskButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -93,12 +92,19 @@ public class NavCntl {
         }
     }
      
-     class SettingsButtonListener implements ActionListener
+    class SettingsButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-           navView.switchToSettingsPanel(setView);
+            navView.switchToSettingsPanel(setView);
         }
     }
-    
+     
+    class LogoffButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            System.out.println("logoff");
+        }
+    }
 }

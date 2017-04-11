@@ -1,10 +1,7 @@
-
 package application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 /**
  *
@@ -27,13 +24,8 @@ public class LoginCntl
     private NavModel navModel;
     private NavCntl navCntl;
     
-//    private int userID;
-    
-   
-    
     LoginCntl(Database loginModel, LoginView loginView)
-    {   
-
+    {
         this.loginModel = loginModel;
         this.loginView = loginView;
         
@@ -46,19 +38,15 @@ public class LoginCntl
         navView = new NavView(navModel);
         navCntl = new NavCntl(navModel, navView);
         
-       
-        
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
         loginView.addUserSubmitButtonListener(new UserLoginButtonListener());
         loginView.addNewUserButtonListener(new NewUserButtonListener());
         loginView.addBackButtonListener(new BackButtonListener());
         
-        
         //Need Everything here for multiple switches not sure why
         newUserLoginPanel.getBackButton().addActionListener(new BackButtonListener());
         userLoginPanel.getNewUserButton().addActionListener(new NewUserButtonListener());
         newUserLoginPanel.getNewUserSubmitButton().addActionListener(new NewUserSubmitButtonListener());
-        
         userLoginPanel.getUserSubmitButton().addActionListener(new UserLoginButtonListener());
     }
 
@@ -73,7 +61,6 @@ public class LoginCntl
         navCntl.getContactCntl().getContactView().getModel().setDataVector(navCntl.getContactCntl().getContactModel().getContactInfo(userID), navCntl.getContactCntl().getContactView().getColNames());
         navCntl.getContactCntl().getContactView().getContactTable().setModel(navCntl.getContactCntl().getContactView().getModel());
     }
-  
     
     class UserLoginButtonListener implements ActionListener
     {
@@ -86,32 +73,30 @@ public class LoginCntl
             
             //Logic for new Windows or Error
             if(authenticated[0] == 1)
-            {
-                //I Feel Like A Lot Of Shit Is Gonna Be Here
-                
+            {                
                 navView.setVisible(true);
                 loginView.setVisible(false);
                 
                 loginModel.setCurrentUserId(authenticated[1]);
                 navCntl.getTaskCntl().getTaskModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getContactCntl().getContactModel().setCurrentUserId(loginModel.getCurrentUserId());
+//                navCntl.getMainCntl().getMainModel().setCurrentUserId(loginModel.getCurrentUserId());
+
                 // ^^^ this passes the user id in login model to the user id in the task model
                 // they are referencing two different instances of database so the user id
                 // isn't transferring between the two automatically
                 
                 setTaskTable(loginModel.getCurrentUserId());
                 setContactTable(loginModel.getCurrentUserId());
-                //loginModel.deleteTask("Test 2");
-                
+//                setMainTable(loginModel.getCurrentUserId());
             }
+            
             else
             {
                 System.out.println("Failed Login");
                 loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(true);
             }
- 
         }
-
     }
     
     class NewUserButtonListener implements ActionListener
@@ -120,7 +105,6 @@ public class LoginCntl
         {
             loginView.switchToNewUser(newUserLoginPanel);
         }
-    
     }
     
     class BackButtonListener implements ActionListener
@@ -129,7 +113,6 @@ public class LoginCntl
         {
             loginView.switchToUserLogin(userLoginPanel);
         }
-    
     }
     
     class NewUserSubmitButtonListener implements ActionListener
