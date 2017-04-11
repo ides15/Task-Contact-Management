@@ -103,6 +103,10 @@ public class Database {
         return authenticated;
     }
     
+//    public void setAuthenticatedFalse() {
+//        
+//    }
+    
     /**
      * Selects all data from table.
      * @param table table you are selecting all data from

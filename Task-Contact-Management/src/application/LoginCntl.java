@@ -52,14 +52,22 @@ public class LoginCntl
 
     public void setTaskTable(int userID)
     {
-        navCntl.getTaskCntl().getTaskView().getModel().setDataVector(navCntl.getTaskCntl().getTaskModel().getTaskInfo(userID), navCntl.getTaskCntl().getTaskView().getColNames());
-        navCntl.getTaskCntl().getTaskView().getTaskTable().setModel(navCntl.getTaskCntl().getTaskView().getModel());
+        navCntl.getTaskCntl().getTaskView().getModel()
+                .setDataVector(navCntl.getTaskCntl().getTaskModel()
+                        .getTaskInfo(userID), navCntl.getTaskCntl().getTaskView().getColNames());
+                        
+        navCntl.getTaskCntl().getTaskView().getTaskTable()
+                .setModel(navCntl.getTaskCntl().getTaskView().getModel());
     }
     
     public void setContactTable(int userID)
     {
-        navCntl.getContactCntl().getContactView().getModel().setDataVector(navCntl.getContactCntl().getContactModel().getContactInfo(userID), navCntl.getContactCntl().getContactView().getColNames());
-        navCntl.getContactCntl().getContactView().getContactTable().setModel(navCntl.getContactCntl().getContactView().getModel());
+        navCntl.getContactCntl().getContactView().getModel()
+                .setDataVector(navCntl.getContactCntl().getContactModel()
+                        .getContactInfo(userID), navCntl.getContactCntl().getContactView().getColNames());
+        
+        navCntl.getContactCntl().getContactView().getContactTable()
+                .setModel(navCntl.getContactCntl().getContactView().getModel());
     }
     
     class UserLoginButtonListener implements ActionListener

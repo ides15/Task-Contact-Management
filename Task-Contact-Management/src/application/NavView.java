@@ -20,13 +20,12 @@ public class NavView extends JFrame
     private NavModel navModel;
     private NavViewPanel navPanel;
     
-    
+    private LoginView loginView;
     private MainView mainView;
     private Database mainModel;
     private ContactView conView;
     private TaskView taskView;
     private SettingsView setView;
-    
     
     NavView(NavModel navModel) 
     {
@@ -76,6 +75,20 @@ public class NavView extends JFrame
         if(panel != null) {
             remove(panel);
         }
+    }
+    
+    public void removeAllPanels() {
+        remove(mainView);
+        remove(conView);
+        remove(taskView);
+        remove(setView);
+    }
+    
+    public void addLoginPanel(LoginView loginView) {
+        this.loginView = loginView;
+        add(loginView, BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }
     
     //Main Panel
@@ -148,5 +161,9 @@ public class NavView extends JFrame
         addSettingsPanel(setView);
     }
     
+    public void switchToLoginPanel(LoginView loginView) {
+        removeAllPanels();
+        addLoginPanel(loginView);
+    }
     
 }

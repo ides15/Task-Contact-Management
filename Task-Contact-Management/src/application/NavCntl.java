@@ -29,6 +29,10 @@ public class NavCntl {
     private ContactCntl contactCntl;
     private Database contactModel;
     
+    private Database loginModel;
+    private LoginView loginView;
+    private LoginCntl loginCntl;
+    
     NavCntl(NavModel navModel, NavView navView)
     {
         this.navModel = navModel;
@@ -46,6 +50,10 @@ public class NavCntl {
         contactModel = new Database("tcm.db");
         contactView = new ContactView(contactModel);
         contactCntl = new ContactCntl(contactModel, contactView);
+        
+//        loginModel = new Database("tcm.db");
+//        loginView = new LoginView(loginModel);
+//        loginCntl = new LoginCntl(loginModel, loginView);
         
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
