@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JPanel;
 
 /**
  *
@@ -65,6 +66,18 @@ public class NavView extends JFrame
         navPanel.getSettingsButton().addActionListener(al);
     }
     
+    public void addLogoffButtonListener(ActionListener al)
+    {
+        navPanel.getLogoffButton().addActionListener(al);
+    }
+    
+    // polymorphism ftw
+    public void removePanel(JPanel panel) {
+        if(panel != null) {
+            remove(panel);
+        }
+    }
+    
     //Main Panel
     public void addMainPanel(MainView mainView)
     {
@@ -72,14 +85,6 @@ public class NavView extends JFrame
         add(mainView, BorderLayout.CENTER);
         revalidate();
         repaint();
-    }
-    
-    public void removeMainPanel()
-    {
-        if(this.mainView != null)
-        {
-            remove(this.mainView);
-        }
     }
     
     //Contact Panel
@@ -91,14 +96,6 @@ public class NavView extends JFrame
         repaint();
     }
     
-    public void removeContactPanel()
-    {
-        if(this.conView != null)
-        {
-            remove(this.conView);
-        }
-    }
-    
     //Task Panel
     public void addTaskPanel(TaskView taskView)
     {
@@ -106,14 +103,6 @@ public class NavView extends JFrame
         add(taskView, BorderLayout.CENTER);
         revalidate();
         repaint();
-    }
-    
-    public void removeTaskPanel()
-    {
-        if(this.taskView != null)
-        {
-            remove(this.taskView);
-        }
     }
     
     //Settings Panel
@@ -125,45 +114,37 @@ public class NavView extends JFrame
         repaint();
     }
     
-    public void removeSettingsPanel()
-    {
-        if(this.setView != null)
-        {
-            remove(this.setView);
-        }
-    }
-    
      //Switch Meathods
     
     public void switchToMainPanel(MainView MainView)
     { 
-        removeContactPanel();
-        removeTaskPanel();
-        removeSettingsPanel();
+        removePanel(conView);
+        removePanel(taskView);
+        removePanel(setView);
         addMainPanel(MainView);
     }
     
     public void switchToContactPanel(ContactView conView)
     {        
-        removeMainPanel();
-        removeTaskPanel();
-        removeSettingsPanel();
+        removePanel(mainView);
+        removePanel(taskView);
+        removePanel(setView);
         addContactPanel(conView);
     }
     
     public void switchToTaskPanel(TaskView taskView)
     {
-        removeContactPanel();
-        removeMainPanel();
-        removeSettingsPanel();
+        removePanel(conView);
+        removePanel(mainView);
+        removePanel(setView);
         addTaskPanel(taskView);
     }
     
     public void switchToSettingsPanel(SettingsView setView)
     {
-        removeContactPanel();
-        removeMainPanel();
-        removeTaskPanel();
+        removePanel(conView);
+        removePanel(mainView);
+        removePanel(taskView);
         addSettingsPanel(setView);
     }
     

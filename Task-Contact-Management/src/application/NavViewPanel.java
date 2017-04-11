@@ -16,61 +16,70 @@ import javax.swing.JPanel;
  */
 public class NavViewPanel extends JPanel
 {
-    private JButton MainButton;
-    private JButton ContactButton;
-    private JButton TaskButton;
-    private JButton SettingsButton;
+    private JButton mainButton;
+    private JButton contactButton;
+    private JButton taskButton;
+    private JButton settingsButton;
+    private JButton logoffButton;
     
     NavViewPanel()
     {
         super();
         
-        MainButton = new JButton("Main");
-        ContactButton = new JButton("Contacts");
-        TaskButton = new JButton("Tasks");
-        SettingsButton = new JButton("Settings");
+        mainButton = new JButton("Main");
+        contactButton = new JButton("Contacts");
+        taskButton = new JButton("Tasks");
+        settingsButton = new JButton("Settings");
+        logoffButton = new JButton("Logoff");
         
-        add(MainButton);
-        add(ContactButton);
-        add(TaskButton);
-        add(SettingsButton);
+        add(mainButton);
+        add(contactButton);
+        add(taskButton);
+        add(settingsButton);
+        add(logoffButton);
     }
     
     
 
 
     public JButton getContactButton() {
-        return ContactButton;
+        return contactButton;
     }
 
     public void setContactButton(JButton ContactButton) {
-        this.ContactButton = ContactButton;
+        this.contactButton = ContactButton;
     }
 
     public JButton getTaskButton() {
-        return TaskButton;
+        return taskButton;
     }
 
     public void setTaskButton(JButton TaskButton) {
-        this.TaskButton = TaskButton;
+        this.taskButton = TaskButton;
     }
 
     public JButton getSettingsButton() {
-        return SettingsButton;
+        return settingsButton;
     }
 
     public void setSettingsButton(JButton SettingButton) {
-        this.SettingsButton = SettingButton;
+        this.settingsButton = SettingButton;
     }
 
     public JButton getMainButton() {
-        return MainButton;
+        return mainButton;
     }
 
     public void setMainButton(JButton MainButton) {
-        this.MainButton = MainButton;
+        this.mainButton = MainButton;
     }
     
+    public JButton getLogoffButton() {
+        return logoffButton;
+    }
     
+    public void setLogoffButton(JButton LogoffButton) {
+        this.logoffButton = LogoffButton;
+    }
     
 }
