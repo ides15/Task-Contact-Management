@@ -39,7 +39,13 @@ public class ContactView extends javax.swing.JPanel {
         colNames[4] = "Address";
 
         //Initilizes 
-        model = new DefaultTableModel(ContactModel.getContactInfo(ContactModel.getCurrentUserId()), getColNames()); 
+        model = new DefaultTableModel(ContactModel.getContactInfo(ContactModel.getCurrentUserId()), getColNames())
+        {
+            public boolean isCellEditable(int row, int column)
+            {
+              return false;//This causes all cells to be not editable
+            }
+        }; 
         contactTable.setModel(model);
     }
 

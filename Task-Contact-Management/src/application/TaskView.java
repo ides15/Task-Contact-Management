@@ -39,8 +39,16 @@ public class TaskView extends javax.swing.JPanel {
         colNames[3] = "Description";
 
        //Initilizes 
-        model = new DefaultTableModel(taskModel.getTaskInfo(taskModel.getCurrentUserId()), getColNames()); //Make Not Editable Model
+        model = new DefaultTableModel(taskModel.getTaskInfo(taskModel.getCurrentUserId()), getColNames())
+        {
+            public boolean isCellEditable(int row, int column)
+            {
+              return false;//This causes all cells to be not editable
+            }
+        };
+     
         testTable.setModel(model);
+        
         
     }
     
