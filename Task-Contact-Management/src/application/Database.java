@@ -324,9 +324,8 @@ public class Database {
     }
     
     public void deleteContact(String NAME) //Has to be modified so it takes first and last name 
-   {
-    
-                String sql = "DELETE FROM Contact \n WHERE FIRST_NAME = ?";
+    {
+        String sql = "DELETE FROM Contact \n WHERE FIRST_NAME = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -341,8 +340,36 @@ public class Database {
         }
         
     }
-
     
+    /**
+     * Updates a contact when update contact window pops up
+     * @param FIRST_NAME first name of the contact
+     * @param LAST_NAME last name of the contact
+     * @param PHONE phone number of the contact
+     * @param EMAIL email of the contact
+     * @param ADDRESS address of the contact (must be all address related things combined into a single string
+     * @param CONTACT_ID unique ID of that specific contact
+     */
+    public void updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, 
+            String EMAIL, String ADDRESS, int CONTACT_ID) {
+        
+        String sql = "UPDATE Contact SET FIRST_NAME = ?, LAST_NAME = ?, "
+                + "PHONE = ?, EMAIL = ?, ADDRESS = ? WHERE CONTACT_ID = ?";
+        
+        try(Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, FIRST_NAME);
+            pstmt.setString(2, LAST_NAME);
+            pstmt.setString(3, PHONE);
+            pstmt.setString(4, EMAIL);
+            pstmt.setString(5, ADDRESS);
+            pstmt.setInt(6, CONTACT_ID);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }    
     
     /**
      * Adds a new user to the User table. If a new user tries to add an account with a

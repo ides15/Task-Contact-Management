@@ -6,10 +6,6 @@
 package application;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 /**
  *
  * @author glennlin
@@ -17,31 +13,18 @@ import java.sql.SQLException;
 public class ContactCntl {
     private ContactView contactView;
     private Database contactModel;
-
-    //addContact addContact;
-    
-
     
     private Object[][] table;
-    
-    
      
-     ContactCntl(Database contactModel, ContactView contactView)
+    ContactCntl(Database contactModel, ContactView contactView)
     {
         this.contactModel = contactModel;
         this.contactView = contactView;
         
-//        addContact = new addContact();
-//        addContact.setVisible(false);
-        
-        
-        
         contactView.addAddButtonListener(new addButtonListener());
         contactView.addDeleteButtonListener(new deleteButtonListener());
         contactView.addUpdateButtonListener(new updateButtonListener());
-        contactView.getAddContact().addAddContactButtonListener(new AddContactButtonListener()); 
-      
-        
+        contactView.getAddContact().addAddContactButtonListener(new AddContactButtonListener());
     }
 
     /**
@@ -78,7 +61,7 @@ public class ContactCntl {
         getContactView().getContactTable().setModel(getContactView().getModel());
     }
     
-     class AddContactButtonListener implements ActionListener
+    class AddContactButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -90,6 +73,7 @@ public class ContactCntl {
                     + " ," + getContactView().getAddContact().getCityField().getText()
                     + " ," + getContactView().getAddContact().getStateField().getText()
                     + " ," + getContactView().getAddContact().getZipField().getText();
+            System.out.println("address: " + address);
           
             if(firstName.equals("") || lastName.equals(""))
             {
@@ -104,7 +88,7 @@ public class ContactCntl {
         }
     }
      
-      class addButtonListener implements ActionListener
+    class addButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -112,7 +96,7 @@ public class ContactCntl {
         }
     }
      
-     class deleteButtonListener implements ActionListener
+    class deleteButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -122,14 +106,13 @@ public class ContactCntl {
         }
     }
      
-     class updateButtonListener implements ActionListener
+    class updateButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
            getContactView().getUpdateContact().setVisible(true);
+           getContactView().getUpdateContact().setContactId(19);
         }
     }
-
-     
 }
 
