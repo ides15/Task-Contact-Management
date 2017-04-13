@@ -224,6 +224,10 @@ public class UpdateContact extends javax.swing.JFrame {
         this.contactId = contactId;
     }
     
+    public int getContactId() {
+        return contactId;
+    }
+    
     private void updateContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateContactButtonActionPerformed
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
@@ -237,7 +241,9 @@ public class UpdateContact extends javax.swing.JFrame {
         int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
         
         if(askUpdate == 0) {
-            contactModel.updateContact(firstName, lastName, phoneNumber, email, address, contactId);
+            int tempId = contactModel.updateContact(firstName, lastName, phoneNumber, email, address, contactId);
+            setContactId(tempId);
+            dispose();
         }
         else {
             dispose();
@@ -269,13 +275,6 @@ public class UpdateContact extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(UpdateContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -311,11 +310,11 @@ public class UpdateContact extends javax.swing.JFrame {
     private javax.swing.JLabel zipLabel1;
     // End of variables declaration//GEN-END:variables
 
-    
     public void addUpdateContactButtonListener(ActionListener al)
     {
         updateContactButton.addActionListener(al);
     }
+    
     /**
      * @return the addContactButton
      */
@@ -372,7 +371,6 @@ public class UpdateContact extends javax.swing.JFrame {
         return getStateField();
     }
 
-    
     /**
      * @return the stateField
      */
@@ -386,9 +384,5 @@ public class UpdateContact extends javax.swing.JFrame {
     
     public ContactView getContactView() {
         return contactView;
-    }
-    
-
-
-    
+    }    
 }

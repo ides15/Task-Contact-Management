@@ -111,7 +111,7 @@ public class ContactCntl {
         public void actionPerformed(ActionEvent e) 
         {
            getContactView().getUpdateContact().setVisible(true);
-           getContactView().getUpdateContact().setContactId(19);
+           getContactView().getUpdateContact().setContactId(getContactView().getUpdateContact().getContactId());
         }
     }
 }

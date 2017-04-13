@@ -350,7 +350,7 @@ public class Database {
      * @param ADDRESS address of the contact (must be all address related things combined into a single string
      * @param CONTACT_ID unique ID of that specific contact
      */
-    public void updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, 
+    public int updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, 
             String EMAIL, String ADDRESS, int CONTACT_ID) {
         
         String sql = "UPDATE Contact SET FIRST_NAME = ?, LAST_NAME = ?, "
@@ -369,6 +369,8 @@ public class Database {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        return CONTACT_ID;
     }    
     
     /**
