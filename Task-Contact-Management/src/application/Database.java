@@ -24,6 +24,7 @@ public class Database {
     private int CURRENT_USER_ID;
     private String dbName;
     private final String url;
+
     
     public Database(String dbName) {
         this.dbName = dbName;
@@ -340,25 +341,7 @@ public class Database {
         }
         
     }
-    public void updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS)
-    {
-                String sql = "UPDATE Contact SET (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
-                + "VALUES (?,?,?,?,?,?) WHERE FIRST_NAME = ?";
-        
-        try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, CURRENT_USER_ID);
-            pstmt.setString(2, FIRST_NAME);
-            pstmt.setString(3, LAST_NAME);
-            pstmt.setString(4, PHONE);
-            pstmt.setString(5, EMAIL);
-            pstmt.setString(6, ADDRESS);
-            
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+
     
     
     /**

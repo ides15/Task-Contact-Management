@@ -6,6 +6,10 @@
 package application;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 /**
  *
  * @author glennlin
@@ -13,21 +17,19 @@ import java.awt.event.ActionListener;
 public class ContactCntl {
     private ContactView contactView;
     private Database contactModel;
+
     //addContact addContact;
     
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String email;
-    private String address;
+
     
     private Object[][] table;
+    
+    
      
      ContactCntl(Database contactModel, ContactView contactView)
     {
         this.contactModel = contactModel;
         this.contactView = contactView;
-        
         
 //        addContact = new addContact();
 //        addContact.setVisible(false);
@@ -38,7 +40,6 @@ public class ContactCntl {
         contactView.addDeleteButtonListener(new deleteButtonListener());
         contactView.addUpdateButtonListener(new updateButtonListener());
         contactView.getAddContact().addAddContactButtonListener(new AddContactButtonListener()); 
-        contactView.getUpdateContact().addUpdateContactButtonListener(new updateContactButtonListener()); 
       
         
     }
@@ -81,11 +82,11 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            firstName = getContactView().getAddContact().getFirstNameField().getText();
-            lastName = getContactView().getAddContact().getLastNameField().getText();
-            phoneNumber = getContactView().getAddContact().getPhoneField().getText();
-            email = getContactView().getAddContact().getEmailField().getText();
-            address = getContactView().getAddContact().getAddressField().getText()
+            String firstName = getContactView().getAddContact().getFirstNameField().getText();
+            String lastName = getContactView().getAddContact().getLastNameField().getText();
+            String phoneNumber = getContactView().getAddContact().getPhoneField().getText();
+            String email = getContactView().getAddContact().getEmailField().getText();
+            String address = getContactView().getAddContact().getAddressField().getText()
                     + " ," + getContactView().getAddContact().getCityField().getText()
                     + " ," + getContactView().getAddContact().getStateField().getText()
                     + " ," + getContactView().getAddContact().getZipField().getText();
@@ -128,23 +129,7 @@ public class ContactCntl {
            getContactView().getUpdateContact().setVisible(true);
         }
     }
+
      
-     class updateContactButtonListener implements ActionListener
-     {
-         public void actionPerformed(ActionEvent e)
-         {
-             firstName = getContactView().getUpdateContact().getFirstNameField().getText();
-            lastName = getContactView().getUpdateContact().getLastNameField().getText();
-            phoneNumber = getContactView().getUpdateContact().getPhoneField().getText();
-            email = getContactView().getUpdateContact().getEmailField().getText();
-            address = getContactView().getUpdateContact().getAddressField().getText()
-                    + " ," + getContactView().getUpdateContact().getCityField().getText()
-                    + " ," + getContactView().getUpdateContact().getStateField().getText()
-                    + " ," + getContactView().getUpdateContact().getZipField().getText();
-            
-            getContactModel().updateContact(firstName, lastName, phoneNumber, email, address);
-            getContactView().getUpdateContact().setVisible(false);
-            updateTable();
-         }
-     }
 }
+

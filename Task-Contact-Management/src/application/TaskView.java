@@ -21,6 +21,7 @@ public class TaskView extends javax.swing.JPanel {
     private AddTask addTask;
     private Object[] colNames;
     private DefaultTableModel model;
+    private UpdateTask updateTask;
     
     
     public TaskView(Database taskModel) 
@@ -28,6 +29,7 @@ public class TaskView extends javax.swing.JPanel {
         this.taskModel = taskModel;
         
         addTask = new AddTask();
+        updateTask = new UpdateTask();
         
         initComponents();
         
@@ -65,6 +67,10 @@ public class TaskView extends javax.swing.JPanel {
         testTable = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(500, 500));
+        setRequestFocusEnabled(false);
 
         testTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,6 +98,11 @@ public class TaskView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        testTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                testTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(testTable);
         if (testTable.getColumnModel().getColumnCount() > 0) {
             testTable.getColumnModel().getColumn(0).setMinWidth(1);
@@ -117,32 +128,32 @@ public class TaskView extends javax.swing.JPanel {
 
         deleteButton.setText("Delete");
 
+        updateButton.setText("Update");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(35, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addButton)
-                        .addGap(182, 182, 182)
-                        .addComponent(deleteButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(305, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(deleteButton))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +161,16 @@ public class TaskView extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void testTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_testTableMouseClicked
+        int row = testTable.getSelectedRow();
+        int col = 0;
+        
+    updateTask.taskNameField.setText(testTable.getValueAt(testTable.getSelectedRow(),0).toString());
+    updateTask.dueDateField.setText(testTable.getValueAt(testTable.getSelectedRow(),1).toString());
+    updateTask.TypeComboBox.setSelectedItem(testTable.getValueAt(testTable.getSelectedRow(),2).toString());
+    updateTask.descriptionTextArea.setText(testTable.getValueAt(testTable.getSelectedRow(),3).toString());
+    }//GEN-LAST:event_testTableMouseClicked
 
     public void addAddButtonListener(ActionListener al)
     {
@@ -161,12 +182,17 @@ public class TaskView extends javax.swing.JPanel {
         deleteButton.addActionListener(al);
        
     }
+    public void addUpdateButtonListener(ActionListener al)
+    {
+        updateButton.addActionListener(al);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable testTable;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -183,6 +209,10 @@ public class TaskView extends javax.swing.JPanel {
         return testTable;
     }
 
+    public UpdateTask getUpdateTask()
+    {
+        return updateTask;
+    }
     /**
      * @param TaskTabel the TaskTabel to set
      */

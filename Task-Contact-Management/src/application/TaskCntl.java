@@ -32,6 +32,7 @@ public class TaskCntl
  
         taskView.addAddButtonListener(new AddButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());
+        taskView.addUpdateButtonListener(new TaskCntl.updateButtonListener());
         taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());  
     }
 
@@ -100,5 +101,11 @@ public class TaskCntl
             updateTable();
         }
     }
-    
+    class updateButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+           getTaskView().getUpdateTask().setVisible(true);
+        }
+    }
 }

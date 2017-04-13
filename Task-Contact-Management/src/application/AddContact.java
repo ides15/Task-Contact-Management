@@ -309,7 +309,7 @@ public class AddContact extends javax.swing.JFrame {
     public javax.swing.JTextField getFirstNameField() {
         return firstNameField;
     }
-
+    
     /**
      * @return the lastNameField
      */

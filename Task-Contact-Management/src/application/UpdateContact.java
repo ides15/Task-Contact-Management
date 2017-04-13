@@ -6,6 +6,14 @@
 package application;
 
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,17 +23,15 @@ public class UpdateContact extends javax.swing.JFrame {
 
     private ContactView contactView;
     private Database contactModel;
+    ContactCntl contactCntl;
+    private Object[] colNames;
     /**
      * Creates new form addContact
      */
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String email;
-    private String address;
-    
+
     public UpdateContact() {
         super("Update Contact");
+
         initComponents();
     }
 
@@ -108,6 +114,11 @@ public class UpdateContact extends javax.swing.JFrame {
         stateField.setMinimumSize(new java.awt.Dimension(4, 20));
 
         updateContactButton.setText("Update");
+        updateContactButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateContactButtonActionPerformed(evt);
+            }
+        });
 
         zipField1.setMinimumSize(new java.awt.Dimension(4, 20));
 
@@ -214,6 +225,42 @@ public class UpdateContact extends javax.swing.JFrame {
     private void taskNameField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskNameField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_taskNameField5ActionPerformed
+
+    private void updateContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateContactButtonActionPerformed
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String phoneNumber = phoneField.getText();
+            String email = emailField.getText();
+            String address = addressField.getText()
+                    + " ," + cityField.getText()
+                    + " ," + stateField.getText()
+                    + " ," + zipField1.getText();
+            
+            int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
+     if(askUpdate==0)
+     {
+         
+        try{
+            Connection con = DriverManager.getConnection("jdbc:sqlite:tcm.db", null,null);
+            String Selectquery = "UPDATE Contact SET FIRST_NAME ='"+firstName+"', LAST_NAME='"+ lastName+"', PHONE='"+ phoneNumber+"',"
+                    + " EMAIL='"+ email+"', ADDRESS='"+ address+"' WHERE FIRST_NAME='"+firstName+"' ";
+            Statement stmt = con.createStatement();
+           
+            stmt.execute(Selectquery);
+            JOptionPane.showMessageDialog(this, "Saved");
+               dispose();
+
+         }
+         catch(SQLException se){
+             
+         }
+     }
+    else
+    { 
+        dispose();
+                 }
+                 
+    }//GEN-LAST:event_updateContactButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,22 +390,23 @@ public class UpdateContact extends javax.swing.JFrame {
         return getStateField();
     }
 
+    
     /**
      * @return the stateField
      */
     public javax.swing.JTextField getStateField() {
         return stateField;
     }
+    
     public Database getContactModel() {
         return contactModel;
     }
+    
     public ContactView getContactView() {
         return contactView;
     }
     
-    public void updateTable() {
-        getContactView().getModel().setDataVector(getContactModel()
-                .getContactInfo(getContactModel().getCurrentUserId()), getContactView().getColNames());
-        getContactView().getContactTable().setModel(getContactView().getModel());
-    }
+
+
+    
 }
