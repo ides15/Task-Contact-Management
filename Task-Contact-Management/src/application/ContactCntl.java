@@ -73,7 +73,6 @@ public class ContactCntl {
                     + " ," + getContactView().getAddContact().getCityField().getText()
                     + " ," + getContactView().getAddContact().getStateField().getText()
                     + " ," + getContactView().getAddContact().getZipField().getText();
-            System.out.println("address: " + address);
           
             if(firstName.equals("") || lastName.equals(""))
             {
@@ -82,9 +81,10 @@ public class ContactCntl {
             else
             {
                 getContactModel().addContact(firstName, lastName, phoneNumber, email, address);
+                getContactView().getUpdateContact().setContactId(1000);
                 getContactView().getAddContact().setVisible(false);
                 updateTable();
-            }          
+            }
         }
     }
      
@@ -111,7 +111,7 @@ public class ContactCntl {
         public void actionPerformed(ActionEvent e) 
         {
            getContactView().getUpdateContact().setVisible(true);
-           getContactView().getUpdateContact().setContactId(getContactView().getUpdateContact().getContactId());
+//           getContactView().getUpdateContact().setContactId(getContactView().getUpdateContact().getContactId());
         }
     }
 }

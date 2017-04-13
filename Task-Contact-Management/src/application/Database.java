@@ -246,6 +246,7 @@ public class Database {
      * @param LAST_NAME last name for the new contact
      * @param EMAIL email for the new contact
      * @param ADDRESS address for the new contact
+     * @param PHONE phone number for the new contact
      */
     public void addContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS) {
         String sql = "INSERT INTO Contact (CONTACT_USER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, ADDRESS) "
