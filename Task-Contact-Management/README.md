@@ -13,13 +13,15 @@ Mandatory use cases:
   
   1. The project in the project tab in Netbeans should be red and asking to resolve a problem.
   
-  2. Click to resovle problem and browse through your computers directories
+  2. Click the specific problem to resovle problem and browse through your computers directories
   
   3. Locate this project wherever it was downloaded too.
   
   4. sqlite-jdbc-3.16.1.jar should be located in the top directory of this project (next to this readme)
   
-  5. After selecting this the problem should be resolved.
+  5. Repeat steps 2-4 for the other two problems (JCalendar and SwingX). Both jars are located in the same place as the sqlite jar.
+  
+  6. After selecting this the problem should be resolved.
   
   ** END **
   
