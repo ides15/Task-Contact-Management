@@ -19,6 +19,7 @@ public class NavCntl {
     
     private Database mainModel;
     private MainView mainView;
+    private MainCntl mainCntl;
     private SettingsView setView;
     
     private Database taskModel;
@@ -34,12 +35,13 @@ public class NavCntl {
     private LoginCntl loginCntl;
     
     NavCntl(NavModel navModel, NavView navView)
-    {
+    {   
         this.navModel = navModel;
         this.navView = navView;
         
         mainModel = new Database("tcm.db");
         mainView = new MainView(mainModel);
+        mainCntl = new MainCntl(mainModel, mainView);
         
         setView = new SettingsView();
         
@@ -75,12 +77,26 @@ public class NavCntl {
     public ContactCntl getContactCntl() {
         return contactCntl;
     }
+
+    /**
+     * @return the mainView
+     */
+    public MainView getMainView() {
+        return mainView;
+    }
+
+    /**
+     * @return the mainCntl
+     */
+    public MainCntl getMainCntl() {
+        return mainCntl;
+    }
     
     class MainButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-            navView.switchToMainPanel(mainView);
+            navView.switchToMainPanel(getMainView());
         }
     }
      

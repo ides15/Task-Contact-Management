@@ -5,50 +5,66 @@
  */
 package application;
 
-import javax.swing.table.DefaultTableModel;
-
+import java.awt.Component;
+import java.awt.Container;
+import java.util.Arrays;
+import javax.swing.AbstractButton;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  *
  * @author reesmcdevitt
  */
 public class MainView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MainClass
-     */
     private Database mainModel;
-    private DefaultTableModel taskTableModel;
-    private DefaultTableModel contactTableModel;
-    private Object[] colTaskNames;
-    private Object[] colContactNames;
+    private String date;
+    private String[] searchNames;
+    private int month;
+    private int day;
+    private int year;
     
-    public MainView(Database mainModel)
+    public MainView(Database mainModel) 
     {
         this.mainModel = mainModel;
         initComponents();
         
-        colTaskNames = new Object[4];
-        colTaskNames[0] = "Task";
-        colTaskNames[1] = "Due Date";
-        colTaskNames[2] = "Type";
-        colTaskNames[3] = "Description";
+        //Calender 
+        cal.getMonthChooser().removeAll();
+        cal.getYearChooser().removeAll();
+ 
+        month = cal.getMonthChooser().getMonth() + 1;
+        day = cal.getDayChooser().getDay();
+        year = cal.getYearChooser().getYear();
+        date = month + "/" + day + "/" + year;
+        dateLabel.setText(date);
         
-        colContactNames = new Object[5];
-        colContactNames[0] = "Firstname";
-        colContactNames[1] = "Lastname";
-        colContactNames[2] = "Phone Number";
-        colContactNames[3] = "Email";
-        colContactNames[4] = "Address";
+        //Search Bar
+        searchBar.removeAllItems();
+        searchBar.addItem("Search");
         
-//        taskTableModel = new DefaultTableModel(mainModel.getTaskInfo(mainModel.getCurrentUserId()), colTaskNames); //Make Not Editable Model
-//        taskTable.setModel(taskTableModel);
-//        
-//        contactTableModel = new DefaultTableModel(MainModel.getContactInfo(MainModel.getCurrentUserId()), colContactNames); //Make Not Editable Model
-//        contactTable.setModel(contactTableModel);
+        //searchNames = mainModel.getTaskNames(mainModel.getCurrentUserId());
         
+//        for (String searchName : searchNames) {
+//            searchBar.addItem(searchName);
+//        }
         
+        searchBar.setEditable(true);
+        AutoCompleteDecorator.decorate(searchBar);
+        
+        removeButton(searchBar);
+      
     }
-
+    
+    //Removes Button from JComboBox
+    private void removeButton(Container container) {
+      Component[] components = container.getComponents();
+      for (Component component : components) {
+         if (component instanceof AbstractButton) {
+            container.remove(component);
+         }
+      }
+   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,13 +75,16 @@ public class MainView extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        taskTable = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
+        cal = new com.toedter.calendar.JCalendar();
+        dateLabel = new javax.swing.JLabel();
+        monthUp = new javax.swing.JButton();
+        monthDown = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        contactTable = new javax.swing.JTable();
-        contactLabel = new javax.swing.JLabel();
-        taskLabel = new javax.swing.JLabel();
+        jTable2 = new javax.swing.JTable();
+        searchBar = new javax.swing.JComboBox<>();
 
-        taskTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,60 +95,222 @@ public class MainView extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(taskTable);
+        jScrollPane1.setViewportView(jTable1);
 
-        contactTable.setModel(new javax.swing.table.DefaultTableModel(
+        dateLabel.setText("DATE");
+
+        monthUp.setText(">");
+        monthUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthUpActionPerformed(evt);
+            }
+        });
+
+        monthDown.setText("<");
+        monthDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthDownActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Task", "Due"
             }
         ));
-        jScrollPane2.setViewportView(contactTable);
+        jScrollPane2.setViewportView(jTable2);
 
-        contactLabel.setText("Contacts");
-
-        taskLabel.setText("Tasks");
+        searchBar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        searchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taskLabel)
-                    .addComponent(contactLabel)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cal, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(monthDown)
+                .addGap(25, 25, 25)
+                .addComponent(dateLabel)
+                .addGap(25, 25, 25)
+                .addComponent(monthUp)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(taskLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(contactLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(monthDown)
+                    .addComponent(dateLabel)
+                    .addComponent(monthUp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cal, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void monthDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthDownActionPerformed
+        //Changes Lable
+        month = getMonth() - 1;
+        if (getMonth() == 0)
+        {
+            month = 12;
+            year = getYear() - 1;
+        }
+        
+        setDate(getMonth() + "/" + getDay() + "/" + getYear());
+      
+        getDateLabel().setText(getDate());
+        
+        getCal().getMonthChooser().setMonth(getMonth() - 1);
+        
+    }//GEN-LAST:event_monthDownActionPerformed
+
+    private void monthUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthUpActionPerformed
+       ////Changes Lable
+        month = getMonth() + 1;
+        if (getMonth() == 13)
+        {
+            month = 1;
+            year = getYear() + 1;
+        }
+        
+        setDate(getMonth() + "/" + getDay() + "/" + getYear());
+      
+        getDateLabel().setText(getDate());
+        getCal().getMonthChooser().setMonth(getMonth() - 1);
+    }//GEN-LAST:event_monthUpActionPerformed
+
+    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel contactLabel;
-    private javax.swing.JTable contactTable;
+    private com.toedter.calendar.JCalendar cal;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel taskLabel;
-    private javax.swing.JTable taskTable;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JButton monthDown;
+    private javax.swing.JButton monthUp;
+    private javax.swing.JComboBox<String> searchBar;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the mainModel
+     */
+    public Database getMainModel() {
+        return mainModel;
+    }
+
+    /**
+     * @return the date
+     */
+    public String getDate() {
+        return date;
+    }
+
+    /**
+     * @return the searchNames
+     */
+    public String[] getSearchNames() {
+        return searchNames;
+    }
+
+    /**
+     * @return the month
+     */
+    public int getMonth() {
+        return month;
+    }
+
+    /**
+     * @return the day
+     */
+    public int getDay() {
+        return day;
+    }
+
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * @return the cal
+     */
+    public com.toedter.calendar.JCalendar getCal() {
+        return cal;
+    }
+
+    /**
+     * @return the monthDown
+     */
+    public javax.swing.JButton getMonthDown() {
+        return monthDown;
+    }
+
+    /**
+     * @return the monthUp
+     */
+    public javax.swing.JButton getMonthUp() {
+        return monthUp;
+    }
+
+    /**
+     * @return the searchBar
+     */
+    public javax.swing.JComboBox<String> getSearchBar() {
+        return searchBar;
+    }
+
+    /**
+     * @return the dateLabel
+     */
+    public javax.swing.JLabel getDateLabel() {
+        return dateLabel;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    /**
+     * @param dateLabel the dateLabel to set
+     */
+    public void setDateLabel(javax.swing.JLabel dateLabel) {
+        this.dateLabel = dateLabel;
+    }
 }

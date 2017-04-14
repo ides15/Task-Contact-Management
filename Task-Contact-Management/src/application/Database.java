@@ -141,6 +141,40 @@ public class Database {
         this.CURRENT_USER_ID = userId;
     }
     
+    
+//    public String[] getTaskNames(int userID)
+//    {
+//        String[] names = new String[0];
+//        ArrayList<String> taskNames = new ArrayList();
+//        NavModel navModel = new NavModel();
+//        NavView navView = new NavView(navModel);
+//        
+//        String sql = "SELECT NAME FROM Task \n WHERE TASK_USER_ID = " + userID;
+//
+//            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+//            try (Connection conn = this.connect();
+//                    Statement stmt = conn.createStatement();
+//                    ResultSet rs = stmt.executeQuery(sql)) {
+//
+//                  while(rs.next())
+//                  {
+//                      taskNames.add(rs.getString("NAME"));
+//                  }
+//                  
+//                  names = new String[taskNames.size()];
+//                  
+//                  for(int i = 0; i < taskNames.size(); i++)
+//                  {
+//                      names[i] = taskNames.get(i);
+//                  }
+//
+//            } catch (SQLException ex) {
+//                System.out.println(ex.getMessage());
+//            }
+//            
+//            return names;
+//    }
+    
     //Gets the information of a all tasks of a user
     public Object[][] getTaskInfo(int userID)
     { 
