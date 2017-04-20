@@ -7,6 +7,7 @@ package application;
 
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /*
         USAGE
@@ -565,6 +566,33 @@ public class Database {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public void updateUser(String USERNAME, String PASSWORD, int userID) {
+
+        int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
+     if(askUpdate==0)
+     {
+         String Selectquery = "UPDATE User SET USERNAME ='"+USERNAME+"', PASSWORD='"+ PASSWORD+"' WHERE ACCOUNT_ID='"+userID+"' ";
+         try(Connection conn = this.connect();
+                 Statement stmt = conn.createStatement();
+                ){
+            
+                    stmt.executeUpdate(Selectquery);
+                    JOptionPane.showMessageDialog(null, "Saved");
+
+         }
+         catch(SQLException se){
+             System.out.println(se.getMessage());
+         }
+    }
+      
+    else
+        { 
+
+         
+        }
+     
     }
     
     public String testDatabase() {

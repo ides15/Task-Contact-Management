@@ -110,6 +110,8 @@ public class LoginCntl
        navView.getSplash().getWelcomeLabel().setText("Welcome " + loginModel.getUserFirstName(userID) + " to your Task and Contact Manager");
     }
     
+   
+        
     class UserLoginButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)      
@@ -129,6 +131,7 @@ public class LoginCntl
                 navCntl.getTaskCntl().getTaskModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getContactCntl().getContactModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getMainView().getMainModel().setCurrentUserId(loginModel.getCurrentUserId());
+                navCntl.getSetView().getChangePW().setUserid(loginModel.getCurrentUserId());
                 
 
                 // ^^^ this passes the user id in login model to the user id in the task model

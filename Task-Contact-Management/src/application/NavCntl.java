@@ -20,6 +20,7 @@ public class NavCntl {
     private Database mainModel;
     private MainView mainView;
     private SettingsView setView;
+    private Database setModel;
     
     private Database taskModel;
     private TaskView taskView;
@@ -41,7 +42,8 @@ public class NavCntl {
         mainModel = new Database("tcm.db");
         mainView = new MainView(mainModel);
         
-        setView = new SettingsView();
+        setModel = new Database("tcm.db");
+        setView = new SettingsView(setModel);
         
         taskModel = new Database("tcm.db");
         taskView = new TaskView(taskModel);
@@ -80,6 +82,13 @@ public class NavCntl {
     }
 
     /**
+     * @return the setView
+     */
+    public SettingsView getSetView() {
+        return setView;
+    }
+
+    /**
      * @return the mainCntl
      */
     
@@ -111,7 +120,7 @@ public class NavCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            navView.switchToSettingsPanel(setView);
+            navView.switchToSettingsPanel(getSetView());
         }
     }
      
