@@ -51,7 +51,6 @@ public class NavCntl {
         contactView = new ContactView(contactModel);
         contactCntl = new ContactCntl(contactModel, contactView);
         
-        
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
         navView.addTaskButtonListener(new TaskButtonListener());
@@ -120,7 +119,10 @@ public class NavCntl {
     {
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println("logoff");
+            navView.setVisible(false);
+            loginModel = new Database("tcm.db");
+            loginView = new LoginView(loginModel);
+            loginCntl = new LoginCntl(loginModel, loginView);
         }
     }
 }
