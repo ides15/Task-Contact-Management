@@ -45,8 +45,9 @@ public class AddTask extends javax.swing.JFrame {
         @Override
         public void propertyChange(PropertyChangeEvent evt) 
         {
+            int selectedMonth = cal.getMonthChooser().getMonth() + 1;
             int newDay = (Integer) evt.getNewValue();
-            dueDateField.setText(month + "/" +newDay + "/" + year);
+            dueDateField.setText(selectedMonth + "/" +newDay + "/" + cal.getYearChooser().getYear());
         }
     }
     class SelectedMonth implements PropertyChangeListener
@@ -56,7 +57,8 @@ public class AddTask extends javax.swing.JFrame {
         {
             int newMonth = (Integer) evt.getNewValue();
             newMonth = newMonth + 1;
-            dueDateField.setText(newMonth + "/" + day + "/" + year);
+            dueDateField.setText(newMonth + "/" + cal.getDayChooser().getDay() + "/" + cal.getYearChooser().getYear());
+            
         }
     }
     class SelectedYear implements PropertyChangeListener
@@ -64,8 +66,9 @@ public class AddTask extends javax.swing.JFrame {
         @Override
         public void propertyChange(PropertyChangeEvent evt) 
         {
+            int selectedMonth = cal.getMonthChooser().getMonth() + 1;
             int newYear = (Integer) evt.getNewValue();
-            dueDateField.setText(month + "/" + day + "/" + newYear);
+            dueDateField.setText(selectedMonth + "/" + cal.getDayChooser().getDay() + "/" + newYear);
         }
     }
     /**
