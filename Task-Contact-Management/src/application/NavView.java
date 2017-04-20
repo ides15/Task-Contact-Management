@@ -42,7 +42,7 @@ public class NavView extends JFrame
         
         splash = new SplashView();
         
-        setSize(500,550);
+        setSize(500,450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(navPanel, BorderLayout.NORTH);
         add(splash, BorderLayout.CENTER);

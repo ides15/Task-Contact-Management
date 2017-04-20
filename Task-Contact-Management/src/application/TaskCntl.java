@@ -77,6 +77,9 @@ public class TaskCntl
             else
             {
                   getTaskModel().addTask(taskName, description, dueDate, taskType);
+                  getTaskView().getAddTask().getTaskName().setText("");
+                  getTaskView().getAddTask().getDueDate().setText("");
+                  getTaskView().getAddTask().getDescription().setText("");
                   getTaskView().getAddTask().setVisible(false);
                   updateTable();
 

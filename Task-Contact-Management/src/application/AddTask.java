@@ -30,10 +30,10 @@ public class AddTask extends javax.swing.JFrame {
         day = cal.getDayChooser().getDay();
         month = cal.getMonthChooser().getMonth() + 1;
         year = cal.getYearChooser().getYear();
-        
-       cal.getDayChooser().addPropertyChangeListener("day", new SelectedDay());
-       cal.getMonthChooser().addPropertyChangeListener("month", new SelectedMonth());
-       cal.getYearChooser().addPropertyChangeListener("year", new SelectedYear());
+      
+        cal.getDayChooser().addPropertyChangeListener("day", new SelectedDay());
+        cal.getMonthChooser().addPropertyChangeListener("month", new SelectedMonth());
+        cal.getYearChooser().addPropertyChangeListener("year", new SelectedYear());
         
         dueDateField.setText(month + "/" + day + "/" + year);
         

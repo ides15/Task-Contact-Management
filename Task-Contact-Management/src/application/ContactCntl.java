@@ -83,6 +83,14 @@ public class ContactCntl {
                 getContactModel().addContact(firstName, lastName, phoneNumber, email, address);
                 getContactView().getUpdateContact().setContactId(1000);
                 getContactView().getAddContact().setVisible(false);
+                getContactView().getAddContact().getFirstNameField().setText("");
+                getContactView().getAddContact().getLastNameField().setText("");
+                getContactView().getAddContact().getAddressField().setText("");
+                getContactView().getAddContact().getPhoneField().setText("");
+                getContactView().getAddContact().getCityField().setText("");
+                getContactView().getAddContact().getStateField().setText("");
+                getContactView().getAddContact().getEmailField().setText("");
+                getContactView().getAddContact().getZipField().setText("");
                 updateTable();
             }
         }
