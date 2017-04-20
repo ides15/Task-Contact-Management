@@ -84,14 +84,6 @@ public class TaskCntl
         }
     }
     
-    class UpdateButtonListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e) 
-        {
-          
-        }
-    }
-    
     class DeleteButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 

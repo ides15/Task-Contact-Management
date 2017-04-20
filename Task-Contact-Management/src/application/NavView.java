@@ -26,6 +26,7 @@ public class NavView extends JFrame
     private ContactView conView;
     private TaskView taskView;
     private SettingsView setView;
+    private SplashView splash;
     
     NavView(NavModel navModel) 
     {
@@ -36,13 +37,15 @@ public class NavView extends JFrame
         setLayout(border);
         navPanel = new NavViewPanel();
         
-        mainModel = new Database("tcm.db");
-        mainView = new MainView(mainModel);
+//        mainModel = new Database("tcm.db");
+//        mainView = new MainView(mainModel);
         
-        setSize(500,500);
+        splash = new SplashView();
+        
+        setSize(500,550);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(navPanel, BorderLayout.NORTH);
-        add(mainView, BorderLayout.CENTER);
+        add(splash, BorderLayout.CENTER);
     }
     
     public void addMainButtonListener(ActionListener al)
@@ -82,6 +85,7 @@ public class NavView extends JFrame
         remove(conView);
         remove(taskView);
         remove(setView);
+        remove(getSplash());
     }
     
     public void addLoginPanel(LoginView loginView) {
@@ -134,6 +138,7 @@ public class NavView extends JFrame
         removePanel(conView);
         removePanel(taskView);
         removePanel(setView);
+        removePanel(getSplash());
         addMainPanel(MainView);
     }
     
@@ -142,6 +147,7 @@ public class NavView extends JFrame
         removePanel(mainView);
         removePanel(taskView);
         removePanel(setView);
+        removePanel(getSplash());
         addContactPanel(conView);
     }
     
@@ -150,6 +156,7 @@ public class NavView extends JFrame
         removePanel(conView);
         removePanel(mainView);
         removePanel(setView);
+        removePanel(getSplash());
         addTaskPanel(taskView);
     }
     
@@ -158,12 +165,20 @@ public class NavView extends JFrame
         removePanel(conView);
         removePanel(mainView);
         removePanel(taskView);
+        removePanel(getSplash());
         addSettingsPanel(setView);
     }
     
     public void switchToLoginPanel(LoginView loginView) {
         removeAllPanels();
         addLoginPanel(loginView);
+    }
+
+    /**
+     * @return the splash
+     */
+    public SplashView getSplash() {
+        return splash;
     }
     
 }

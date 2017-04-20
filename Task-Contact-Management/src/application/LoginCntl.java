@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,9 +21,12 @@ public class LoginCntl
     private String username;
     private String password;
     
+    private NavViewPanel navPanel;
     private NavView navView;
     private NavModel navModel;
     private NavCntl navCntl;
+    
+    private String[] searchNames = null;
     
     LoginCntl(Database loginModel, LoginView loginView)
     {
@@ -37,7 +41,7 @@ public class LoginCntl
         navModel = new NavModel();
         navView = new NavView(navModel);
         navCntl = new NavCntl(navModel, navView);
-        
+
         loginView.getLoginViewPanel().getUserLoginPanel().getFailedLoginLabel().setVisible(false);
         loginView.addUserSubmitButtonListener(new UserLoginButtonListener());
         loginView.addNewUserButtonListener(new NewUserButtonListener());
@@ -70,6 +74,43 @@ public class LoginCntl
                 .setModel(navCntl.getContactCntl().getContactView().getModel());
     }
     
+    public void setMainTable(int userID)
+    {
+        Object[][] noTasks = new Object[1][1];
+        noTasks[0][0] = "No Tasks";
+        
+        
+        if(navCntl.getMainView().getMainModel().getTaskDate(userID, navCntl.getMainView().getDate()).length != 0)
+        {
+            navCntl.getMainView().getModel().setDataVector(navCntl.getMainView()
+                    .getMainModel().getTaskDate(userID, navCntl.getMainView().getDate()), 
+                    navCntl.getMainView().getColNames()); 
+
+            navCntl.getMainView().getTaskTable().setModel(navCntl.getMainView().getModel());
+        }
+        else
+        {
+            navCntl.getMainView().getModel().setDataVector(noTasks, 
+                    navCntl.getMainView().getColNames()); 
+
+            navCntl.getMainView().getTaskTable().setModel(navCntl.getMainView().getModel());
+        }
+    }
+    
+    public void setSearch(int userID)
+    {
+        searchNames = navCntl.getMainView().getMainModel().getTaskNames(userID);
+        
+        for (String searchName : searchNames) {
+            navCntl.getMainView().getSearchBar().addItem(searchName);
+        }
+    }
+    
+    public void setWelcome(int userID)
+    {
+       navView.getSplash().getWelcomeLabel().setText("Welcome " + loginModel.getUserFirstName(userID) + " to your Task and Contact Manager");
+    }
+    
     class UserLoginButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)      
@@ -89,7 +130,7 @@ public class LoginCntl
                 navCntl.getTaskCntl().getTaskModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getContactCntl().getContactModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getMainView().getMainModel().setCurrentUserId(loginModel.getCurrentUserId());
-                navCntl.getMainCntl().getMainModel().setCurrentUserId(loginModel.getCurrentUserId());
+                
 
                 // ^^^ this passes the user id in login model to the user id in the task model
                 // they are referencing two different instances of database so the user id
@@ -97,7 +138,9 @@ public class LoginCntl
                 
                 setTaskTable(loginModel.getCurrentUserId());
                 setContactTable(loginModel.getCurrentUserId());
-//                setMainTable(loginModel.getCurrentUserId());
+                setMainTable(loginModel.getCurrentUserId());
+                setSearch(loginModel.getCurrentUserId());
+                setWelcome(loginModel.getCurrentUserId());
             }
             
             else

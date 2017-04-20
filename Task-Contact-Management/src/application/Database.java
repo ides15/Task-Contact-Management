@@ -141,39 +141,158 @@ public class Database {
         this.CURRENT_USER_ID = userId;
     }
     
+    public String getUserFirstName(int userID)
+    {
+        String name = "";
+        String sql = "SELECT FIRST_NAME FROM User \n WHERE ACCOUNT_ID = " + userID;
+
+            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+            try (Connection conn = this.connect();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql)) {
+
+                  while(rs.next())
+                  {
+                     name = rs.getString("FIRST_NAME");
+                  }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+            return name;
+    }
     
-//    public String[] getTaskNames(int userID)
-//    {
-//        String[] names = new String[0];
-//        ArrayList<String> taskNames = new ArrayList();
+    public String[] getTaskNames(int userID)
+    {
+        String[] names = new String[0];
+        ArrayList<String> taskNames = new ArrayList();
+        
+        String sql = "SELECT NAME FROM Task \n WHERE TASK_USER_ID = " + userID;
+
+            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+            try (Connection conn = this.connect();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql)) {
+
+                  while(rs.next())
+                  {
+                      taskNames.add(rs.getString("NAME"));
+                  }
+                  
+                  names = new String[taskNames.size()];
+                  
+                  for(int i = 0; i < taskNames.size(); i++)
+                  {
+                      names[i] = taskNames.get(i);
+                  }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+            return names;
+    }
+    
+    //For Calender
+    public Object[][] getTaskDate(int userID, String date)
+    {
+        Object[][] info;
+        ArrayList<ArrayList> allTaskInfo = new ArrayList<ArrayList>();
+        ArrayList<String> taskInfo;
+        String taskName = "";
+        String taskDate = "";
 //        NavModel navModel = new NavModel();
 //        NavView navView = new NavView(navModel);
-//        
-//        String sql = "SELECT NAME FROM Task \n WHERE TASK_USER_ID = " + userID;
-//
-//            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
-//            try (Connection conn = this.connect();
-//                    Statement stmt = conn.createStatement();
-//                    ResultSet rs = stmt.executeQuery(sql)) {
-//
-//                  while(rs.next())
-//                  {
-//                      taskNames.add(rs.getString("NAME"));
-//                  }
-//                  
-//                  names = new String[taskNames.size()];
-//                  
-//                  for(int i = 0; i < taskNames.size(); i++)
-//                  {
-//                      names[i] = taskNames.get(i);
-//                  }
-//
-//            } catch (SQLException ex) {
-//                System.out.println(ex.getMessage());
-//            }
-//            
-//            return names;
-//    }
+        
+            String sql = "SELECT * FROM Task \n WHERE TASK_USER_ID = " + userID + " AND DUE_DATE = '" + date + "'";
+
+            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+            try (Connection conn = this.connect();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql)) {
+
+                  while(rs.next())
+                  {
+                      taskInfo = new ArrayList<String>();
+
+                      taskName = rs.getString("NAME"); 
+                      taskDate = rs.getString("DUE_DATE");
+                      
+
+                      taskInfo.add(taskName);
+                      taskInfo.add(taskDate);
+
+                      allTaskInfo.add(taskInfo);
+                  }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+            //Conversion to Object
+            info = new Object[allTaskInfo.size()][2];
+
+            for(int i = 0; i < allTaskInfo.size(); i++)
+            {
+                for(int j = 0; j < 2; j++)
+                {
+                    info[i][j] = allTaskInfo.get(i).get(j);
+                }
+            }
+           // System.out.println(allTaskInfo);
+        return info;
+    }
+    
+    //For Search
+    public Object[][] getTasks(int userID, String task)
+    {
+        Object[][] info;
+        ArrayList<ArrayList> allTaskInfo = new ArrayList<ArrayList>();
+        ArrayList<String> taskInfo;
+        String taskName = "";
+        String taskDate = "";
+//        NavModel navModel = new NavModel();
+//        NavView navView = new NavView(navModel);
+        
+            String sql = "SELECT * FROM Task \n WHERE TASK_USER_ID = " + userID + " AND NAME = '" + task + "'";
+
+            //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
+            try (Connection conn = this.connect();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql)) {
+
+                  while(rs.next())
+                  {
+                      taskInfo = new ArrayList<String>();
+
+                      taskName = rs.getString("NAME"); 
+                      taskDate = rs.getString("DUE_DATE");
+                      
+
+                      taskInfo.add(taskName);
+                      taskInfo.add(taskDate);
+
+                      allTaskInfo.add(taskInfo);
+                  }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+            //Conversion to Object
+            info = new Object[allTaskInfo.size()][2];
+
+            for(int i = 0; i < allTaskInfo.size(); i++)
+            {
+                for(int j = 0; j < 2; j++)
+                {
+                    info[i][j] = allTaskInfo.get(i).get(j);
+                }
+            }
+           // System.out.println(allTaskInfo);
+        return info;
+    }
     
     //Gets the information of a all tasks of a user
     public Object[][] getTaskInfo(int userID)

@@ -19,7 +19,6 @@ public class NavCntl {
     
     private Database mainModel;
     private MainView mainView;
-    private MainCntl mainCntl;
     private SettingsView setView;
     
     private Database taskModel;
@@ -41,7 +40,6 @@ public class NavCntl {
         
         mainModel = new Database("tcm.db");
         mainView = new MainView(mainModel);
-        mainCntl = new MainCntl(mainModel, mainView);
         
         setView = new SettingsView();
         
@@ -53,9 +51,6 @@ public class NavCntl {
         contactView = new ContactView(contactModel);
         contactCntl = new ContactCntl(contactModel, contactView);
         
-//        loginModel = new Database("tcm.db");
-//        loginView = new LoginView(loginModel);
-//        loginCntl = new LoginCntl(loginModel, loginView);
         
         navView.addMainButtonListener(new MainButtonListener());
         navView.addContactButtonListener(new ContactButtonListener());
@@ -88,9 +83,6 @@ public class NavCntl {
     /**
      * @return the mainCntl
      */
-    public MainCntl getMainCntl() {
-        return mainCntl;
-    }
     
     class MainButtonListener implements ActionListener
     {
