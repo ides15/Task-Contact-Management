@@ -42,24 +42,15 @@ public class MainView extends javax.swing.JPanel {
         cal.getMonthChooser().removeAll();
         cal.getYearChooser().removeAll();
  
-        rawMonth = cal.getMonthChooser().getMonth() + 1;
-        
-        if (rawMonth < 10)
-           month = String.format("%02d", rawMonth);
-        else
-           month = String.valueOf(rawMonth);
-        
+        rawMonth = cal.getMonthChooser().getMonth() + 1; 
         rawDay = cal.getDayChooser().getDay();
         
-        if (rawDay < 10)
-           day = String.format("%02d", rawDay);
-        else
-           day = String.valueOf(rawDay);
+
         
         
         
         year = cal.getYearChooser().getYear();
-        date = month + "/" + day + "/" + year;
+        date = rawMonth + "/" + rawDay + "/" + year;
        
         
         dateLabel.setText(date);
@@ -125,23 +116,12 @@ public class MainView extends javax.swing.JPanel {
         public void propertyChange(PropertyChangeEvent evt) 
         {
                 int i = (Integer) evt.getNewValue();
-                String monthPicked;
-                String dayPicked;
                 String datePicked;
                 Object[][] noTasks = new Object[1][1];
                 noTasks[0][0] = "No Tasks";
                 
-                if(i < 10)
-                    dayPicked = "0" + String.valueOf(i);
-                else
-                    dayPicked = String.valueOf(i);
                 
-                if(rawMonth < 10)
-                    monthPicked = "0" + String.valueOf(rawMonth);
-                else
-                    monthPicked = String.valueOf(rawMonth);
-                
-                datePicked = monthPicked + "/" + dayPicked + "/" + year;
+                datePicked =  rawMonth + "/" + i + "/" + year;
                 
                 
                 selectedDate = datePicked;
@@ -354,11 +334,7 @@ public class MainView extends javax.swing.JPanel {
             year = getYear() - 1;
         }
         
-        if(rawMonth < 10)
-            setDate("0" + getMonth() + "/01/" + getYear());
-        else
-            setDate(getMonth() + "/01/" + getYear());
-      
+        date = rawMonth + "/1/" + year;
         getDateLabel().setText(getDate());
         
         getCal().getMonthChooser().setMonth(getMonth() - 1);
@@ -373,12 +349,8 @@ public class MainView extends javax.swing.JPanel {
             rawMonth = 1;
             year = getYear() + 1;
         }
-        
-        if(rawMonth < 10)
-            setDate("0" + getMonth() + "/01" + "/" + getYear());
-        else
-            setDate(getMonth() + "/01/" + getYear());
-      
+       
+        date = rawMonth + "/1/" + year;
         getDateLabel().setText(getDate());
         getCal().getMonthChooser().setMonth(getMonth() - 1);
     }//GEN-LAST:event_monthUpActionPerformed
