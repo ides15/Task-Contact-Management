@@ -172,14 +172,6 @@ public class UpdateTask extends javax.swing.JFrame {
     }//GEN-LAST:event_dueDateFieldActionPerformed
 
     private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
-            String taskName = taskNameField.getText();
-            String dueDate = dueDateField.getText();
-            String type = TypeComboBox.getSelectedItem().toString();
-            String description = descriptionTextArea.getText();
-            
-            db.updateTask(taskName, type, dueDate, description, userID);
-            dispose();
-         
     }//GEN-LAST:event_updateTaskButtonActionPerformed
  
     public void addUpdateTaskButtonListener(ActionListener al)

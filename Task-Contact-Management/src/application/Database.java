@@ -312,7 +312,7 @@ public class Database {
 
             //Database stores task info in 2D arrayList - arraylist used because dynamicly sized
             try (Connection conn = this.connect();
-                    Statement stmt = conn.createStatement();
+                  Statement stmt = conn.createStatement();
                     ResultSet rs = stmt.executeQuery(sql)) {
 
                   while(rs.next())
@@ -337,7 +337,7 @@ public class Database {
             }
             
             //Conversion to Object
-            info = new Object[allTaskInfo.size()][4];
+            info = new Object[allTaskInfo.size()][5];
 
             for(int i = 0; i < allTaskInfo.size(); i++)
             {
@@ -536,7 +536,7 @@ public class Database {
     public void updateUser(String USERNAME, String PASSWORD, int userID) {
         int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
         
-        if (askUpdate == 0)
+        if(askUpdate == 0)
         {
             String sql = "UPDATE User SET USERNAME = '" + USERNAME + "', PASSWORD = '" + PASSWORD + "' WHERE ACCOUNT_ID = '" + userID + "'";
             try (Connection conn = this.connect();
@@ -553,6 +553,7 @@ public class Database {
     
     public void updateTask(String NAME, String TYPE, String DATE, String DESC, int userID) {
         int askUpdate = JOptionPane.showConfirmDialog(null, "Do you want to update?", "Confirm", JOptionPane.YES_NO_OPTION);
+        
         if(askUpdate == 0)
         {
             String sql = "UPDATE Task SET NAME = ?, TYPE = ?, DUE_DATE = ?, "
@@ -577,6 +578,7 @@ public class Database {
     
     public void updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS, int userID) {
         int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
+        
         if(askUpdate == 0)
         {
             String sql = "UPDATE Contact SET FIRST_NAME = ?, LAST_NAME = ?, "

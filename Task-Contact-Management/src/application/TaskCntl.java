@@ -91,16 +91,20 @@ public class TaskCntl
     {
         public void actionPerformed(ActionEvent e) 
         {
-            taskModel.deleteTask((String) getTaskView().getTaskTable()
+            if (getTaskView().getTaskTable().getSelectedRow() != -1) {
+                taskModel.deleteTask((String) getTaskView().getTaskTable()
                     .getModel().getValueAt(getTaskView().getTaskTable().getSelectedRow(), 0));
-            updateTable();
+                updateTable();
+            }
         }
     }
     class UpdateButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-           getTaskView().getUpdateTask().setVisible(true);
+            if (getTaskView().getTaskTable().getSelectedRow() != -1) {
+                getTaskView().getUpdateTask().setVisible(true);
+            }
         }
     }
     
@@ -114,7 +118,7 @@ public class TaskCntl
             String description = getTaskView().getUpdateTask().getDescription().getText();
             int userId = getTaskModel().getCurrentUserId();
             
-            getTaskModel().updateTask(name, type, date, date, userId);
+            getTaskModel().updateTask(name, type, date, description, userId);
             getTaskView().getUpdateTask().dispose();
             getTaskView().getUpdateTask().getTaskName().setText("");
             getTaskView().getUpdateTask().getDueDate().setText("");
