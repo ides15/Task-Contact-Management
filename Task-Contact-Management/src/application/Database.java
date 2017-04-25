@@ -377,11 +377,10 @@ public class Database {
     
     public void deleteTask(String NAME)
     {
-    
-                String sql = "DELETE FROM Task \n WHERE NAME = ?";
+        String sql = "DELETE FROM Task \n WHERE NAME = ?";
  
         try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+              PreparedStatement pstmt = conn.prepareStatement(sql)) {
  
             // set the corresponding param
             pstmt.setString(1, NAME);
@@ -391,7 +390,6 @@ public class Database {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
     }
     
     /**
@@ -555,16 +553,22 @@ public class Database {
     
     public void updateTask(String NAME, String TYPE, String DATE, String DESC, int userID) {
         int askUpdate = JOptionPane.showConfirmDialog(null, "Do you want to update?", "Confirm", JOptionPane.YES_NO_OPTION);
-    
-        if(askUpdate==0)
+        if(askUpdate == 0)
         {
-            String sql = "UPDATE Task SET NAME ='"+NAME+"', TYPE='"+TYPE+"', DUE_DATE='"+ DATE+"',"
-                    + " DESCRIPTION='"+ DESC +"' WHERE NAME='"+NAME+"' AND TASK_USER_ID='" + userID + "'";
+            String sql = "UPDATE Task SET NAME = ?, TYPE = ?, DUE_DATE = ?, "
+                    + "DESCRIPTION = ? WHERE NAME = ? AND TASK_USER_ID = ?";
          
             try(Connection conn = this.connect();
-                 Statement stmt = conn.createStatement()) {
-                    stmt.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Saved");
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, NAME);
+                pstmt.setString(2, TYPE);
+                pstmt.setString(3, DATE);
+                pstmt.setString(4, DESC);
+                pstmt.setString(5, NAME);
+                pstmt.setInt(6, userID);
+                
+                pstmt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Saved");
             } catch(SQLException se) {
                 System.out.println(se.getMessage());
             }

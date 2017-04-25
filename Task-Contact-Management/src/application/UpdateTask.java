@@ -6,12 +6,7 @@
 package application;
 
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -186,11 +181,12 @@ public class UpdateTask extends javax.swing.JFrame {
             dispose();
          
     }//GEN-LAST:event_updateTaskButtonActionPerformed
-
-    public void addAddTaskButtonListener(ActionListener al)
+ 
+    public void addUpdateTaskButtonListener(ActionListener al)
     {
         updateTaskButton.addActionListener(al);
     }
+    
     public JButton getAddTaskButton()
     {
         return updateTaskButton;

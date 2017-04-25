@@ -48,10 +48,7 @@ public class TaskView extends javax.swing.JPanel {
               return false;//This causes all cells to be not editable
             }
         };
-     
         testTable.setModel(model);
-        
-        
     }
     
     @SuppressWarnings("unchecked")
@@ -161,10 +158,10 @@ public class TaskView extends javax.swing.JPanel {
         int row = testTable.getSelectedRow();
         int col = 0;
         
-    updateTask.taskNameField.setText(testTable.getValueAt(testTable.getSelectedRow(),0).toString());
-    updateTask.dueDateField.setText(testTable.getValueAt(testTable.getSelectedRow(),2).toString());
-    updateTask.TypeComboBox.setSelectedItem(testTable.getValueAt(testTable.getSelectedRow(),1).toString());
-    updateTask.descriptionTextArea.setText(testTable.getValueAt(testTable.getSelectedRow(),3).toString());
+        updateTask.taskNameField.setText(testTable.getValueAt(testTable.getSelectedRow(),0).toString());
+        updateTask.dueDateField.setText(testTable.getValueAt(testTable.getSelectedRow(),2).toString());
+        updateTask.TypeComboBox.setSelectedItem(testTable.getValueAt(testTable.getSelectedRow(),1).toString());
+        updateTask.descriptionTextArea.setText(testTable.getValueAt(testTable.getSelectedRow(),3).toString());
     }//GEN-LAST:event_testTableMouseClicked
 
     public void addAddButtonListener(ActionListener al)

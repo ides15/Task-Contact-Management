@@ -32,10 +32,10 @@ public class TaskCntl
  
         taskView.addAddButtonListener(new AddButtonListener());
         taskView.addDeleteButtonListener(new DeleteButtonListener());
-        taskView.addUpdateButtonListener(new TaskCntl.updateButtonListener());
+        taskView.addUpdateButtonListener(new TaskCntl.UpdateButtonListener());
         taskView.getAddTask().addAddTaskButtonListener(new AddTaskButtonListener());  
+        taskView.getUpdateTask().addUpdateTaskButtonListener(new UpdateTaskButtonListener());
     }
-
 
     public Database getTaskModel() {
         return taskModel;
@@ -96,11 +96,31 @@ public class TaskCntl
             updateTable();
         }
     }
-    class updateButtonListener implements ActionListener
+    class UpdateButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
            getTaskView().getUpdateTask().setVisible(true);
+        }
+    }
+    
+    class UpdateTaskButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String name = getTaskView().getUpdateTask().getTaskName().getText();
+            String date = getTaskView().getUpdateTask().getDueDate().getText();
+            String type = getTaskView().getUpdateTask().getTypeComboBox().getModel().getSelectedItem().toString();
+            String description = getTaskView().getUpdateTask().getDescription().getText();
+            int userId = getTaskModel().getCurrentUserId();
+            
+            getTaskModel().updateTask(name, type, date, date, userId);
+            getTaskView().getUpdateTask().dispose();
+            getTaskView().getUpdateTask().getTaskName().setText("");
+            getTaskView().getUpdateTask().getDueDate().setText("");
+            getTaskView().getUpdateTask().getTypeComboBox().setSelectedIndex(0);
+            getTaskView().getUpdateTask().getDescription().setText("");
+            updateTable();
         }
     }
 }

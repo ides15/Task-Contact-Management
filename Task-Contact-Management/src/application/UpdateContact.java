@@ -263,11 +263,6 @@ public class UpdateContact extends javax.swing.JFrame {
     }
 
     /**
-     * @return the cityField
-     */
-
-
-    /**
      * @return the emailField
      */
     public javax.swing.JTextField getEmailField() {
@@ -295,16 +290,6 @@ public class UpdateContact extends javax.swing.JFrame {
         return phoneField;
     }
 
-    /**
-     * @return the zipField
-     */
-
-
-    /**
-     * @return the stateField
-     */
-
-    
     public Database getContactModel() {
         return contactModel;
     }
