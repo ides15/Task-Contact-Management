@@ -9,7 +9,7 @@ Mandatory use cases:
   - Search/display contact information
   
   **IF RUNNING ON NETBEANS - FIRST USE**
-  If this program is being run through netbeans for the first time after download the sqlite drive will not be automaticlly found. These are the steps to resolve the problem.
+  If this program is being run through netbeans for the first time after download the SQLite, JCalendar, and SwingX drivers will not be automaticlly found. These are the steps to resolve the problems.
   
   1. The project in the project tab in Netbeans should be red and asking to resolve a problem.
   
