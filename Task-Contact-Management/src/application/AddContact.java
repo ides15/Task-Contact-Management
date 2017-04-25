@@ -45,13 +45,7 @@ public class AddContact extends javax.swing.JFrame {
         emailField = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
         addressField = new javax.swing.JTextField();
-        cityLabel = new javax.swing.JLabel();
-        cityField = new javax.swing.JTextField();
-        stateLabel = new javax.swing.JLabel();
-        stateField = new javax.swing.JTextField();
         addContactButton = new javax.swing.JButton();
-        zipField1 = new javax.swing.JTextField();
-        zipLabel1 = new javax.swing.JLabel();
 
         taskNameLabel2.setText("Lastname:");
 
@@ -91,19 +85,7 @@ public class AddContact extends javax.swing.JFrame {
 
         addressField.setMinimumSize(new java.awt.Dimension(4, 20));
 
-        cityLabel.setText("City:");
-
-        cityField.setMinimumSize(new java.awt.Dimension(4, 20));
-
-        stateLabel.setText("State:");
-
-        stateField.setMinimumSize(new java.awt.Dimension(4, 20));
-
         addContactButton.setText("Add Contact");
-
-        zipField1.setMinimumSize(new java.awt.Dimension(4, 20));
-
-        zipLabel1.setText("Zipcode:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,35 +101,19 @@ public class AddContact extends javax.swing.JFrame {
                     .addComponent(firstNameLabel)
                     .addComponent(phoneLabel)
                     .addComponent(emailLabel)
-                    .addComponent(addressLabel)
-                    .addComponent(cityLabel)
-                    .addComponent(zipLabel1))
+                    .addComponent(addressLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(zipField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lastNameLabel)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(27, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(stateLabel)
+                        .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lastNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,18 +135,8 @@ public class AddContact extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressLabel)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cityLabel)
-                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stateLabel)
-                    .addComponent(stateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(zipLabel1)
-                    .addComponent(zipField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(addContactButton)
                 .addGap(38, 38, 38))
         );
@@ -246,8 +202,6 @@ public class AddContact extends javax.swing.JFrame {
     private javax.swing.JButton addContactButton;
     public javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
-    public javax.swing.JTextField cityField;
-    private javax.swing.JLabel cityLabel;
     public javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
     public javax.swing.JTextField firstNameField;
@@ -257,14 +211,10 @@ public class AddContact extends javax.swing.JFrame {
     private javax.swing.JLabel lastNameLabel;
     public javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLabel;
-    public javax.swing.JTextField stateField;
-    private javax.swing.JLabel stateLabel;
     private javax.swing.JTextField taskNameField2;
     private javax.swing.JTextField taskNameField5;
     private javax.swing.JLabel taskNameLabel2;
     private javax.swing.JLabel taskNameLabel5;
-    public javax.swing.JTextField zipField1;
-    private javax.swing.JLabel zipLabel1;
     // End of variables declaration//GEN-END:variables
 
     
@@ -284,13 +234,6 @@ public class AddContact extends javax.swing.JFrame {
      */
     public javax.swing.JTextField getAddressField() {
         return addressField;
-    }
-
-    /**
-     * @return the cityField
-     */
-    public javax.swing.JTextField getCityField() {
-        return cityField;
     }
 
     /**
@@ -319,19 +262,5 @@ public class AddContact extends javax.swing.JFrame {
      */
     public javax.swing.JTextField getPhoneField() {
         return phoneField;
-    }
-
-    /**
-     * @return the zipField
-     */
-    public javax.swing.JTextField getZipField() {
-        return getStateField();
-    }
-
-    /**
-     * @return the stateField
-     */
-    public javax.swing.JTextField getStateField() {
-        return stateField;
     }
 }

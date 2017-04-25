@@ -6,7 +6,6 @@
 package application;
 
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -151,8 +150,8 @@ public class UpdateContact extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressLabel)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(updateContactButton)
                 .addGap(38, 38, 38))
         );
@@ -180,16 +179,13 @@ public class UpdateContact extends javax.swing.JFrame {
     }//GEN-LAST:event_taskNameField5ActionPerformed
 
     private void updateContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateContactButtonActionPerformed
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String phoneNumber = phoneField.getText();
-        String email = emailField.getText();
-        String address = addressField.getText();
-
-        contactModel.updateContact(firstName, lastName, phoneNumber, email, address, userId);
-        dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_updateContactButtonActionPerformed
 
+    public void addUpdateContactButtonListener(ActionListener al) {
+        updateContactButton.addActionListener(al);
+    }
+    
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -234,16 +230,16 @@ public class UpdateContact extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField addressField;
+    public javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextField emailField;
+    public javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JTextField firstNameField;
+    public javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField lastNameField;
+    public javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
-    private javax.swing.JTextField phoneField;
+    public javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField taskNameField2;
     private javax.swing.JTextField taskNameField5;
@@ -251,11 +247,6 @@ public class UpdateContact extends javax.swing.JFrame {
     private javax.swing.JLabel taskNameLabel5;
     private javax.swing.JButton updateContactButton;
     // End of variables declaration//GEN-END:variables
-
-    public void addUpdateContactButtonListener(ActionListener al)
-    {
-        updateContactButton.addActionListener(al);
-    }
     
     /**
      * @return the addContactButton

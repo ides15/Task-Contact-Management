@@ -22,6 +22,7 @@ public class ContactCntl {
         this.contactView = contactView;
         
         contactView.addAddButtonListener(new addButtonListener());
+        contactView.getUpdateContact().addUpdateContactButtonListener(new updateContactButtonListener());
         contactView.addDeleteButtonListener(new deleteButtonListener());
         contactView.addUpdateButtonListener(new updateButtonListener());
         contactView.getAddContact().addAddContactButtonListener(new AddContactButtonListener());
@@ -69,11 +70,8 @@ public class ContactCntl {
             String lastName = getContactView().getAddContact().getLastNameField().getText();
             String phoneNumber = getContactView().getAddContact().getPhoneField().getText();
             String email = getContactView().getAddContact().getEmailField().getText();
-            String address = getContactView().getAddContact().getAddressField().getText()
-                    + " ," + getContactView().getAddContact().getCityField().getText()
-                    + " ," + getContactView().getAddContact().getStateField().getText()
-                    + " ," + getContactView().getAddContact().getZipField().getText();
-          
+            String address = getContactView().getAddContact().getAddressField().getText();
+            
             if(firstName.equals("") || lastName.equals(""))
             {
                 System.out.println("Error Adding Contact");
@@ -87,10 +85,7 @@ public class ContactCntl {
                 getContactView().getAddContact().getLastNameField().setText("");
                 getContactView().getAddContact().getAddressField().setText("");
                 getContactView().getAddContact().getPhoneField().setText("");
-                getContactView().getAddContact().getCityField().setText("");
-                getContactView().getAddContact().getStateField().setText("");
                 getContactView().getAddContact().getEmailField().setText("");
-                getContactView().getAddContact().getZipField().setText("");
                 updateTable();
             }
         }
@@ -108,9 +103,11 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-            getContactModel().deleteContact((String) getContactView()
-                    .getContactTable().getModel().getValueAt(getContactView().getContactTable().getSelectedRow(), 0));
-            updateTable();
+            if (getContactView().getContactTable().getSelectedRow() != -1) {
+                getContactModel().deleteContact((String) getContactView()
+                        .getContactTable().getModel().getValueAt(getContactView().getContactTable().getSelectedRow(), 0));
+                updateTable();
+            }
         }
     }
      
@@ -118,8 +115,32 @@ public class ContactCntl {
     {
         public void actionPerformed(ActionEvent e) 
         {
-           getContactView().getUpdateContact().setVisible(true);
-//           getContactView().getUpdateContact().setContactId(getContactView().getUpdateContact().getContactId());
+            if (getContactView().getContactTable().getSelectedRow() != -1) {
+                getContactView().getUpdateContact().setVisible(true);
+            }
+        }
+    }
+    
+    class updateContactButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String firstName = getContactView().getContactTable().getModel()
+                    .getValueAt(getContactView().getContactTable().getSelectedRow(), 0).toString();
+            String lastName = getContactView().getContactTable().getModel()
+                    .getValueAt(getContactView().getContactTable().getSelectedRow(), 1).toString();
+            String phone = getContactView().getUpdateContact().getPhoneField().getText();
+            String email = getContactView().getUpdateContact().getEmailField().getText();
+            String address = getContactView().getUpdateContact().getAddressField().getText();
+            int userID = getContactModel().getCurrentUserId();
+            
+            getContactModel().updateContact(firstName, lastName, phone, email, address, userID);
+            getContactView().getUpdateContact().dispose();
+            getContactView().getUpdateContact().getFirstNameField().setText("");
+            getContactView().getUpdateContact().getLastNameField().setText("");
+            getContactView().getUpdateContact().getPhoneField().setText("");
+            getContactView().getUpdateContact().getEmailField().setText("");
+            getContactView().getUpdateContact().getAddressField().setText("");
+            updateTable();
         }
     }
 }

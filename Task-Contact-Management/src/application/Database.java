@@ -440,36 +440,35 @@ public class Database {
             try (Connection conn = this.connect();
                     Statement stmt = conn.createStatement();
                     ResultSet rs = stmt.executeQuery(sql)) {
+                while(rs.next())
+                {
+                    contactInfo = new ArrayList<String>();
 
-                  while(rs.next())
-                  {
-                      contactInfo = new ArrayList<String>();
+                    firstName = rs.getString("FIRST_NAME"); 
+                    lastName = rs.getString("LAST_NAME");
+                    phoneNumber = rs.getString("PHONE");
+                    email = rs.getString("EMAIL");
+                    address = rs.getString("ADDRESS");
 
-                      firstName = rs.getString("FIRST_NAME"); 
-                      lastName = rs.getString("LAST_NAME");
-                      phoneNumber = rs.getString("PHONE");
-                      email = rs.getString("EMAIL");
-                      address = rs.getString("ADDRESS");
+                    contactInfo.add(firstName);
+                    contactInfo.add(lastName);
+                    contactInfo.add(phoneNumber);
+                    contactInfo.add(email);
+                    contactInfo.add(address);
 
-                      contactInfo.add(firstName);
-                      contactInfo.add(lastName);
-                      contactInfo.add(phoneNumber);
-                      contactInfo.add(email);
-                      contactInfo.add(address);
-
-                      allContactInfo.add(contactInfo);
-                  }
+                    allContactInfo.add(contactInfo);
+                }
 
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
             
             //Conversion to Object
-            info = new Object[allContactInfo.size()][5];
+            info = new Object[allContactInfo.size()][6];
 
             for(int i = 0; i < allContactInfo.size(); i++)
             {
-                for(int j = 0; j < 4; j++)
+                for(int j = 0; j < 5; j++)
                 {
                     info[i][j] = allContactInfo.get(i).get(j);
                 }
@@ -495,38 +494,6 @@ public class Database {
         }
         
     }
-    
-    /**
-     * Updates a contact when update contact window pops up
-     * @param FIRST_NAME first name of the contact
-     * @param LAST_NAME last name of the contact
-     * @param PHONE phone number of the contact
-     * @param EMAIL email of the contact
-     * @param ADDRESS address of the contact (must be all address related things combined into a single string
-     * @param CONTACT_ID unique ID of that specific contact
-     */
-//    public int updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, 
-//            String EMAIL, String ADDRESS, int CONTACT_ID) {
-//        
-//        String sql = "UPDATE Contact SET FIRST_NAME = ?, LAST_NAME = ?, "
-//                + "PHONE = ?, EMAIL = ?, ADDRESS = ? WHERE CONTACT_ID = ?";
-//        
-//        try(Connection conn = this.connect();
-//                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, FIRST_NAME);
-//            pstmt.setString(2, LAST_NAME);
-//            pstmt.setString(3, PHONE);
-//            pstmt.setString(4, EMAIL);
-//            pstmt.setString(5, ADDRESS);
-//            pstmt.setInt(6, CONTACT_ID);
-//            
-//            pstmt.executeUpdate();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        
-//        return CONTACT_ID;
-//    }    
     
     /**
      * Adds a new user to the User table. If a new user tries to add an account with a
@@ -569,85 +536,68 @@ public class Database {
     }
     
     public void updateUser(String USERNAME, String PASSWORD, int userID) {
-
         int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
-     if(askUpdate==0)
-     {
-         String Selectquery = "UPDATE User SET USERNAME ='"+USERNAME+"', PASSWORD='"+ PASSWORD+"' WHERE ACCOUNT_ID='"+userID+"' ";
-         try(Connection conn = this.connect();
-                 Statement stmt = conn.createStatement();
-                ){
-            
-                    stmt.executeUpdate(Selectquery);
-                    JOptionPane.showMessageDialog(null, "Saved");
+        
+        if (askUpdate == 0)
+        {
+            String sql = "UPDATE User SET USERNAME = '" + USERNAME + "', PASSWORD = '" + PASSWORD + "' WHERE ACCOUNT_ID = '" + userID + "'";
+            try (Connection conn = this.connect();
+                Statement stmt = conn.createStatement()) {
 
-         }
-         catch(SQLException se){
-             System.out.println(se.getMessage());
-         }
-    }
-      
-    else
-        { 
-
-         
+                stmt.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Saved");
+                
+            } catch(SQLException se) {
+                System.out.println(se.getMessage());
+            }
         }
-     
     }
     
     public void updateTask(String NAME, String TYPE, String DATE, String DESC, int userID) {
-
-        int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
-     if(askUpdate==0)
-     {
-         String Selectquery = "UPDATE Task SET NAME ='"+NAME+"', TYPE='"+TYPE+"', DUE_DATE='"+ DATE+"',"
+        int askUpdate = JOptionPane.showConfirmDialog(null, "Do you want to update?", "Confirm", JOptionPane.YES_NO_OPTION);
+    
+        if(askUpdate==0)
+        {
+            String sql = "UPDATE Task SET NAME ='"+NAME+"', TYPE='"+TYPE+"', DUE_DATE='"+ DATE+"',"
                     + " DESCRIPTION='"+ DESC +"' WHERE NAME='"+NAME+"' AND TASK_USER_ID='" + userID + "'";
          
-         try(Connection conn = this.connect();
-                 Statement stmt = conn.createStatement();
-                ){
-            
-                    stmt.executeUpdate(Selectquery);
-                    JOptionPane.showMessageDialog(null, "Saved");
-
-         }
-         catch(SQLException se){
-             System.out.println(se.getMessage());
-         }
-         
-      }
-     
-     //dispose
-     
-   }
-    
-    public void updateContact(String fNAME, String lNAME, String PHONE, String EMAIL, String ADDRESS, int userID) {
-
-        int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
-     if(askUpdate==0)
-     {
-         String sql = "UPDATE Contact SET FIRST_NAME = '"+ fNAME +"' , LAST_NAME ='"+ lNAME +"', "
-                + "PHONE = '" +PHONE+ "', EMAIL = '" + EMAIL +"', ADDRESS = '" +ADDRESS+"' WHERE CONTACT_USER_ID = '" + userID + "' "
-                 + "AND FIRST_NAME = '" + fNAME + "' AND LAST_NAME ='" + lNAME + "' ";
-         
-         try(Connection conn = this.connect();
-                 Statement stmt = conn.createStatement();
-                ){
-            
+            try(Connection conn = this.connect();
+                 Statement stmt = conn.createStatement()) {
                     stmt.executeUpdate(sql);
                     JOptionPane.showMessageDialog(null, "Saved");
-
-         }
-         catch(SQLException se){
-             System.out.println(se.getMessage());
-         }
-         
-      }
-     
-     //dispose
-     
-   }
+            } catch(SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+    }
     
+    public void updateContact(String FIRST_NAME, String LAST_NAME, String PHONE, String EMAIL, String ADDRESS, int userID) {
+        int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if(askUpdate == 0)
+        {
+            String sql = "UPDATE Contact SET FIRST_NAME = ?, LAST_NAME = ?, "
+                    + "PHONE = ?, EMAIL = ?, ADDRESS = ? WHERE CONTACT_USER_ID = ? "
+                    + "AND FIRST_NAME = ? AND LAST_NAME = ?";
+
+            try(Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(1, FIRST_NAME);
+                pstmt.setString(2, LAST_NAME);
+                pstmt.setString(3, PHONE);
+                pstmt.setString(4, EMAIL);
+                pstmt.setString(5, ADDRESS);
+                pstmt.setInt(6, userID);
+                pstmt.setString(7, FIRST_NAME);
+                pstmt.setString(8, LAST_NAME);
+                
+                pstmt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Saved");
+            } catch(SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+    }
     
     public String testDatabase() {
         return "Database is alive!";
