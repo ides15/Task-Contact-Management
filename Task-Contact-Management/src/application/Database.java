@@ -524,9 +524,11 @@ public class Database {
             
             if (conflictingUser.equals(USERNAME)) {
                 System.out.println("Username " + USERNAME + " is already in use.");
+                JOptionPane.showMessageDialog(null, "User Name Already in Use");
             } else {
                 pstmt.executeUpdate();
                 System.out.println("User " + USERNAME + " created.");
+                JOptionPane.showMessageDialog(null, "New User Added");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

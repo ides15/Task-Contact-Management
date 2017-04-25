@@ -9,8 +9,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.AbstractButton;
@@ -25,8 +23,6 @@ public class MainView extends javax.swing.JPanel {
     private Database mainModel;
     private String date;
     private int rawMonth;
-    private String month;
-    private String day;
     private int rawDay;
     private int year;
     private String selectedDate;
@@ -41,7 +37,7 @@ public class MainView extends javax.swing.JPanel {
         //Calender 
         cal.getMonthChooser().removeAll();
         cal.getYearChooser().removeAll();
- 
+        
         rawMonth = cal.getMonthChooser().getMonth() + 1; 
         rawDay = cal.getDayChooser().getDay();
         
