@@ -12,11 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author glennlin
  */
+
 public class UpdateContact extends javax.swing.JFrame {
     private ContactView contactView;
     private Database contactModel;
     private ContactCntl contactCntl;
-    private int contactId;
+    private int userId;
     
     private Object[] colNames;
     /**
@@ -53,13 +54,7 @@ public class UpdateContact extends javax.swing.JFrame {
         emailField = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
         addressField = new javax.swing.JTextField();
-        cityLabel = new javax.swing.JLabel();
-        cityField = new javax.swing.JTextField();
-        stateLabel = new javax.swing.JLabel();
-        stateField = new javax.swing.JTextField();
         updateContactButton = new javax.swing.JButton();
-        zipField1 = new javax.swing.JTextField();
-        zipLabel1 = new javax.swing.JLabel();
 
         taskNameLabel2.setText("Lastname:");
 
@@ -81,10 +76,12 @@ public class UpdateContact extends javax.swing.JFrame {
 
         firstNameLabel.setText("First name:");
 
+        firstNameField.setEditable(false);
         firstNameField.setMinimumSize(new java.awt.Dimension(4, 20));
 
         lastNameLabel.setText("Last name:");
 
+        lastNameField.setEditable(false);
         lastNameField.setMinimumSize(new java.awt.Dimension(4, 20));
 
         phoneLabel.setText("Phone:");
@@ -99,24 +96,12 @@ public class UpdateContact extends javax.swing.JFrame {
 
         addressField.setMinimumSize(new java.awt.Dimension(4, 20));
 
-        cityLabel.setText("City:");
-
-        cityField.setMinimumSize(new java.awt.Dimension(4, 20));
-
-        stateLabel.setText("State:");
-
-        stateField.setMinimumSize(new java.awt.Dimension(4, 20));
-
         updateContactButton.setText("Update");
         updateContactButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateContactButtonActionPerformed(evt);
             }
         });
-
-        zipField1.setMinimumSize(new java.awt.Dimension(4, 20));
-
-        zipLabel1.setText("Zipcode:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,35 +117,19 @@ public class UpdateContact extends javax.swing.JFrame {
                     .addComponent(firstNameLabel)
                     .addComponent(phoneLabel)
                     .addComponent(emailLabel)
-                    .addComponent(addressLabel)
-                    .addComponent(cityLabel)
-                    .addComponent(zipLabel1))
+                    .addComponent(addressLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(zipField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lastNameLabel)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(27, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(stateLabel)
+                        .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lastNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,18 +151,8 @@ public class UpdateContact extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressLabel)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cityLabel)
-                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stateLabel)
-                    .addComponent(stateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(zipLabel1)
-                    .addComponent(zipField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(updateContactButton)
                 .addGap(38, 38, 38))
         );
@@ -220,36 +179,25 @@ public class UpdateContact extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_taskNameField5ActionPerformed
 
-    public void setContactId(int contactId) {
-        this.contactId = contactId;
-    }
-    
-    public int getContactId() {
-        return contactId;
-    }
-    
     private void updateContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateContactButtonActionPerformed
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String phoneNumber = phoneField.getText();
         String email = emailField.getText();
-        String address = addressField.getText()
-                + " ," + cityField.getText()
-                + " ," + stateField.getText()
-                + " ," + zipField1.getText();
-            
-        int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
-        
-        if(askUpdate == 0) {
-            int tempId = contactModel.updateContact(firstName, lastName, phoneNumber, email, address, contactId);
-            setContactId(tempId);
-            dispose();
-        }
-        else {
-            dispose();
-        }
+        String address = addressField.getText();
+
+        contactModel.updateContact(firstName, lastName, phoneNumber, email, address, userId);
+        dispose();
     }//GEN-LAST:event_updateContactButtonActionPerformed
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
+    public int getUserId() {
+        return userId;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -286,28 +234,22 @@ public class UpdateContact extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField addressField;
+    private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
-    public javax.swing.JTextField cityField;
-    private javax.swing.JLabel cityLabel;
-    public javax.swing.JTextField emailField;
+    private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
-    public javax.swing.JTextField firstNameField;
+    private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField lastNameField;
+    private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
-    public javax.swing.JTextField phoneField;
+    private javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLabel;
-    public javax.swing.JTextField stateField;
-    private javax.swing.JLabel stateLabel;
     private javax.swing.JTextField taskNameField2;
     private javax.swing.JTextField taskNameField5;
     private javax.swing.JLabel taskNameLabel2;
     private javax.swing.JLabel taskNameLabel5;
     private javax.swing.JButton updateContactButton;
-    public javax.swing.JTextField zipField1;
-    private javax.swing.JLabel zipLabel1;
     // End of variables declaration//GEN-END:variables
 
     public void addUpdateContactButtonListener(ActionListener al)
@@ -332,9 +274,7 @@ public class UpdateContact extends javax.swing.JFrame {
     /**
      * @return the cityField
      */
-    public javax.swing.JTextField getCityField() {
-        return cityField;
-    }
+
 
     /**
      * @return the emailField
@@ -367,16 +307,12 @@ public class UpdateContact extends javax.swing.JFrame {
     /**
      * @return the zipField
      */
-    public javax.swing.JTextField getZipField() {
-        return getStateField();
-    }
+
 
     /**
      * @return the stateField
      */
-    public javax.swing.JTextField getStateField() {
-        return stateField;
-    }
+
     
     public Database getContactModel() {
         return contactModel;

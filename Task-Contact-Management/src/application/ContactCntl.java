@@ -81,8 +81,8 @@ public class ContactCntl {
             else
             {
                 getContactModel().addContact(firstName, lastName, phoneNumber, email, address);
-                getContactView().getUpdateContact().setContactId(1000);
-                getContactView().getAddContact().setVisible(false);
+                //getContactView().getUpdateContact().setContactId(1000);
+                getContactView().getAddContact().dispose();
                 getContactView().getAddContact().getFirstNameField().setText("");
                 getContactView().getAddContact().getLastNameField().setText("");
                 getContactView().getAddContact().getAddressField().setText("");

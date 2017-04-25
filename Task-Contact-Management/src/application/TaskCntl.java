@@ -80,7 +80,7 @@ public class TaskCntl
                   getTaskView().getAddTask().getTaskName().setText("");
                   getTaskView().getAddTask().getDueDate().setText("");
                   getTaskView().getAddTask().getDescription().setText("");
-                  getTaskView().getAddTask().setVisible(false);
+                  getTaskView().getAddTask().dispose();
                   updateTable();
 
             }          

@@ -148,10 +148,11 @@ public class ContactView extends javax.swing.JPanel {
         int row = contactTable.getSelectedRow();
         int col = 0;
         
-        updateContact.firstNameField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),0).toString());
-        updateContact.lastNameField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),1).toString());
-        updateContact.phoneField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),2).toString());
-        updateContact.emailField.setText(contactTable.getValueAt(contactTable.getSelectedRow(),3).toString());
+        updateContact.getFirstNameField().setText(contactTable.getValueAt(contactTable.getSelectedRow(),0).toString());
+        updateContact.getLastNameField().setText(contactTable.getValueAt(contactTable.getSelectedRow(),1).toString());
+        updateContact.getPhoneField().setText(contactTable.getValueAt(contactTable.getSelectedRow(),2).toString());
+        updateContact.getEmailField().setText(contactTable.getValueAt(contactTable.getSelectedRow(),3).toString());
+        updateContact.getAddressField().setText(contactTable.getValueAt(contactTable.getSelectedRow(),3).toString());
 
     }//GEN-LAST:event_contactTableMouseClicked
 

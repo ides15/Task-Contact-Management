@@ -24,10 +24,16 @@ public class UpdateTask extends javax.swing.JFrame {
     /**
      * Creates new form AddTask
      */
+    
+    private Database db;
+    private int userID;
+    
     public UpdateTask() 
     {
         super("Add Task");
         initComponents();
+        db = new Database("tcm.db");
+        
     }
 
     /**
@@ -61,6 +67,7 @@ public class UpdateTask extends javax.swing.JFrame {
 
         descriptionLabel.setText("Description: ");
 
+        taskNameField.setEditable(false);
         taskNameField.setMinimumSize(new java.awt.Dimension(4, 20));
         taskNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,36 +177,14 @@ public class UpdateTask extends javax.swing.JFrame {
     }//GEN-LAST:event_dueDateFieldActionPerformed
 
     private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
-        String taskName = taskNameField.getText();
+            String taskName = taskNameField.getText();
             String dueDate = dueDateField.getText();
             String type = TypeComboBox.getSelectedItem().toString();
             String description = descriptionTextArea.getText();
             
-            int askUpdate = JOptionPane.showConfirmDialog(null, "Do You Want to Update?", "Confirm", JOptionPane.YES_NO_OPTION);
-     if(askUpdate==0)
-     {
-         
-        try{
-            Connection con = DriverManager.getConnection("jdbc:sqlite:tcm.db", null,null);
-            String Selectquery = "UPDATE Task SET NAME ='"+taskName+"', TYPE='"+ type+"', DUE_DATE='"+ dueDate+"',"
-                    + " DESCRIPTION='"+ description+"' WHERE NAME='"+taskName+"' ";
-            Statement stmt = con.createStatement();
-           
-            stmt.execute(Selectquery);
-            
-            JOptionPane.showMessageDialog(this, "Saved");
+            db.updateTask(taskName, type, dueDate, description, userID);
             dispose();
-         }
-         catch(SQLException se){
-             
-         }
-     }
-    else
-    { 
-
-                 }
-                 
-     
+         
     }//GEN-LAST:event_updateTaskButtonActionPerformed
 
     public void addAddTaskButtonListener(ActionListener al)
@@ -231,6 +216,10 @@ public class UpdateTask extends javax.swing.JFrame {
         return descriptionTextArea;
     }
      
+    public void setUserID(int id)
+    {
+        this.userID = id;
+    }
     
     /**
      * @param args the command line arguments

@@ -132,7 +132,8 @@ public class LoginCntl
                 navCntl.getContactCntl().getContactModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getMainView().getMainModel().setCurrentUserId(loginModel.getCurrentUserId());
                 navCntl.getSetView().getChangePW().setUserid(loginModel.getCurrentUserId());
-                
+                navCntl.getTaskCntl().getTaskView().getUpdateTask().setUserID(loginModel.getCurrentUserId()); //Update USERID
+                navCntl.getContactCntl().getContactView().getUpdateContact().setUserId(loginModel.getCurrentUserId());
 
                 // ^^^ this passes the user id in login model to the user id in the task model
                 // they are referencing two different instances of database so the user id

@@ -133,6 +133,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="taskNameField">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[4, 20]"/>
             </Property>
